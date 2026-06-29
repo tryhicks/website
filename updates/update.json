@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "notes": "Initial release of Hicks",
+  "pub_date": "2026-07-01T00:00:00Z",
+  "platforms": {
+    "darwin-aarch64": {
+      "signature": "CHANGE_ME",
+      "url": "https://github.com/tryhicks/app/releases/download/v0.1.0/Hicks_0.1.0_aarch64.dmg"
+    },
+    "darwin-x86_64": {
+      "signature": "CHANGE_ME",
+      "url": "https://github.com/tryhicks/app/releases/download/v0.1.0/Hicks_0.1.0_x64.dmg"
+    }
+  }
+}
