@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hicks — Homepage</title>
+  <title>Hicks — Homepage v4</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -40,6 +40,16 @@
       position: relative;
       overflow-x: hidden;
     }
+    /* Content sections after hero sit on Hicks panel tone */
+    section.problem,
+    section.build,
+    section.skills,
+    section.overnight,
+    section.knows,
+    section.local-sec,
+    section.close {
+      background: var(--page);
+    }
 
     /* Content above atmosphere */
     body > section {
@@ -52,149 +62,19 @@
       z-index: 30;
     }
 
-    /* ═══ Atmosphere — hero-only, doesn't follow scroll ═══ */
+    /* Atmosphere off — was creating a separate solid slab behind hero text */
     .atmosphere {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    /* Soft warm glow under hero — muted, hero-only */
-    .atmosphere-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      will-change: transform, opacity;
-    }
-    .atmosphere-glow.warm {
-      width: min(70vw, 520px);
-      height: min(70vw, 520px);
-      top: -12%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: radial-gradient(
-        circle,
-        rgba(200, 137, 63, 0.06) 0%,
-        rgba(200, 137, 63, 0.02) 38%,
-        transparent 70%
-      );
-      animation: glow-drift 36s ease-in-out infinite;
-    }
-    .atmosphere-glow.warm-side {
-      width: min(40vw, 320px);
-      height: min(40vw, 320px);
-      top: 18%;
-      right: -8%;
-      background: radial-gradient(
-        circle,
-        rgba(200, 137, 63, 0.03) 0%,
-        transparent 68%
-      );
-      animation: glow-drift-alt 42s ease-in-out infinite;
-    }
-    .atmosphere-glow.cool {
-      width: min(60vw, 480px);
-      height: min(60vw, 480px);
-      bottom: 8%;
-      left: -10%;
-      background: radial-gradient(
-        circle,
-        rgba(140, 150, 160, 0.03) 0%,
-        transparent 70%
-      );
-      animation: glow-drift 48s ease-in-out infinite reverse;
-    }
-    .atmosphere-glow.mid {
-      width: min(50vw, 380px);
-      height: min(50vw, 380px);
-      top: 52%;
-      left: 55%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(
-        circle,
-        rgba(200, 137, 63, 0.02) 0%,
-        transparent 72%
-      );
-      animation: glow-drift-alt 40s ease-in-out infinite;
-    }
-
-    @keyframes glow-drift {
-      0%, 100% { transform: translateX(-50%) translate(0, 0); opacity: 1; }
-      40% { transform: translateX(-50%) translate(3%, 2%); opacity: 0.85; }
-      70% { transform: translateX(-50%) translate(-2%, 4%); opacity: 1; }
-    }
-    @keyframes glow-drift-alt {
-      0%, 100% { transform: translate(0, 0); opacity: 0.9; }
-      50% { transform: translate(-4%, 3%); opacity: 1; }
-    }
-    .atmosphere-glow.mid {
-      animation-name: glow-drift-mid;
-    }
-    @keyframes glow-drift-mid {
-      0%, 100% { transform: translate(-50%, -50%); opacity: 0.85; }
-      50% { transform: translate(-46%, -54%); opacity: 1; }
-    }
-
-    /* Edge vignette — editorial frame */
-    .atmosphere-vignette {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        ellipse 85% 75% at 50% 40%,
-        transparent 40%,
-        rgba(0, 0, 0, 0.28) 100%
-      );
-    }
-
-    /* Film grain / paper noise */
-    .atmosphere-grain {
-      position: absolute;
-      inset: -50%;
-      width: 200%;
-      height: 200%;
-      opacity: 0.045;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-      mix-blend-mode: overlay;
-      animation: grain-shift 0.5s steps(2) infinite;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .atmosphere-glow { animation: none !important; }
-      .atmosphere-grain { animation: none; }
-    }
-    @keyframes grain-shift {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(-1.5%, 1%); }
-      50% { transform: translate(1%, -1.5%); }
-      75% { transform: translate(-0.5%, -1%); }
-      100% { transform: translate(0, 0); }
-    }
-
-    /* Faint reweave arc whisper behind hero */
-    .atmosphere-arc {
-      position: absolute;
-      top: 6%;
-      left: 50%;
-      width: min(70vw, 560px);
-      height: min(70vw, 560px);
-      transform: translateX(-50%);
-      border-radius: 50%;
-      border: 1px solid rgba(200, 137, 63, 0.03);
-      box-shadow:
-        0 0 60px rgba(200, 137, 63, 0.015),
-        inset 0 0 80px rgba(200, 137, 63, 0.01);
-      opacity: 0.7;
+      display: none;
     }
 
     /* ── Marketing chrome (not app) ── */
     .nav {
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 24px;
-      background: rgba(28,28,28,0.88);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: none;
     }
     .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
     .brand svg { width: 22px; height: 22px; flex-shrink: 0; }
@@ -335,87 +215,647 @@
       color: var(--faint);
     }
 
-    /* ═══ HERO ═══ */
+    
+    /* ═══ HERO — modeled on linear.app hero ═══ */
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 120px 24px 56px;
-      max-width: none;
+      padding: 120px 0 0;
       margin: 0;
       text-align: center;
-      background: transparent;
+      /* App page at top → lighter warm floor in bottom third */
+      background: linear-gradient(
+        180deg,
+        var(--page) 0%,
+        var(--page) 58%,
+        #222018 82%,
+        #2c2820 100%
+      );
     }
-    .hero > h1,
-    .hero > .hero-sub,
-    .hero > .cta-row,
-    .hero > .local,
-    .hero > .app-shot {
+    .hero-copy {
       position: relative;
-      z-index: 1;
-      max-width: 1080px;
-      margin-left: auto;
-      margin-right: auto;
+      z-index: 3;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
     }
     .hero h1 {
-      font-size: clamp(2.1rem, 5.2vw, 3.5rem);
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      line-height: 1.15;
-      margin: 0 auto 20px;
+      font-size: clamp(2.25rem, 5.4vw, 3.75rem);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+      margin: 0 auto 18px;
+      color: var(--ink);
     }
     .hero h1 .line { display: block; white-space: nowrap; }
-    .hero h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
-
+    .hero h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
     @media (max-width: 640px) {
       .hero h1 .line { white-space: normal; }
     }
     .hero-sub {
-      font-size: clamp(1.25rem, 2.6vw, 1.45rem);
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
       line-height: 1.55;
       color: var(--quiet);
-      max-width: 30em;
-      margin: 0 auto 20px;
+      max-width: 28em;
+      margin: 0 auto 22px;
     }
     .hero-sub strong { color: var(--ink); font-weight: 500; }
-    .cta-row { display: flex; justify-content: center; }
-    .local { font-size: 15px; color: var(--faint); margin: 16px 0 40px; }
-
-    .hero-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: left;
+    .cta-row { display: flex; justify-content: center; gap: 12px; }
+    .local {
+      font-size: 14px;
+      color: var(--faint);
+      margin: 16px 0 0;
     }
-    @media (max-width: 860px) {
-      .hero-strip { grid-template-columns: 1fr; max-width: 420px; }
-    }
-    .hero-strip .app-frame { min-height: 180px; }
-    .hero-strip .note-item { margin: 0 6px; }
-    .hero-strip .topic-block { padding: 12px 14px; }
-    .hero-strip .skill-report { padding: 14px 14px 20px; }
 
-    /* ═══ Full app window mock (post-hero) ═══ */
-    .app-shot {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 8px 20px 72px;
+    /* ── Product illustration — stage from app tokens only ── */
+    .hero-illu {
+      --illu-width: 1280px;
+      --illu-height: 680px;
+      --app-radius: 12px;
+      --frame-pad: 8px;
+      --sidebar-width: 220px;
+      /*
+        Stage colours — mostly app page/card, amber only as a soft warm tint.
+        page #1C1C1C · card #262626 · accent #c8893f (warmth, not the floor)
+      */
+      --stage-warm: #242018;      /* page + a hint of warm */
+      --stage-lit: #322c24;       /* lighter floor in bottom third */
+      --surface-gap: 36px;
       position: relative;
       z-index: 2;
+      width: 100%;
+      margin: 0 auto;
+      padding-bottom: var(--surface-gap);
+      overflow: hidden;
+      border-radius: 6px;
     }
-    .app-window {
-      display: grid;
-      grid-template-columns: 220px 1fr 300px;
-      height: min(560px, 72vh);
+
+    /* Lighter floor in bottom third + soft amber warmth (app palette) */
+    .hero-illu-bg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          ellipse 80% 50% at 50% 100%,
+          rgba(200, 137, 63, 0.14) 0%,
+          transparent 58%
+        ),
+        linear-gradient(
+          180deg,
+          transparent 0%,
+          transparent 45%,
+          var(--stage-warm) 72%,
+          var(--stage-lit) 100%
+        );
+    }
+    .hero-illu-bg::after {
+      display: none;
+    }
+
+    .hero-illu-shade {
+      display: none;
+    }
+
+    /* Disable old floating stage-shadow image — it sat below the app */
+    .hero-illu-shadow {
+      display: none;
+    }
+
+    /* Centers the frame on the stage */
+    .hero-illu-frame-wrap {
+      position: relative;
+      z-index: 4;
+      max-width: calc(var(--illu-width) + 120px);
+      margin: 0 auto;
+      padding: 0 60px;
+      overflow: visible; /* allow oval past the frame corners */
+    }
+    @media (max-width: 1280px) {
+      .hero-illu-frame-wrap { padding: 0 32px; }
+    }
+    @media (max-width: 1024px) {
+      .hero-illu-frame-wrap { padding: 0 20px; }
+    }
+
+    /* Outer app chrome — sits ON the lighter floor */
+    .hero-illu-frame {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--illu-width);
+      margin: 0 auto;
+      height: var(--illu-height);
+      padding: var(--frame-pad);
+      border-radius: var(--app-radius);
       background: var(--page);
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(236, 236, 236, 0.08),
+        0 1px 0 rgba(236, 236, 236, 0.04) inset;
+    }
+
+    /*
+      Contact shadow BEHIND the screen (under the frame in z-order).
+      Most of the oval is hidden by the app; only a soft kiss on the floor
+      at the bottom edge — not a blob hanging under the front.
+    */
+    .hero-illu-contact {
+      position: absolute;
+      left: 50%;
+      top: var(--illu-height);
+      /* Pull oval up under the app so the screen covers it */
+      transform: translate(-50%, -75%);
+      z-index: 1;
+      width: 72%;
+      max-width: calc(var(--illu-width) * 0.72);
+      height: 28px;
+      margin: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.4);
+      filter: blur(12px);
+    }
+    .hero-illu-contact::before,
+    .hero-illu-contact::after {
+      display: none;
+    }
+
+    .hero-illu-frame-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: var(--card);
       border: 1px solid var(--rule);
-      border-radius: var(--radius-lg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Soft warm corner light — accent family, not pure white */
+    .hero-illu-frame::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(200, 137, 63, 0.06) 0%, transparent 55%);
+      transform: translate(-45%, -45%);
+      mix-blend-mode: lighten;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Thin shine edge catch */
+    .hero-illu-shine {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      pointer-events: none;
+      z-index: 4;
+      -webkit-mask-image: radial-gradient(ellipse 240px 200px at 12% 0%, #000 0%, transparent 65%);
+      mask-image: radial-gradient(ellipse 240px 200px at 12% 0%, #000 0%, transparent 65%);
+    }
+
+    /* No bottom fade — full app UI stays visible */
+    .hero-illu-fade {
+      display: none;
+    }
+
+    /* Inner app surface */
+    .app-window {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr 300px;
+      width: 100%;
+      height: 100%;
+      background: var(--page);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 7px;
       overflow: hidden;
       text-align: left;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      box-shadow: none;
     }
-    /* App window responsive — see global tablet/mobile block */
+
+
+    /* ═══ Hero app view animation: Threads ↔ Wiki split ═══ */
+    .app-window[data-view="threads"] {
+      grid-template-columns: var(--sidebar-width) 1fr 300px;
+    }
+    .app-window[data-view="wiki"] {
+      grid-template-columns: var(--sidebar-width) minmax(200px, 0.95fr) minmax(240px, 1.15fr);
+    }
+
+    .app-window .aw-view-wiki { display: none; }
+    .app-window .aw-wiki-menu { display: none; }
+    .app-window .aw-ingest { display: none; }
+    .app-window[data-view="wiki"] .aw-view-threads { display: none !important; }
+    .app-window[data-view="wiki"] .aw-tree-threads { display: none; }
+    .app-window[data-view="wiki"] .aw-tools { display: none; }
+    .app-window[data-view="wiki"] .aw-view-wiki { display: flex; }
+    .app-window[data-view="wiki"] .aw-wiki-menu { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; }
+    .app-window[data-view="wiki"] .aw-ingest { display: block; }
+
+    /* Wiki sidebar — mirrors SynthesisMenu.tsx */
+    .aw-ingest {
+      padding: 0 12px 8px;
+      flex-shrink: 0;
+    }
+    .aw-ingest .btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font);
+    }
+    .aw-wiki-menu {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      padding: 4px 8px 8px;
+    }
+    .aw-wiki-menu .wm-sec {
+      margin-bottom: 8px;
+    }
+    .aw-wiki-menu .wm-sec-label {
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .aw-wiki-menu .wm-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .aw-wiki-menu .wm-item.active {
+      background: var(--surface-hover);
+      color: var(--ink);
+    }
+    .aw-wiki-menu .wm-item .wm-ico {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--quiet);
+    }
+    .aw-wiki-menu .wm-item.active .wm-ico {
+      color: var(--ink);
+    }
+    .aw-wiki-menu .wm-item .wm-label {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .aw-wiki-menu .wm-item .wm-meta {
+      font-size: 11px;
+      color: var(--faint);
+      flex-shrink: 0;
+    }
+    .aw-wiki-menu .wm-item .wm-chev {
+      width: 14px;
+      height: 14px;
+      color: var(--faint);
+      flex-shrink: 0;
+    }
+    .aw-wiki-menu .wm-skill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+    .aw-wiki-menu .wm-skill .wm-chev {
+      width: 14px;
+      height: 14px;
+      color: var(--faint);
+      flex-shrink: 0;
+    }
+
+    /* Active tab underline — driven by data-view (not .on alone) */
+    .app-window[data-view="threads"] .aw-tab-threads,
+    .app-window[data-view="wiki"] .aw-tab-wiki,
+    .app-window[data-view="wiki"] .aw-tab-wiki.on {
+      color: var(--ink) !important;
+      border-bottom-color: var(--ink) !important;
+    }
+    .app-window[data-view="threads"] .aw-tab-wiki,
+    .app-window[data-view="wiki"] .aw-tab-threads {
+      color: var(--faint);
+      border-bottom-color: transparent;
+    }
+
+    .app-window.aw-switching .aw-main,
+    .app-window.aw-switching .aw-chat,
+    .app-window.aw-switching .aw-topics-pane,
+    .app-window.aw-switching .aw-topic-page {
+      animation: aw-fade-in 0.55s ease both;
+    }
+    @keyframes aw-fade-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .app-window.aw-switching .aw-main,
+      .app-window.aw-switching .aw-chat,
+      .app-window.aw-switching .aw-topics-pane,
+      .app-window.aw-switching .aw-topic-page {
+        animation: none;
+      }
+    }
+
+    /*
+      Topics list — mirrors src/components/TopicsPage.tsx
+      Title, subtitle, filter, cluster cards, topic blocks.
+    */
+    .aw-topics-pane {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--page);
+      border-right: 1px solid var(--rule);
+      overflow: hidden;
+      text-align: left;
+      padding-left: 4px; /* air from the wiki menu divider */
+    }
+    .aw-topics-pane .tp-scroll {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .aw-topics-pane .tp-inner {
+      max-width: 36rem;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 24px;
+    }
+    /* Page title + subtitle (TopicsPage) */
+    .aw-topics-pane .tp-head {
+      padding: 36px 24px 8px;
+      flex-shrink: 0;
+    }
+    .aw-topics-pane .tp-head h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.15;
+    }
+    .aw-topics-pane .tp-head p {
+      font-size: 14px;
+      color: var(--quiet);
+      margin: 6px 0 0;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    /* Filter box */
+    .aw-topics-pane .tp-filter {
+      position: relative;
+      margin-bottom: 8px;
+      flex-shrink: 0;
+    }
+    .aw-topics-pane .tp-filter .f-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      color: var(--faint);
+      pointer-events: none;
+    }
+    .aw-topics-pane .tp-filter .f-field {
+      width: 100%;
+      background: var(--page);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 10px 12px 10px 36px;
+      font-size: 14px;
+      color: var(--faint);
+      font-family: var(--font);
+    }
+    /* Clusters scroll area */
+    .aw-topics-pane .tp-clusters {
+      flex: 1;
+      overflow: hidden;
+      padding: 28px 0 16px;
+      min-height: 0;
+    }
+    /* Cluster cards — collapsed by default (TopicsPage) */
+    .aw-topics-pane .cluster {
+      margin-bottom: 12px;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .aw-topics-pane .cluster-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+    }
+    .aw-topics-pane .cluster-head .chev {
+      width: 12px;
+      height: 12px;
+      color: var(--faint);
+      flex-shrink: 0;
+      transform: rotate(-90deg); /* collapsed: points right */
+    }
+    .aw-topics-pane .cluster-head .cname {
+      flex: 1;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .aw-topics-pane .cluster-head .ccount {
+      font-size: 13px;
+      color: var(--quiet);
+      flex-shrink: 0;
+    }
+
+    /*
+      Topic page (right split) — WikiPageViewer + format_topic_page_body
+      Close chrome (App.tsx) + prose-chat markdown surface
+    */
+    .aw-topic-page {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--page);
+      overflow: hidden;
+      text-align: left;
+      position: relative;
+      border-left: 1px solid var(--rule);
+    }
+    .aw-topic-page::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 36px;
+      background: linear-gradient(to bottom, transparent, var(--page));
+      pointer-events: none;
+      z-index: 2;
+    }
+    .aw-topic-page .tp-chrome {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 3;
+    }
+    .aw-topic-page .tp-chrome .ico-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--quiet);
+    }
+    .aw-topic-page .tp-chrome .ico-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .aw-topic-page .tp-scroll {
+      flex: 1;
+      padding: 48px 24px 40px;
+      overflow: hidden;
+    }
+    .aw-topic-page .tp-prose {
+      max-width: 36rem;
+    }
+    /* page-title from index.css */
+    .aw-topic-page .page-title {
+      font-size: clamp(1.6rem, 2.4vw, 2.25rem);
+      line-height: 1.1;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin: 0 0 12px;
+      word-break: break-word;
+    }
+    .aw-topic-page .page-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--faint);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+    /* prose-chat surface */
+    .aw-topic-page .prose {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+    .aw-topic-page .prose blockquote {
+      margin: 0 0 16px;
+      padding-left: 16px;
+      border-left: 2px solid var(--accent);
+      font-style: italic;
+      color: var(--quiet);
+    }
+    .aw-topic-page .prose blockquote strong {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .aw-topic-page .prose h2 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin: 28px 0 12px;
+      line-height: 1.15;
+    }
+    .aw-topic-page .prose h2:first-of-type {
+      margin-top: 8px;
+    }
+    .aw-topic-page .prose p {
+      margin: 0 0 10px;
+    }
+    .aw-topic-page .prose ul {
+      list-style: disc;
+      margin: 0 0 8px;
+      padding: 0 0 0 1.25rem;
+    }
+    .aw-topic-page .prose li {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .aw-topic-page .prose li::marker {
+      color: var(--accent);
+    }
+    /* wiki-link — prose-chat .wiki-link */
+    .aw-topic-page .wiki-link {
+      color: var(--quiet);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: default;
+    }
+    .aw-topic-page .prose em {
+      font-style: italic;
+      color: var(--quiet);
+    }
+
+    .aw-search .s-field-wiki { display: none; }
+    .app-window[data-view="wiki"] .aw-search .s-field-threads { display: none; }
+    .app-window[data-view="wiki"] .aw-search .s-field-wiki { display: block; }
+
+    @media (max-width: 960px) {
+      .app-window[data-view="wiki"] {
+        grid-template-columns: var(--sidebar-width) 1fr;
+      }
+      .app-window[data-view="wiki"] .aw-topics-pane { display: none !important; }
+      .app-window[data-view="wiki"] .aw-topic-page { display: flex !important; }
+      .app-window[data-view="wiki"] .aw-view-threads { display: none !important; }
+    }
+    @media (max-width: 640px) {
+      .app-window[data-view="wiki"] {
+        grid-template-columns: 1fr;
+      }
+      .app-window[data-view="wiki"] .aw-side { display: none; }
+    }
+
 
     /* Left sidebar */
     .aw-side {
@@ -424,6 +864,8 @@
       background: var(--page);
       border-right: 1px solid var(--rule);
       min-width: 0;
+      min-height: 0;
+      overflow: hidden;
     }
     .aw-logo {
       display: flex;
@@ -1002,13 +1444,20 @@
 
     /* ═══ BUILD / LIVING WIKI ═══ */
     .build {
-      max-width: 1000px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 72px 24px 80px;
       position: relative;
       z-index: 2;
       text-align: left;
     }
+    .build-layout {
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 380px);
+      gap: 40px 48px;
+      align-items: start;
+    }
+    .build-copy { min-width: 0; }
     .build h2 {
       font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
@@ -1038,6 +1487,195 @@
       color: var(--accent);
     }
 
+    /* Wiki Builder panel mock — WikiBuilderPanel.tsx mid-Ingest */
+    .builder-panel {
+      background: var(--page);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      text-align: left;
+    }
+    .builder-panel .bp-body {
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .builder-panel .bp-stats {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      background: var(--card);
+      padding: 16px;
+    }
+    .builder-panel .bp-stats-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .builder-panel .bp-count {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .builder-panel .bp-count-label {
+      font-size: 13px;
+      color: var(--quiet);
+      margin-top: 6px;
+    }
+    .builder-panel .bp-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .builder-panel .bp-badge-new,
+    .builder-panel .bp-badge-upd {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .builder-panel .bp-badge-new {
+      background: var(--sage-soft);
+      color: var(--accent);
+    }
+    .builder-panel .bp-badge-upd {
+      background: #302820;
+      color: #d4aa8d;
+    }
+    .builder-panel .bp-tokens {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      font-size: 12px;
+      color: var(--quiet);
+    }
+    .builder-panel .bp-help {
+      font-size: 13px;
+      color: var(--quiet);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .builder-panel .bp-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+    .builder-panel .bp-skills-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--quiet);
+    }
+    .builder-panel .bp-skill {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .builder-panel .bp-check {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      border-radius: 3px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a1918;
+    }
+    .builder-panel .bp-check svg {
+      width: 11px;
+      height: 11px;
+    }
+    .builder-panel .bp-skill-name {
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .builder-panel .bp-skill-desc {
+      font-size: 12px;
+      color: var(--quiet);
+      margin-top: 3px;
+      line-height: 1.45;
+    }
+    .builder-panel .bp-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--page);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font);
+      border: none;
+    }
+    .builder-panel .bp-btn .spin {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(28, 28, 28, 0.25);
+      border-top-color: var(--page);
+      border-radius: 50%;
+      animation: bp-spin 0.8s linear infinite;
+    }
+    @keyframes bp-spin {
+      to { transform: rotate(360deg); }
+    }
+    .builder-panel .bp-progress {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 2px;
+    }
+    .builder-panel .bp-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--rule);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .builder-panel .bp-bar-fill {
+      height: 100%;
+      width: 38%;
+      background: var(--accent);
+      border-radius: 999px;
+      animation: bp-bar 4.5s ease-in-out infinite;
+    }
+    @keyframes bp-bar {
+      0% { width: 18%; }
+      50% { width: 62%; }
+      100% { width: 38%; }
+    }
+    .builder-panel .bp-status {
+      font-size: 13px;
+      color: var(--quiet);
+      margin: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .builder-panel .bp-btn .spin { animation: none; }
+      .builder-panel .bp-bar-fill { animation: none; width: 42%; }
+    }
+    @media (max-width: 860px) {
+      .build-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .builder-panel { max-width: 400px; }
+    }
+
     /* ═══ SKILLS ═══ */
     .skills {
       max-width: 1000px;
@@ -1056,7 +1694,6 @@
       letter-spacing: -0.03em;
       line-height: 1.25;
       margin-bottom: 14px;
-      white-space: nowrap;
     }
     .skills-intro .lead {
       font-size: clamp(1.2rem, 2.4vw, 1.4rem);
@@ -1202,7 +1839,7 @@
     }
     .skills-card .hits li {
       display: grid;
-      grid-template-columns: 3.2em 1fr;
+      grid-template-columns: 3.5em 1fr;
       gap: 10px;
       padding: 10px 0;
       border-top: 1px solid var(--rule);
@@ -1796,10 +2433,9 @@
 
     /* ═══ Tablet ═══ */
     @media (max-width: 960px) {
-      .app-shot { padding: 8px 16px 56px; }
+      .hero-illu { --illu-height: 560px; --sidebar-width: 200px; --surface-gap: 36px; }
       .app-window {
-        grid-template-columns: 200px 1fr;
-        height: min(520px, 68vh);
+        grid-template-columns: var(--sidebar-width) 1fr;
       }
       .app-window .aw-chat { display: none; }
 
@@ -1827,7 +2463,8 @@
       .skills-intro { max-width: 36em; }
       .skills-flow { max-width: 100%; }
 
-      .hero { padding: 108px 20px 40px; }
+      .hero { padding: 108px 0 0; }
+      .hero-copy { padding: 0 20px 24px; }
       .problem { padding: 56px 20px 40px; }
       .build { padding: 56px 20px 64px; }
       .skills { padding: 56px 20px 64px; }
@@ -1845,8 +2482,9 @@
       .nav-cta { padding: 8px 14px; font-size: 12px; }
 
       .hero {
-        padding: 96px 16px 28px;
+        padding: 96px 0 0;
       }
+      .hero-copy { padding: 0 16px 20px; }
       .hero h1 {
         font-size: clamp(1.65rem, 8vw, 2.15rem);
         letter-spacing: -0.03em;
@@ -1862,12 +2500,22 @@
         max-width: 280px;
       }
 
-      .app-shot { padding: 0 12px 48px; }
+      .hero-illu {
+        --illu-height: 420px;
+        --app-radius: 10px;
+        --frame-pad: 6px;
+        --surface-gap: 32px;
+      }
+      .hero-illu-frame-wrap { padding: 0 12px; }
+      .hero-illu-shade { height: 100px; }
+      .hero-illu-contact {
+        width: calc(100% + 48px);
+        max-width: calc(var(--illu-width) + 48px);
+        height: 40px;
+      }
       .app-window {
         grid-template-columns: 1fr;
-        height: min(420px, 62vh);
-        min-height: 360px;
-        border-radius: 10px;
+        border-radius: 6px;
       }
       .app-window .aw-side { display: none; }
       .app-window .aw-chat { display: none; }
@@ -2018,35 +2666,46 @@
     <a class="nav-cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
   </header>
 
-  <!-- 1. HERO -->
+  <!-- 1. HERO — Linear-style product stage -->
   <section class="hero">
-    <!-- Atmosphere lives only inside the hero -->
     <div class="atmosphere" aria-hidden="true">
       <div class="atmosphere-glow warm"></div>
-      <div class="atmosphere-glow warm-side"></div>
       <div class="atmosphere-glow mid"></div>
-      <div class="atmosphere-glow cool"></div>
-      <div class="atmosphere-arc"></div>
       <div class="atmosphere-vignette"></div>
       <div class="atmosphere-grain"></div>
     </div>
-    <h1>
-      <span class="line">Your notes don't need a home.</span>
-      <span class="line">They need a <em>mind.</em></span>
-    </h1>
-    <p class="hero-sub">
-      <strong>Stop organising. Start writing.</strong>
-      Hicks turns your notes into a living wiki.
-    </p>
-    <div class="cta-row">
-      <a class="cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
-    </div>
-    <p class="local">Desktop app · local-first · no account</p>
 
-    <!-- Full app window mock (inside hero) -->
-    <div class="app-shot" aria-hidden="true">
-    <div class="app-window">
-      <!-- Left: Threads sidebar -->
+    <div class="hero-copy">
+      <h1>
+        <span class="line">Your notes don't need a home.</span>
+        <span class="line">They need a <em>mind.</em></span>
+      </h1>
+      <p class="hero-sub">
+        <strong>Stop organising. Start writing.</strong>
+        Hicks turns your notes into a living wiki.
+      </p>
+      <div class="cta-row">
+        <a class="cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
+      </div>
+      <p class="local">Desktop app · local-first · no account</p>
+    </div>
+
+    <div class="hero-illu" aria-hidden="true">
+      <!-- 3D lit stage (Linear: black→light floor + vignette + grain) -->
+      <div class="hero-illu-bg"></div>
+      <!-- Soft floor light plate -->
+      <div class="hero-illu-shade">
+        <img src="assets/stage-shade.png" alt="" width="1920" height="900" decoding="async" />
+      </div>
+      <!-- Soft ground shadow under the window -->
+      <div class="hero-illu-shadow">
+        <img src="assets/stage-shadow.png" alt="" width="1920" height="900" decoding="async" />
+      </div>
+      <div class="hero-illu-frame-wrap">
+        <div class="hero-illu-frame">
+          <div class="hero-illu-frame-bg"></div>
+          <div class="hero-illu-shine"></div>
+<div class="app-window" id="hero-app" data-view="threads">
       <aside class="aw-side">
         <div class="aw-logo">
           <svg viewBox="0 0 213 213" fill="none" aria-hidden="true">
@@ -2057,32 +2716,37 @@
           </svg>
         </div>
         <div class="aw-tabs">
-          <span class="on">Threads</span>
-          <span>Wiki</span>
+          <span class="aw-tab-threads on">Threads</span>
+          <span class="aw-tab-wiki">Wiki</span>
         </div>
         <div class="aw-search-wrap">
           <div class="aw-search">
             <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
             </svg>
-            <div class="s-field">Find a thread...</div>
+            <div class="s-field s-field-threads">Find a thread...</div>
+            <div class="s-field s-field-wiki">Filter</div>
           </div>
         </div>
         <div class="aw-tools">
-          <span title="New thread">
+          <span title="New">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg>
           </span>
           <span title="New space">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10v6"/><path d="M9 13h6"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
           </span>
-          <span title="Change sort order">
+          <span title="Sort">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
           </span>
-          <span title="Collapse all">
+          <span title="Collapse">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></svg>
           </span>
         </div>
-        <div class="aw-tree">
+        <!-- Wiki: Ingest (SynthesisMenu) -->
+        <div class="aw-ingest">
+          <div class="btn">Ingest</div>
+        </div>
+        <div class="aw-tree aw-tree-threads">
           <div class="folder"><span class="chev">▾</span> Hicks launch</div>
           <div class="nitem active"><span class="label">Who we built this for</span><span class="t">Now</span></div>
           <div class="nitem"><span class="label">Homepage copy</span><span class="t">Yesterday</span></div>
@@ -2093,6 +2757,41 @@
           <div class="nitem"><span class="label">Model costs</span><span class="t">Jun 22</span></div>
           <div class="nitem"><span class="label">Vs Obsidian stack</span><span class="t">Jun 8</span></div>
         </div>
+        <!-- Wiki menu — SynthesisMenu: Pages + Skills -->
+        <div class="aw-wiki-menu">
+          <div class="wm-sec">
+            <div class="wm-sec-label">Pages</div>
+            <div class="wm-item">
+              <svg class="wm-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span class="wm-label">Profile</span>
+            </div>
+            <div class="wm-item">
+              <svg class="wm-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+              <span class="wm-label">Index</span>
+            </div>
+            <div class="wm-item active">
+              <svg class="wm-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></svg>
+              <span class="wm-label">Topics</span>
+            </div>
+            <div class="wm-item">
+              <svg class="wm-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              <span class="wm-label">Daily Log</span>
+              <span class="wm-meta">12</span>
+              <svg class="wm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="wm-sec">
+            <div class="wm-sec-label">Skills</div>
+            <div class="wm-skill">
+              <svg class="wm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              <span class="wm-label">Where I changed my mind</span>
+            </div>
+            <div class="wm-skill">
+              <svg class="wm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              <span class="wm-label">What am I contradicting</span>
+            </div>
+          </div>
+        </div>
         <div class="aw-foot">
           <div class="aw-vault"><b>Hicks</b></div>
           <div class="aw-gear" title="Settings">
@@ -2101,8 +2800,7 @@
         </div>
       </aside>
 
-      <!-- Center: note editor -->
-      <div class="aw-main">
+      <div class="aw-main aw-view-threads">
         <div class="aw-editor">
           <div class="title">Who we built this for</div>
           <div class="block">
@@ -2115,7 +2813,7 @@
           </div>
           <div class="block">
             <div class="handles empty"></div>
-            <div class="para quiet">They don’t need another place to store notes. They need something that works on what they already wrote.</div>
+            <div class="para quiet">They don't need another place to store notes. They need something that works on what they already wrote.</div>
           </div>
           <div class="block">
             <div class="handles">
@@ -2129,7 +2827,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/></svg>
               </span>
             </div>
-            <div class="para">That’s Hicks. Skills keep asking their vault. Local-first so the thinking stays theirs.<span class="cur"></span></div>
+            <div class="para">That's Hicks. Skills keep asking their vault. Local-first so the thinking stays theirs.<span class="cur"></span></div>
           </div>
           <div class="aw-backlinks">
             <div class="bl-label">Backlinks (3)</div>
@@ -2142,8 +2840,7 @@
         </div>
       </div>
 
-      <!-- Right: chat panel -->
-      <aside class="aw-chat">
+      <aside class="aw-chat aw-view-threads">
         <div class="ch-head">
           <div class="ch-new">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -2161,7 +2858,7 @@
         <div class="ch-msgs">
           <div class="m-user">Have I settled who this is for?</div>
           <div class="m-hicks">
-            Mostly. Abandoned vault builders. You keep drifting toward “everyone who takes notes” — then walk it back.
+            Mostly. Abandoned vault builders. You keep drifting toward "everyone who takes notes" — then walk it back.
             <div class="m-actions">
               <span title="Add to thread">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 11v6"/><path d="M9 14h6"/></svg>
@@ -2206,11 +2903,104 @@
           </div>
         </div>
       </aside>
-    </div>
-  </div>
-</section>
 
-<!-- 2. PAIN — the folder you're afraid to open -->
+      <!-- Topics list — structure from TopicsPage.tsx -->
+      <div class="aw-topics-pane aw-view-wiki">
+        <div class="tp-scroll">
+          <div class="tp-inner tp-head">
+            <h1>Topics</h1>
+            <p>The map Hicks has woven from your garden.</p>
+          </div>
+          <div class="tp-inner">
+            <div class="tp-filter">
+              <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+              </svg>
+              <div class="f-field">Filter topics</div>
+            </div>
+          </div>
+          <div class="tp-clusters">
+            <div class="tp-inner">
+              <!-- Collapsed clusters only (TopicsPage default) — 6 topics total -->
+              <div class="cluster">
+                <div class="cluster-head">
+                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                  <span class="cname">Audience &amp; positioning</span>
+                  <span class="ccount">3 topics</span>
+                </div>
+              </div>
+              <div class="cluster">
+                <div class="cluster-head">
+                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                  <span class="cname">Product shape</span>
+                  <span class="ccount">2 topics</span>
+                </div>
+              </div>
+              <div class="cluster">
+                <div class="cluster-head">
+                  <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                  <span class="cname">Launch &amp; trust</span>
+                  <span class="ccount">1 topic</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic page — format_topic_page_body + WikiPageViewer prose -->
+      <div class="aw-topic-page aw-view-wiki">
+        <div class="tp-chrome">
+          <div class="ico-btn" title="Close split view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </div>
+        </div>
+        <div class="tp-scroll">
+          <div class="tp-prose">
+            <h1 class="page-title">AI as thinking partner</h1>
+            <div class="prose">
+              <blockquote>
+                <strong>Contradiction:</strong> Some might see AI as a passive search tool, but these notes demonstrate it as an active collaborator that synthesizes and challenges the user's thinking.
+              </blockquote>
+
+              <h2>Synthesis</h2>
+              <p>The AI is not a retrieval tool — it is a reasoning partner that surfaces connections and contradictions the user would miss.</p>
+
+              <h2>From your threads</h2>
+              <ul>
+                <li>
+                  <span class="wiki-link">Fable 5 + Karpathy’s LLM Wiki is Basically Cheating</span>
+                  — <em>The wiki surfaced it.</em>
+                </li>
+                <li>
+                  <span class="wiki-link">9 Things My Obsidian Vault Does While I Sleep</span>
+                  — <em>Claude reads across everything and finds what I would not have found manually.</em>
+                </li>
+                <li>
+                  <span class="wiki-link">Delete 90% of Your Obsidian Notes. The Vault Gets Smarter When You Do</span>
+                  — <em>Claude's daily brief got sharper.</em>
+                </li>
+              </ul>
+
+              <h2>Connected topics</h2>
+              <ul>
+                <li><span class="wiki-link">Signal density and AI reasoning</span></li>
+                <li><span class="wiki-link">Automated knowledge curation</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+          </div>
+          <div class="hero-illu-fade"></div>
+        </div>
+        <div class="hero-illu-contact" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PAIN — the folder you're afraid to open -->
   <section class="problem" id="problem">
     <div>
       <h2>The folder you're afraid to open.</h2>
@@ -2228,28 +3018,86 @@
 
   <!-- 3. BUILD — living wiki -->
   <section class="build" id="build">
-    <h2>One click turns your notes into a mind.</h2>
-    <p>
-      Connect a model — local or cloud, your call. Local keeps everything on your machine. Cloud works too.
-    </p>
-    <p>
-      Your notes turn into threads. Threads live in pages. Each page is a topic — and every topic holds the thing your notes say together that no single note says alone. Sometimes two of your notes are arguing. That's the contradiction. You see both.
-    </p>
-    <p class="hint">
-      That's how a note gets in: write, talk, or import. Voice sits one click from the mic — and the next build reads it the same as everything else.
-    </p>
-    <p class="close-words">
-      Topics. Connections. <em>The contradictions you didn't know were in there.</em>
-    </p>
+    <div class="build-layout">
+      <div class="build-copy">
+        <h2>One click turns your notes into a mind.</h2>
+        <p>
+          Connect a model — local or cloud, your call. Local keeps everything on your machine. Cloud works too.
+        </p>
+        <p>
+          Your notes turn into threads. Threads live in pages. Each page is a topic — and every topic holds the thing your notes say together that no single note says alone. Sometimes two of your notes are arguing. That's the contradiction. You see both.
+        </p>
+        <p class="hint">
+          That's how a note gets in: write, talk, or import. Voice sits one click from the mic — and the next build reads it the same as everything else.
+        </p>
+        <p class="close-words">
+          Topics. Connections. <em>The contradictions you didn't know were in there.</em>
+        </p>
+      </div>
+
+      <!-- Wiki Builder panel — WikiBuilderPanel.tsx mid-Ingest -->
+      <div class="builder-panel" aria-hidden="true">
+        <div class="bp-body">
+          <div class="bp-stats">
+            <div class="bp-stats-top">
+              <div>
+                <div class="bp-count">420</div>
+                <div class="bp-count-label">notes ready</div>
+              </div>
+              <div class="bp-badges">
+                <span class="bp-badge-new">12 New</span>
+                <span class="bp-badge-upd">38 Updated</span>
+              </div>
+            </div>
+            <div class="bp-tokens">~185,000 tokens · multiple AI calls</div>
+          </div>
+
+          <p class="bp-help">
+            Ingest runs every time — it only reads threads that are new or changed. Skills are optional — check the ones you want to include.
+          </p>
+
+          <hr class="bp-divider" />
+
+          <div class="bp-skills-label">Skills</div>
+          <div class="bp-skill">
+            <div class="bp-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <div class="bp-skill-name">Where I changed my mind</div>
+              <div class="bp-skill-desc">Surfaces quiet reversals across the vault.</div>
+            </div>
+          </div>
+          <div class="bp-skill">
+            <div class="bp-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <div>
+              <div class="bp-skill-name">What am I contradicting</div>
+              <div class="bp-skill-desc">Finds threads that pull against each other.</div>
+            </div>
+          </div>
+
+          <div class="bp-btn">
+            <span class="spin" aria-hidden="true"></span>
+            Building...
+          </div>
+
+          <div class="bp-progress">
+            <div class="bp-bar"><div class="bp-bar-fill"></div></div>
+            <p class="bp-status">Writing topics… 48 of 126</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 4. SKILLS -->
   <section class="skills" id="skills">
     <div class="skills-intro">
-      <h2>Ask the questions you've forgotten how to ask.</h2>
+      <h2>The questions you keep circling — save them once.<br />They keep asking themselves.</h2>
       <p>
-        Build a skill, and it runs on its own. <em>What have I changed my mind on? What am I contradicting myself about? What have I quietly concluded and never wrote down?</em> Say it once, plain English — Hicks sharpens the question, then interrogates the vault every time the wiki builds.
-        The answer lands in your wiki as a report, beside the notes it pulled from, with the lines it followed. You set it up once. It runs daily. You don't have to remember to ask.
+        Not “summarise my notes.” Something with teeth. You say it in plain English. Hicks sharpens the question, then runs it across the vault every time the wiki builds. The answer lands as a report — next to the notes it used, so you can see why.
       </p>
       <div class="example-block">
         <p class="q">"What have I changed my mind on?"</p>
@@ -2279,7 +3127,7 @@
           <div class="step-name">Save as a <em>skill</em></div>
           <div class="saved">
             <span class="badge">Skill</span>
-            <span>Where I changed my mind on who this is for</span>
+            <span>Find where an older note and a newer note disagree. Show what flipped, and when the old claim disappeared.</span>
           </div>
         </div>
       </div>
@@ -2292,19 +3140,19 @@
           <div class="step-name">Get a report</div>
           <ul class="hits">
             <li>
-              <span class="mo">Feb</span>
-              <span class="q">“technical, has tried a system, got bored.”</span>
+              <span class="mo">Earlier</span>
+              <span class="q">“I’ll organise the vault before I write.”</span>
             </li>
             <li>
-              <span class="mo">April</span>
-              <span class="q">“the second-brain dropout.”</span>
+              <span class="mo">Later</span>
+              <span class="q">“The system is why I stopped writing.”</span>
             </li>
             <li>
-              <span class="mo">June</span>
-              <span class="q">“writes in markdown, abandons it, feels guilty.”</span>
+              <span class="mo">Never</span>
+              <span class="q">You never wrote which one you believe now.</span>
             </li>
           </ul>
-          <div class="footer">Same person. Three times. You decide.</div>
+          <div class="footer">Runs with every wiki build.</div>
         </div>
       </div>
     </div>
@@ -2445,5 +3293,34 @@
     <h2>I am Hicks — your living memory that metabolizes, dreams, and reweaves itself.</h2>
     <a class="cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
   </section>
+
+<script>
+(function () {
+  var app = document.getElementById("hero-app");
+  if (!app) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var views = ["threads", "wiki"];
+  var i = 0;
+  var holdMs = 5500;
+
+  function setView(v) {
+    app.setAttribute("data-view", v);
+    var tabs = app.querySelectorAll(".aw-tabs span");
+    for (var t = 0; t < tabs.length; t++) tabs[t].classList.remove("on");
+    var active = app.querySelector(v === "wiki" ? ".aw-tab-wiki" : ".aw-tab-threads");
+    if (active) active.classList.add("on");
+    app.classList.remove("aw-switching");
+    void app.offsetWidth;
+    app.classList.add("aw-switching");
+  }
+
+  setInterval(function () {
+    i = (i + 1) % views.length;
+    setView(views[i]);
+  }, holdMs);
+})();
+</script>
+
 </body>
 </html>
