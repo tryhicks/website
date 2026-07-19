@@ -1428,7 +1428,9 @@
       align-items: start;
       text-align: left;
     }
-    .problem > .problem-fig { order: -1; }
+    @media (min-width: 801px) {
+      .problem > .problem-fig { order: -1; }
+    }
     @media (max-width: 800px) {
       .problem { grid-template-columns: 1fr; }
     }
