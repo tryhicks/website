@@ -1678,7 +1678,7 @@
 
     /* ═══ SKILLS ═══ */
     .skills {
-      max-width: 1000px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 72px 24px 80px;
       position: relative;
@@ -1865,6 +1865,30 @@
       border-top: 1px solid var(--rule);
       font-size: 13px;
       color: var(--faint);
+    }
+
+    /* Skills layout — flow left, text right (mirrors build section) */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) 1fr;
+      gap: 40px 48px;
+      align-items: start;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .skills-layout .skills-flow {
+      max-width: none;
+      margin: 0;
+    }
+    .skills-layout .skills-intro {
+      max-width: none;
+      margin: 0;
+    }
+    @media (max-width: 860px) {
+      .skills-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
     }
 
     /* Chat panel (ChatPanel — header + messages from app) */
@@ -3094,71 +3118,72 @@
 
   <!-- 4. SKILLS -->
   <section class="skills" id="skills">
-    <div class="skills-intro">
-      <h2>The questions you keep circling — save them once.<br />They keep asking themselves.</h2>
-      <p>
-        Not “summarise my notes.” Something with teeth. You say it in plain English. Hicks sharpens the question, then runs it across the vault every time the wiki builds. The answer lands as a report — next to the notes it used, so you can see why.
-      </p>
-      <div class="example-block">
-        <p class="q">"What have I changed my mind on?"</p>
-        <p class="q">"What am I contradicting myself about?"</p>
-        <p class="q">"What have I quietly concluded and never wrote down?"</p>
-      </div>
-      <p class="kicker">You set it up once. It runs daily. You don't have to remember to ask.</p>
-    </div>
-
-    <div class="skills-flow" aria-hidden="true">
-      <div class="skills-step">
-        <div class="skills-rail">
-          <div class="skills-num">1</div>
-          <div class="skills-line"></div>
+    <div class="skills-layout">
+      <div class="skills-flow" aria-hidden="true">
+        <div class="skills-step">
+          <div class="skills-rail">
+            <div class="skills-num">1</div>
+            <div class="skills-line"></div>
+          </div>
+          <div class="skills-card">
+            <div class="step-name">Ask</div>
+            <div class="ask">“Where did I change my mind and never say so?”</div>
+          </div>
         </div>
-        <div class="skills-card">
-          <div class="step-name">Ask</div>
-          <div class="ask">“Where did I change my mind and never say so?”</div>
+        <div class="skills-step">
+          <div class="skills-rail">
+            <div class="skills-num">2</div>
+            <div class="skills-line"></div>
+          </div>
+          <div class="skills-card">
+            <div class="step-name">Save as a <em>skill</em></div>
+            <div class="saved">
+              <span class="badge">Skill</span>
+              <span>Find where an older note and a newer note disagree. Show what flipped, and when the old claim disappeared.</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="skills-step">
-        <div class="skills-rail">
-          <div class="skills-num">2</div>
-          <div class="skills-line"></div>
-        </div>
-        <div class="skills-card">
-          <div class="step-name">Save as a <em>skill</em></div>
-          <div class="saved">
-            <span class="badge">Skill</span>
-            <span>Find where an older note and a newer note disagree. Show what flipped, and when the old claim disappeared.</span>
+        <div class="skills-step">
+          <div class="skills-rail">
+            <div class="skills-num">3</div>
+            <div class="skills-line"></div>
+          </div>
+          <div class="skills-card">
+            <div class="step-name">Get a report</div>
+            <ul class="hits">
+              <li>
+                <span class="mo">Earlier</span>
+                <span class="q">“I’ll organise the vault before I write.”</span>
+              </li>
+              <li>
+                <span class="mo">Later</span>
+                <span class="q">“The system is why I stopped writing.”</span>
+              </li>
+              <li>
+                <span class="mo">Never</span>
+                <span class="q">You never wrote which one you believe now.</span>
+              </li>
+            </ul>
+            <div class="footer">Runs with every wiki build.</div>
           </div>
         </div>
       </div>
-      <div class="skills-step">
-        <div class="skills-rail">
-          <div class="skills-num">3</div>
-          <div class="skills-line"></div>
+
+      <div class="skills-intro">
+        <h2>The questions you keep circling — save them once.<br />They keep asking themselves.</h2>
+        <p>
+          Not “summarise my notes.” Something with teeth. You say it in plain English. Hicks sharpens the question, then runs it across the vault every time the wiki builds. The answer lands as a report — next to the notes it used, so you can see why.
+        </p>
+        <div class="example-block">
+          <p class="q">"What have I changed my mind on?"</p>
+          <p class="q">"What am I contradicting myself about?"</p>
+          <p class="q">"What have I quietly concluded and never wrote down?"</p>
         </div>
-        <div class="skills-card">
-          <div class="step-name">Get a report</div>
-          <ul class="hits">
-            <li>
-              <span class="mo">Earlier</span>
-              <span class="q">“I’ll organise the vault before I write.”</span>
-            </li>
-            <li>
-              <span class="mo">Later</span>
-              <span class="q">“The system is why I stopped writing.”</span>
-            </li>
-            <li>
-              <span class="mo">Never</span>
-              <span class="q">You never wrote which one you believe now.</span>
-            </li>
-          </ul>
-          <div class="footer">Runs with every wiki build.</div>
+        <p class="kicker">You set it up once. It runs daily. You don't have to remember to ask.</p>
+        <div class="skills-cta">
+          <a class="cta-ghost" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
         </div>
       </div>
-    </div>
-
-    <div class="skills-cta">
-      <a class="cta-ghost" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
     </div>
   </section>
 
