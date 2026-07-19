@@ -1448,10 +1448,16 @@
       margin-bottom: 0;
     }
     .problem p strong { color: var(--ink); font-weight: 500; }
-    .problem-img {
+    .problem-fig {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      padding: 0;
+    }
+    .problem-fig img {
       width: 100%;
       display: block;
-      border-radius: 8px;
     }
 
     /* ═══ BUILD / LIVING WIKI ═══ */
@@ -3051,7 +3057,9 @@
         Hicks is for the people who love the thinking, but hate the organizing.
       </p>
     </div>
-    <img class="problem-img" src="pain-scattered.png" alt="Scattered notes — a graveyard of abandoned systems" />
+    <div class="problem-fig">
+      <img src="pain-scattered.png" alt="Scattered notes — a graveyard of abandoned systems" />
+    </div>
   </section>
 
   <!-- 3. BUILD — living wiki -->
