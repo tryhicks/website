@@ -21,8 +21,8 @@
       --faint: #656565;
       --card: #262626;
       --field: #262626;
-      --accent: #FF9100;
-      --accent-hover: #FFAA33;
+      --accent: #c8893f;
+      --accent-hover: #e7b478;
       --sage-soft: #2a1a00;
       --radius-sm: 6px;
       --radius-md: 8px;
@@ -52,16 +52,16 @@
       z-index: 30;
     }
 
-    /* ═══ Atmosphere — page feels alive ═══ */
+    /* ═══ Atmosphere — hero-only, doesn't follow scroll ═══ */
     .atmosphere {
-      position: fixed;
+      position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
     }
 
-    /* Soft warm glow under hero + cooler room light lower down */
+    /* Soft warm glow under hero — muted, hero-only */
     .atmosphere-glow {
       position: absolute;
       border-radius: 50%;
@@ -69,52 +69,52 @@
       will-change: transform, opacity;
     }
     .atmosphere-glow.warm {
-      width: min(90vw, 720px);
-      height: min(90vw, 720px);
+      width: min(70vw, 520px);
+      height: min(70vw, 520px);
       top: -12%;
       left: 50%;
       transform: translateX(-50%);
       background: radial-gradient(
         circle,
-        rgba(255, 145, 0, 0.11) 0%,
-        rgba(255, 145, 0, 0.04) 38%,
+        rgba(200, 137, 63, 0.06) 0%,
+        rgba(200, 137, 63, 0.02) 38%,
         transparent 70%
       );
       animation: glow-drift 36s ease-in-out infinite;
     }
     .atmosphere-glow.warm-side {
-      width: min(55vw, 420px);
-      height: min(55vw, 420px);
+      width: min(40vw, 320px);
+      height: min(40vw, 320px);
       top: 18%;
       right: -8%;
       background: radial-gradient(
         circle,
-        rgba(255, 145, 0, 0.05) 0%,
+        rgba(200, 137, 63, 0.03) 0%,
         transparent 68%
       );
       animation: glow-drift-alt 42s ease-in-out infinite;
     }
     .atmosphere-glow.cool {
-      width: min(80vw, 640px);
-      height: min(80vw, 640px);
+      width: min(60vw, 480px);
+      height: min(60vw, 480px);
       bottom: 8%;
       left: -10%;
       background: radial-gradient(
         circle,
-        rgba(140, 150, 160, 0.045) 0%,
+        rgba(140, 150, 160, 0.03) 0%,
         transparent 70%
       );
       animation: glow-drift 48s ease-in-out infinite reverse;
     }
     .atmosphere-glow.mid {
-      width: min(70vw, 520px);
-      height: min(70vw, 520px);
+      width: min(50vw, 380px);
+      height: min(50vw, 380px);
       top: 52%;
       left: 55%;
       transform: translate(-50%, -50%);
       background: radial-gradient(
         circle,
-        rgba(255, 145, 0, 0.035) 0%,
+        rgba(200, 137, 63, 0.02) 0%,
         transparent 72%
       );
       animation: glow-drift-alt 40s ease-in-out infinite;
@@ -181,10 +181,10 @@
       height: min(70vw, 560px);
       transform: translateX(-50%);
       border-radius: 50%;
-      border: 1px solid rgba(255, 145, 0, 0.06);
+      border: 1px solid rgba(200, 137, 63, 0.03);
       box-shadow:
-        0 0 60px rgba(255, 145, 0, 0.03),
-        inset 0 0 80px rgba(255, 145, 0, 0.02);
+        0 0 60px rgba(200, 137, 63, 0.015),
+        inset 0 0 80px rgba(200, 137, 63, 0.01);
       opacity: 0.7;
     }
 
@@ -337,11 +337,24 @@
 
     /* ═══ HERO ═══ */
     .hero {
+      position: relative;
+      overflow: hidden;
       padding: 120px 24px 56px;
-      max-width: 1080px;
-      margin: 0 auto;
+      max-width: none;
+      margin: 0;
       text-align: center;
       background: transparent;
+    }
+    .hero > h1,
+    .hero > .hero-sub,
+    .hero > .cta-row,
+    .hero > .local,
+    .hero > .app-shot {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .hero h1 {
       font-size: clamp(2.1rem, 5.2vw, 3.5rem);
@@ -967,37 +980,29 @@
       max-width: 1000px;
       margin: 0 auto;
       padding: 80px 24px 48px;
-      display: grid;
-      grid-template-columns: 1fr 1.05fr;
-      gap: 40px;
-      align-items: center;
-    }
-    @media (max-width: 800px) {
-      .problem { grid-template-columns: 1fr; }
-    }
-    .problem .eyebrow {
-      font-size: 0.95rem;
-      color: var(--faint);
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
+      text-align: left;
     }
     .problem h2 {
-      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+      font-size: clamp(1.65rem, 3.4vw, 2.25rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
-    .problem .body {
+    .problem p {
       font-size: 1.125rem;
       line-height: 1.65;
       color: var(--quiet);
+      margin-bottom: 16px;
     }
-    .problem .body strong { color: var(--ink); font-weight: 500; }
+    .problem p:last-of-type {
+      margin-bottom: 0;
+    }
+    .problem p strong { color: var(--ink); font-weight: 500; }
 
     /* ═══ BUILD / LIVING WIKI ═══ */
     .build {
-      max-width: 640px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 72px 24px 80px;
       position: relative;
@@ -1041,8 +1046,8 @@
       position: relative;
     }
     .skills-intro {
-      text-align: center;
-      max-width: 34em;
+      text-align: left;
+      max-width: 1000px;
       margin: 0 auto 36px;
     }
     .skills-intro h2 {
@@ -1051,6 +1056,7 @@
       letter-spacing: -0.03em;
       line-height: 1.25;
       margin-bottom: 14px;
+      white-space: nowrap;
     }
     .skills-intro .lead {
       font-size: clamp(1.2rem, 2.4vw, 1.4rem);
@@ -1058,6 +1064,39 @@
       letter-spacing: -0.02em;
       line-height: 1.4;
       margin-bottom: 18px;
+    }
+    .skills-intro .rule {
+      width: 36px;
+      height: 1px;
+      background: var(--rule);
+      margin: 22px auto;
+    }
+    .skills-intro .example-block {
+      border-left: 2px solid var(--accent);
+      padding: 4px 0 4px 18px;
+      margin: 18px 0;
+      text-align: left;
+    }
+    .skills-intro .example-block .k {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--quiet);
+      margin-bottom: 8px;
+      font-family: var(--font);
+    }
+    .skills-intro .example-block .q {
+      font-size: clamp(1.05rem, 1.9vw, 1.18rem);
+      line-height: 1.45;
+      color: var(--ink);
+      font-style: italic;
+      margin: 6px 0;
+    }
+    .skills-intro .kicker {
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: var(--quiet);
+      line-height: 1.5;
+      margin-top: 6px;
     }
     .skills-intro p {
       font-size: 1.125rem;
@@ -1966,17 +2005,6 @@
   </style>
 </head>
 <body>
-  <!-- Atmosphere layers (fixed, non-interactive) -->
-  <div class="atmosphere" aria-hidden="true">
-    <div class="atmosphere-glow warm"></div>
-    <div class="atmosphere-glow warm-side"></div>
-    <div class="atmosphere-glow mid"></div>
-    <div class="atmosphere-glow cool"></div>
-    <div class="atmosphere-arc"></div>
-    <div class="atmosphere-vignette"></div>
-    <div class="atmosphere-grain"></div>
-  </div>
-
   <header class="nav">
     <a class="brand" href="#">
       <svg viewBox="0 0 213 213" fill="none" aria-hidden="true">
@@ -1992,22 +2020,31 @@
 
   <!-- 1. HERO -->
   <section class="hero">
+    <!-- Atmosphere lives only inside the hero -->
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere-glow warm"></div>
+      <div class="atmosphere-glow warm-side"></div>
+      <div class="atmosphere-glow mid"></div>
+      <div class="atmosphere-glow cool"></div>
+      <div class="atmosphere-arc"></div>
+      <div class="atmosphere-vignette"></div>
+      <div class="atmosphere-grain"></div>
+    </div>
     <h1>
       <span class="line">Your notes don't need a home.</span>
       <span class="line">They need a <em>mind.</em></span>
     </h1>
     <p class="hero-sub">
       <strong>Stop organising. Start writing.</strong>
-      Hicks turns your notes into a living wiki — and holds the questions you keep returning to, so the notes find you.
+      Hicks turns your notes into a living wiki.
     </p>
     <div class="cta-row">
       <a class="cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
     </div>
-    <p class="local">Desktop app · local-first · no account · your files stay yours</p>
-  </section>
+    <p class="local">Desktop app · local-first · no account</p>
 
-  <!-- Full app window mock -->
-  <section class="app-shot" aria-hidden="true">
+    <!-- Full app window mock (inside hero) -->
+    <div class="app-shot" aria-hidden="true">
     <div class="app-window">
       <!-- Left: Threads sidebar -->
       <aside class="aw-side">
@@ -2170,16 +2207,36 @@
         </div>
       </aside>
     </div>
+  </div>
+</section>
+
+<!-- 2. PAIN — the folder you're afraid to open -->
+  <section class="problem" id="problem">
+    <div>
+      <h2>The folder you're afraid to open.</h2>
+      <p>
+        You have a folder. Maybe it's called "Second Brain," "Knowledge Base," or "Zettelkasten." It's full of hundreds of notes that you spent weeks carefully tagging, linking, and organizing. And then you stopped.
+      </p>
+      <p>
+        Now it's just a graveyard of old ambitions. You don't open it because every time you do, you're reminded of the maintenance you couldn't keep up with. The guilt of the abandoned system is the only thing that's still growing.
+      </p>
+      <p>
+        Hicks is for the people who love the thinking, but hate the organizing.
+      </p>
+    </div>
   </section>
 
-  <!-- 3. BUILD — living wiki (was section 3, now section 2: directly under hero) -->
+  <!-- 3. BUILD — living wiki -->
   <section class="build" id="build">
-    <h2>Point at your folder. Click build.</h2>
+    <h2>One click turns your notes into a mind.</h2>
     <p>
       Connect a model — local or cloud, your call. Local keeps everything on your machine. Cloud works too.
     </p>
     <p>
       Your notes turn into threads. Threads live in pages. Each page is a topic — and every topic holds the thing your notes say together that no single note says alone. Sometimes two of your notes are arguing. That's the contradiction. You see both.
+    </p>
+    <p class="hint">
+      That's how a note gets in: write, talk, or import. Voice sits one click from the mic — and the next build reads it the same as everything else.
     </p>
     <p class="close-words">
       Topics. Connections. <em>The contradictions you didn't know were in there.</em>
@@ -2189,16 +2246,17 @@
   <!-- 4. SKILLS -->
   <section class="skills" id="skills">
     <div class="skills-intro">
-      <h2>Save the questions worth asking twice.</h2>
-      <p class="lead">Ask your notes anything. They answer.</p>
+      <h2>Ask the questions you've forgotten how to ask.</h2>
       <p>
-        Pick a question you've been sitting with — about your own work, your own thinking, the things you've been going back and forth on.
-        <em>What have I changed my mind on? What am I contradicting myself about? What have I quietly concluded and never wrote down?</em>
-        Hicks runs it across the whole vault. The answer lands in your wiki as a report — beside the notes it came from, with the lines it pulled.
+        Build a skill, and it runs on its own. <em>What have I changed my mind on? What am I contradicting myself about? What have I quietly concluded and never wrote down?</em> Say it once, plain English — Hicks sharpens the question, then interrogates the vault every time the wiki builds.
+        The answer lands in your wiki as a report, beside the notes it pulled from, with the lines it followed. You set it up once. It runs daily. You don't have to remember to ask.
       </p>
-      <p>
-        Like the answer? Save the question. The next time the wiki builds, Hicks asks it again — on everything you've written since. The vault grows. The answer keeps up. You don't have to remember to ask.
-      </p>
+      <div class="example-block">
+        <p class="q">"What have I changed my mind on?"</p>
+        <p class="q">"What am I contradicting myself about?"</p>
+        <p class="q">"What have I quietly concluded and never wrote down?"</p>
+      </div>
+      <p class="kicker">You set it up once. It runs daily. You don't have to remember to ask.</p>
     </div>
 
     <div class="skills-flow" aria-hidden="true">
@@ -2260,8 +2318,8 @@
   <section class="overnight" id="overnight">
     <div class="overnight-inner">
       <div class="copy">
-        <h2>Schedule the build. Run it overnight.</h2>
-        <p class="lead">The vault thinks while you sleep.</p>
+        <h2>Your thinking evolves while you sleep.</h2>
+        <p class="lead">Schedule the build. Run it overnight.</p>
         <p>
           Set a build to run at 2 a.m. By morning the wiki has been rebuilt — new topics surfaced, old threads re-read, the questions you saved re-asked against everything you wrote this week. You open the folder and it's already thinking.
         </p>
@@ -2301,52 +2359,9 @@
       </div>
     </div>
   </section>
+  <!-- Voice removed in v2 — see Build section for the "how a note gets in" beat -->
 
-  <!-- Voice -->
-  <section class="voice" id="voice">
-    <div class="voice-inner">
-      <div>
-        <h2>Say it. Hicks writes.</h2>
-        <p class="lead">Talk. Hicks writes it down.</p>
-        <p>Click the mic. Say what you're thinking. The words land in the note, where the rest of your thinking already lives. Local speech-to-text — nothing leaves your machine.</p>
-        <p>The thinking you used to lose on a walk is now in the vault, ready for the next build to find.</p>
-      </div>
-      <div class="product-shell with-sidebar" aria-hidden="true">
-        <aside class="product-sidebar">
-          <div class="side-label">Threads</div>
-          <div class="side-item">Pricing notes</div>
-          <div class="side-item active">Who we built this for</div>
-          <div class="side-item">Model costs</div>
-          <div class="side-item">First user call</div>
-          <div class="side-item">Launch checklist</div>
-        </aside>
-        <div class="product-main">
-          <div class="note-editor">
-            <div class="page-title">Who we built this for</div>
-            <div class="page-meta">Thread · edited just now</div>
-            <div class="note-body">
-              <div class="note-block active">
-                <div class="block-handle">
-                  <span class="handle-btn mic live" title="Recording… tap to stop">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-                  </span>
-                  <span class="handle-btn" title="Insert block below">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                  </span>
-                  <span class="handle-btn" title="Drag to reorder">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/></svg>
-                  </span>
-                </div>
-                <div class="block-text">The one who built a vault and walked away from it. They didn't stop thinking. They stopped trusting the system they built it in.<span class="cursor"></span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Knows you -->
   <section class="knows" id="knows-you">
     <div class="know-deepen" aria-hidden="true">
       <div class="q">How well Hicks knows you</div>
@@ -2373,9 +2388,9 @@
       </div>
     </div>
     <div class="copy">
-      <p class="lead">The more you write, the more it knows how you think.</p>
-      <h2>Hicks gets to know you.</h2>
-      <p>The more you write, the more it sees how you think. Profile, daily log, what you keep coming back to.</p>
+      <h2>The more you write, the more it knows how you think.</h2>
+      <p class="lead">Hicks gets to know you.</p>
+      <p>After a few weeks, the questions Hicks asks get sharper. The contradictions it surfaces land where you actually disagree with yourself — not where any note disagrees with any other note. The things it surfaces unprompted are the things you keep going back to.</p>
       <p><strong>Your thinking is the source of truth.</strong> Hicks answers from you — not the internet.</p>
       <p>The longer you use it, the more it earns its place at your shoulder.</p>
     </div>
