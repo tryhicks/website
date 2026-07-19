@@ -1428,6 +1428,7 @@
       align-items: start;
       text-align: left;
     }
+    .problem > .problem-fig { order: -1; }
     @media (max-width: 800px) {
       .problem { grid-template-columns: 1fr; }
     }
@@ -2550,6 +2551,7 @@
         --app-radius: 10px;
         --frame-pad: 6px;
         --surface-gap: 32px;
+        display: none;
       }
       .hero-illu-frame-wrap { padding: 0 12px; }
       .hero-illu-shade { height: 100px; }
@@ -3047,9 +3049,6 @@
 
   <!-- 2. PAIN — the folder you're afraid to open -->
   <section class="problem" id="problem">
-    <div class="problem-fig">
-      <img src="https://raw.githubusercontent.com/tryhicks/website/main/notes-scattered.png" alt="Scattered notes — a graveyard of abandoned systems" />
-    </div>
     <div>
       <h2>The folder you're afraid to open.</h2>
       <p>
@@ -3061,6 +3060,9 @@
       <p>
         Hicks is for the people who love the thinking, but hate the organizing.
       </p>
+    </div>
+    <div class="problem-fig">
+      <img src="https://raw.githubusercontent.com/tryhicks/website/main/notes-scattered.png" alt="Scattered notes — a graveyard of abandoned systems" />
     </div>
   </section>
 
