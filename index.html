@@ -975,6 +975,12 @@
     @media (max-width: 800px) {
       .problem { grid-template-columns: 1fr; }
     }
+    .problem .eyebrow {
+      font-size: 0.95rem;
+      color: var(--faint);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
     .problem h2 {
       font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
@@ -988,6 +994,44 @@
       color: var(--quiet);
     }
     .problem .body strong { color: var(--ink); font-weight: 500; }
+
+    /* ═══ BUILD / LIVING WIKI ═══ */
+    .build {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+      position: relative;
+      z-index: 2;
+      text-align: left;
+    }
+    .build h2 {
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .build p {
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: var(--quiet);
+      margin-bottom: 16px;
+    }
+    .build p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .build .close-words {
+      margin-top: 28px;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .build .close-words em {
+      font-style: normal;
+      color: var(--accent);
+    }
 
     /* ═══ SKILLS ═══ */
     .skills {
@@ -1006,14 +1050,24 @@
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .skills-intro .lead {
+      font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.4;
       margin-bottom: 18px;
     }
-    .skills-intro h2 em { font-style: italic; color: var(--accent); }
     .skills-intro p {
       font-size: 1.125rem;
       line-height: 1.65;
       color: var(--quiet);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    .skills-intro p em {
+      font-style: italic;
+      color: var(--ink);
     }
     .skills-intro p strong { color: var(--ink); font-weight: 500; }
 
@@ -1254,6 +1308,46 @@
 
     .skills-cta { text-align: center; margin-top: 32px; }
 
+    /* ═══ OVERNIGHT ═══ */
+    .overnight {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .overnight-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 800px) {
+      .overnight-inner { grid-template-columns: 1fr; gap: 28px; }
+      .overnight-inner .copy { order: -1; }
+    }
+    .overnight h2 {
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .overnight .lead {
+      font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      margin-bottom: 18px;
+    }
+    .overnight p {
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: var(--quiet);
+      margin-bottom: 14px;
+    }
+    .overnight p:last-child { margin-bottom: 0; }
+
     /* ═══ HOW ═══ */
     .how {
       border-top: 1px solid rgba(44, 44, 44, 0.9);
@@ -1325,6 +1419,13 @@
     @media (max-width: 800px) {
       .knows { grid-template-columns: 1fr; }
       .knows .copy { order: -1; }
+    }
+    .knows .lead {
+      font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.4;
+      margin-bottom: 12px;
     }
     .knows h2 {
       font-size: clamp(1.75rem, 3.4vw, 2.25rem);
@@ -1445,13 +1546,22 @@
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .voice .lead {
+      font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.4;
       margin-bottom: 16px;
     }
     .voice p {
       font-size: 1.125rem;
       line-height: 1.65;
       color: var(--quiet);
+      margin-bottom: 14px;
     }
+    .voice p:last-child { margin-bottom: 0; }
 
     .note-editor {
       padding: 28px 24px 40px 20px;
@@ -1614,12 +1724,13 @@
       );
     }
     .close h2 {
-      font-size: clamp(1.85rem, 3.6vw, 2.5rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
+      font-style: italic;
       letter-spacing: -0.03em;
-      max-width: 16em;
-      margin: 0 auto 16px;
-      line-height: 1.2;
+      max-width: 18em;
+      margin: 0 auto 28px;
+      line-height: 1.25;
     }
     .close p {
       color: var(--quiet);
@@ -1655,6 +1766,7 @@
 
       .problem,
       .how-inner,
+      .overnight-inner,
       .knows,
       .voice-inner,
       .local-sec {
@@ -1678,7 +1790,9 @@
 
       .hero { padding: 108px 20px 40px; }
       .problem { padding: 56px 20px 40px; }
+      .build { padding: 56px 20px 64px; }
       .skills { padding: 56px 20px 64px; }
+      .overnight { padding: 56px 20px 64px; }
       .how { padding: 56px 20px; }
       .knows { padding: 56px 20px; }
       .voice { padding: 56px 20px; }
@@ -1729,7 +1843,9 @@
       .aw-backlinks { margin-left: 48px; }
 
       .problem h2,
+      .build h2,
       .skills-intro h2,
+      .overnight h2,
       .how h2,
       .knows h2,
       .voice h2,
@@ -1738,7 +1854,10 @@
         font-size: clamp(1.45rem, 6.5vw, 1.85rem);
       }
       .problem .body,
+      .build p,
       .skills-intro p,
+      .overnight p,
+      .overnight .lead,
       .how .close-line,
       .knows p,
       .voice p,
@@ -1748,7 +1867,9 @@
       }
 
       .problem,
+      .build,
       .skills,
+      .overnight,
       .how,
       .knows,
       .voice,
@@ -1877,7 +1998,7 @@
     </h1>
     <p class="hero-sub">
       <strong>Stop organising. Start writing.</strong>
-      Hicks turns your notes into a living wiki — and holds the questions you keep circling, so the notes find you.
+      Hicks turns your notes into a living wiki — and holds the questions you keep returning to, so the notes find you.
     </p>
     <div class="cta-row">
       <a class="cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
@@ -2054,6 +2175,7 @@
   <!-- 2. PROBLEM — TreeMenu search UI -->
   <section class="problem" id="problem">
     <div>
+      <p class="eyebrow">You've been here before.</p>
       <h2>You already know more than you think you know. You just can't find it.</h2>
       <p class="body">
         You're not bad at notes. Your system asks too much of you.
@@ -2101,19 +2223,35 @@
     </div>
   </section>
 
-  <!-- 3. SKILLS — ChatPanel + SkillReportViewport -->
+  <!-- 3. BUILD — living wiki -->
+  <section class="build" id="build">
+    <h2>Point at your folder. Click build.</h2>
+    <p>
+      Connect a model — local or cloud, your call. Local keeps everything on your machine. Cloud works too.
+    </p>
+    <p>
+      A living wiki is what your notes become when they're read together. A place where the things you've already written can finally find each other. Pages link to pages. Topics sit next to the threads that grew them. The thinking you did six months ago meets the thinking you did today.
+    </p>
+    <p>
+      Every page names the tension and the synthesis. The thread your notes pull against, and the thing they say together that no single note says alone.
+    </p>
+    <p class="close-words">
+      Topics. Connections. Contradictions. <em>Syntheses.</em>
+    </p>
+  </section>
+
+  <!-- 4. SKILLS -->
   <section class="skills" id="skills">
     <div class="skills-intro">
-      <h2>
-        The questions you keep circling — save them as <em>skills</em>, and they keep asking themselves.
-      </h2>
+      <h2>Save the questions worth asking twice.</h2>
+      <p class="lead">Ask your notes anything. They answer.</p>
       <p>
-        Not “summarise my notes.” Something with teeth.
-        <strong>“Where did I change my mind and never say so?”</strong>
-        You set it once. Hicks runs it across the vault and the report lands in the wiki — the threads pulling against each other, the ones that finally settle.
+        Pick a question you've been sitting with — about your own work, your own thinking, the things you've been going back and forth on.
+        <em>What have I changed my mind on? What am I contradicting myself about? What have I quietly concluded and never wrote down?</em>
+        Hicks runs it across the whole vault. The answer lands in your wiki as a report — beside the notes it came from, with the lines it pulled.
       </p>
       <p>
-        You don't have to write the question cold. Say it in plain English. Hicks asks the questions that sharpen it.
+        Like the answer? Save the question. The next time the wiki builds, Hicks asks it again — on everything you've written since. The vault grows. The answer keeps up. You don't have to remember to ask.
       </p>
     </div>
 
@@ -2172,28 +2310,19 @@
     </div>
   </section>
 
-  <!-- 4. HOW — steps + Topics page -->
-  <section class="how" id="how">
-    <div class="how-inner">
-      <div>
-        <h2>Hicks does the work. You write.</h2>
-        <ol class="steps">
-          <li>
-            <span class="n">01</span>
-            <div>Notes<span>You write.</span></div>
-          </li>
-          <li>
-            <span class="n">02</span>
-            <div>Wiki<span>Built for you, daily or on demand.</span></div>
-          </li>
-          <li>
-            <span class="n">03</span>
-            <div>Skills<span>Saved questions that keep digging.</span></div>
-          </li>
-        </ol>
-        <p class="close-line">You don't organise. You don't link. You write, and the rest happens.</p>
+  <!-- Overnight -->
+  <section class="overnight" id="overnight">
+    <div class="overnight-inner">
+      <div class="copy">
+        <h2>Schedule the build. Run it overnight.</h2>
+        <p class="lead">The vault thinks while you sleep.</p>
+        <p>
+          Set a build to run at 2 a.m. By morning the wiki has been rebuilt — new topics surfaced, old threads re-read, the questions you saved re-asked against everything you wrote this week. You open the folder and it's already thinking.
+        </p>
+        <p>
+          No trigger. No "did it run." No nudges. It just runs, and the work is there when you sit down.
+        </p>
       </div>
-
       <div class="app-frame" aria-hidden="true">
         <div class="topics-page-head">
           <h3>Topics</h3>
@@ -2227,46 +2356,14 @@
     </div>
   </section>
 
-  <!-- 5. KNOWS YOU — deepens over time -->
-  <section class="knows" id="knows-you">
-    <div class="know-deepen" aria-hidden="true">
-      <div class="q">How well Hicks knows you</div>
-      <div class="know-row thin">
-        <span class="when">Start</span>
-        <div>
-          <div class="ans">Barely knows you yet.</div>
-          <div class="bar"><i></i></div>
-        </div>
-      </div>
-      <div class="know-row mid">
-        <span class="when">As you write</span>
-        <div>
-          <div class="ans">Starting to see your patterns.</div>
-          <div class="bar"><i></i></div>
-        </div>
-      </div>
-      <div class="know-row full">
-        <span class="when">Over time</span>
-        <div>
-          <div class="ans">Knows how you think.</div>
-          <div class="bar"><i></i></div>
-        </div>
-      </div>
-    </div>
-    <div class="copy">
-      <h2>Hicks gets to know you.</h2>
-      <p>The more you write, the more it sees how you think. Profile, daily log, what you keep coming back to.</p>
-      <p><strong>Your thinking is the source of truth.</strong> Hicks answers from you — not the internet.</p>
-      <p>The longer you use it, the more it earns its place at your shoulder.</p>
-    </div>
-  </section>
-
-  <!-- 6. VOICE — Note editor + mic -->
+  <!-- Voice -->
   <section class="voice" id="voice">
     <div class="voice-inner">
       <div>
-        <h2>Talk. Hicks writes.</h2>
-        <p>Click the mic. Talk. The words land in your note. On your machine, no cloud, no typing.</p>
+        <h2>Say it. Hicks writes.</h2>
+        <p class="lead">Talk. Hicks writes it down.</p>
+        <p>Click the mic. Say what you're thinking. The words land in the note, where the rest of your thinking already lives. Local speech-to-text — nothing leaves your machine.</p>
+        <p>The thinking you used to lose on a walk is now in the vault, ready for the next build to find.</p>
       </div>
       <div class="product-shell with-sidebar" aria-hidden="true">
         <aside class="product-sidebar">
@@ -2303,11 +2400,52 @@
     </div>
   </section>
 
-  <!-- 7. LOCAL -->
+  <!-- Knows you -->
+  <section class="knows" id="knows-you">
+    <div class="know-deepen" aria-hidden="true">
+      <div class="q">How well Hicks knows you</div>
+      <div class="know-row thin">
+        <span class="when">Start</span>
+        <div>
+          <div class="ans">Barely knows you yet.</div>
+          <div class="bar"><i></i></div>
+        </div>
+      </div>
+      <div class="know-row mid">
+        <span class="when">As you write</span>
+        <div>
+          <div class="ans">Starting to see your patterns.</div>
+          <div class="bar"><i></i></div>
+        </div>
+      </div>
+      <div class="know-row full">
+        <span class="when">Over time</span>
+        <div>
+          <div class="ans">Knows how you think.</div>
+          <div class="bar"><i></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="copy">
+      <p class="lead">The more you write, the more it knows how you think.</p>
+      <h2>Hicks gets to know you.</h2>
+      <p>The more you write, the more it sees how you think. Profile, daily log, what you keep coming back to.</p>
+      <p><strong>Your thinking is the source of truth.</strong> Hicks answers from you — not the internet.</p>
+      <p>The longer you use it, the more it earns its place at your shoulder.</p>
+    </div>
+  </section>
+
+
+  <!-- LOCAL -->
   <section class="local-sec" id="local">
     <div>
-      <h2>Your mind is yours.</h2>
-      <p>Every note, every wiki page, every report — on your machine. Plain markdown. Open them anywhere. No account. No cloud. No one watching but Hicks.</p>
+      <h2>Your notes. Your machine. Your mind.</h2>
+      <p>
+        Local-first isn't a setting. It's the whole shape of the product. Your files stay on your machine. Plain markdown. Open them anywhere. No account. Use a local llm model or cloud — your call.
+      </p>
+      <p>
+        <strong>Pay once. Own it forever.</strong> One license, every upgrade, no monthly fees.
+      </p>
     </div>
     <div class="trust-grid" aria-hidden="true">
       <div class="trust-cell">
@@ -2343,14 +2481,8 @@
 
   <!-- 8. CLOSE -->
   <section class="close">
-    <h2>Your thinking is already in your notes. Put it to work.</h2>
-    <p>
-      Local-first. No account. No cloud landlord.
-      Plain markdown. You choose the AI.
-    </p>
-    <a class="cta-ghost" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
-    <p class="trust">Start writing. Hicks handles the rest.</p>
-    <p class="promise">I am Hicks — your living memory that metabolizes, dreams, and reweaves itself.</p>
+    <h2>I am Hicks — your living memory that metabolizes, dreams, and reweaves itself.</h2>
+    <a class="cta" href="https://tryhicks.gumroad.com/l/hicks">Try Hicks</a>
   </section>
 </body>
 </html>
