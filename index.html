@@ -1419,20 +1419,10 @@
 
     /* ═══ PROBLEM ═══ */
     .problem {
-      max-width: 1080px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 80px 24px 32px;
-      display: grid;
-      grid-template-columns: minmax(280px, 380px) 1fr;
-      gap: 40px 48px;
-      align-items: start;
-      text-align: left;
-    }
-    @media (min-width: 801px) {
-      .problem > .problem-fig { order: -1; }
-    }
-    @media (max-width: 800px) {
-      .problem { grid-template-columns: 1fr; }
+      padding: 80px 24px 80px;
+      text-align: center;
     }
     .problem h2 {
       font-size: clamp(1.65rem, 3.4vw, 2.25rem);
@@ -1451,19 +1441,6 @@
       margin-bottom: 0;
     }
     .problem p strong { color: var(--ink); font-weight: 500; }
-    .problem-fig {
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      max-height: 400px;
-    }
-    .problem-fig img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-    /* v2 */
 
     /* ═══ BUILD / LIVING WIKI ═══ */
     .build {
@@ -3059,9 +3036,6 @@
       <p>
         The thinking you've done sits buried in notes you forget the moment life moves on. Hicks finds your best thinking and hands it back to you so you never lose the thread again.
       </p>
-    </div>
-    <div class="problem-fig">
-      <img src="https://raw.githubusercontent.com/tryhicks/website/main/notes-scattered.png" alt="Scattered notes — a graveyard of abandoned systems" />
     </div>
   </section>
 
