@@ -1,15 +1,11 @@
 {
-  "version": "0.1.1",
-  "notes": "Test update — bug fixes and improvements",
-  "pub_date": "2026-07-21T00:00:00Z",
+  "version": "0.1.0",
+  "notes": "First public launch of Hicks — a local-first wiki app for macOS.\n\n- Local-first note intelligence\n- Wiki-style knowledge management\n- Markdown-based notes on disk\n- Full-text search and backlinks\n- Auto-update support\n",
+  "pub_date": "2026-07-22T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "CHANGE_ME",
-      "url": "https://github.com/tryhicks/app/releases/download/v0.1.1/Hicks_0.1.1_aarch64.dmg"
-    },
-    "darwin-x86_64": {
-      "signature": "CHANGE_ME",
-      "url": "https://github.com/tryhicks/app/releases/download/v0.1.1/Hicks_0.1.1_x64.dmg"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2pLbnVQRVVVVklDelNncVpqdWtvUm1Rb2xaci8wTFRzY1dsV3p4QmxzWWdIOFFjSUdCbkVUekdDeEU2clV6MXZkc0d0ejB3UFRnNDJ6eldmMlVKRHdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzE3MzY4CWZpbGU6SGlja3NfMC4xLjBfYWFyY2g2NC5kbWcKTUV1TDFZUmtyZUJlN1pWeG5mZGRPeDdZamtNK2hpeUpNeVpKTW9tR09rU3NlU1I2Ykt1anVvYkllaWRIVnZxZ0wrdXlPZmFyaUtvZUFTT0pCNDdUQ2c9PQo=",
+      "url": "https://github.com/tryhicks/app/releases/download/v0.1.0/Hicks_0.1.0_aarch64.dmg"
     }
   }
 }
