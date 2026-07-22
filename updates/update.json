@@ -1,10 +1,10 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.21",
   "notes": "Gated Updates — Spec 40\n\n- App now verifies your license key before downloading updates\n- Cloudflare Worker gatekeeper ensures only valid license holders can download\n- Improved update reliability and security\n",
   "pub_date": "2026-07-22T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnRzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3QvSmxNMnFLS2V2dGJzbS9leEhGWTNJbnRYL2M5WSsrWWg0WDd5Y3JqaHNCNEg4c0hzTHlQcHgzdmxITFlYRXZkNkkzVHdyYlZNMXFBMWJVS0NiMndvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzUxOTQ1CWZpbGU6SGlja3NfMC4xLjJfYWFyY2g2NC5kbWcKN3JRT3ZRWHNkMmN5UEpWSmdLbm1zT1dMdjRTRzk5TkRpbUxKdDRiQkFVMFhyeEhBQjRtODQ5S0szNmw0bXlFTTdQS2JLM3pub1ZPUWVDM2xuZDZjRHc9PQo=",
+      "signature": "dW50cnRzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2xmZklsNXJmR0tpa2pVRTRUTDlMMklycGhMZmJkQUVaTlVlQk4yRElVU0FxWGROSFVsSG5EQzlFdElmOFlSUkZ1YWcxSzk0YmNFOWhvT28vVUQ0d0E0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzUzMzUxCWZpbGU6SGlja3NfMC4xLjIxX2FhcmNoNjQuZG1nCnpnNHNBYXVKcWpsY0pCZFNMenJMWGpLT1ovcVVGdWNRVVhRUnZ3eXhKb09OZFlLU1JDVlk1c3JtbCtaL0NLM3hqREZlNUpaOXFjbUN0VStqWXBKRERRPT0K",
       "url": "https://hicks-update-gatekeeper.hicks-update.workers.dev/download/hicks-macos-aarch64.dmg"
     }
   }
