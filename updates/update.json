@@ -5,7 +5,7 @@
   "platforms": {
     "darwin-aarch64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2h3MlpXQlZiRWhRUWJsU1JRam9YYjV1d0ZqUTBZakNkTWp0TElxVGFhL2ZoeE9VeE96LzA5VFJidWJRb215NFJoVGpWc3RTNEJIa2orSTZrbmFGYlFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzQwNzU5CWZpbGU6SGlja3NfMC4xLjFfYWFyY2g2NC5kbWcKQjVNUHVGSTFlZVEyMUNuclBwMlFOeVd0QktPRmlXRXdsb3c2Q3NnaHVCRmJGSlpwRGRCU2FoN2FXUW92ZGhMaDlsTCthMStodWtmVms0S05SV3JxQ0E9PQo=",
-      "url": "https://gatekeeper.tryhicks.workers.dev/download/hicks-macos-aarch64.dmg"
+      "url": "https://hicks-update-gatekeeper.hicks-update.workers.dev/download/hicks-macos-aarch64.dmg"
     }
   }
 }
