@@ -1,10 +1,10 @@
 {
-  "version": "0.1.1",
-  "notes": "Help vault v3 — rebuilt from 14 to 26 pages.\n\n- 12 new help pages added\n- All 14 existing pages updated\n- Help vault version bumped from 2 to 3\n",
+  "version": "0.1.2",
+  "notes": "Gated Updates — Spec 40\n\n- App now verifies your license key before downloading updates\n- Cloudflare Worker gatekeeper ensures only valid license holders can download\n- Improved update reliability and security\n",
   "pub_date": "2026-07-22T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2h3MlpXQlZiRWhRUWJsU1JRam9YYjV1d0ZqUTBZakNkTWp0TElxVGFhL2ZoeE9VeE96LzA5VFJidWJRb215NFJoVGpWc3RTNEJIa2orSTZrbmFGYlFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzQwNzU5CWZpbGU6SGlja3NfMC4xLjFfYWFyY2g2NC5kbWcKQjVNUHVGSTFlZVEyMUNuclBwMlFOeVd0QktPRmlXRXdsb3c2Q3NnaHVCRmJGSlpwRGRCU2FoN2FXUW92ZGhMaDlsTCthMStodWtmVms0S05SV3JxQ0E9PQo=",
+      "signature": "dW50cnRzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2pEYXg5VGZHZnhSWktra1JnZlMzMjZMbnI2c3hoeDEvWExQcU16QnhhTktqdExmS1J2S1c3QUFpWk1oeHR3NXltbGExOFMvTFdmRWQwQWdZNVNwc3dNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzUwOTA2CWZpbGU6SGlja3NfMC4xLjJfYWFyY2g2NC5kbWcKSVZqWjlsWWZBR0JobjYvd2RxczlLaHFtVE1IMHpaQTNLclQxQ2RsUDB3cVVuQS84ODQycWVUdjVCaTFHbW5rdHVXeUIwZFgrT05EOW42QVI4ZUh5RGc9PQo=",
       "url": "https://hicks-update-gatekeeper.hicks-update.workers.dev/download/hicks-macos-aarch64.dmg"
     }
   }
