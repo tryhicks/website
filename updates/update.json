@@ -4,8 +4,8 @@
   "pub_date": "2026-07-22T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnRzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR25KSTJnSUdPQnFyNTFhWGhDK0JROTNSWG0wbGtMMFJvVVVkaU5zN3lzU2s2LzF4RTZsV0FLNEkyTTBidVFwd2Z0VCtpVy9uM2ozTUpNZlBybzdzZXd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzYwNzYxCWZpbGU6SGlja3MuZG1nCnBuSkdvSGtBdkMvYVpMc05yQzMvbjIrK01hbm5GeDBpWDZQQjJOd3ZETW56cXRwN1I0b3pFMXlLZVZOcWx6bDAvUktOMktoUjZIK3orL1IwZTA0UkNBPT0K",
-      "url": "https://hicks-update-gatekeeper.hicks-update.workers.dev/download/hicks-macos-aarch64.dmg"
+      "signature": "dW50cnRzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2tpVHFKZ2VOMndXb05JQjZ1WGltYW02MDZMaXMvWjdhMnF1aE5abjV4T1R6NGpUeUxHS25ZeXdvemdHWUZqcHIrL2pGYmhUWHhpRnN0OVdRV1o2UVFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzYxMTI2CWZpbGU6SGlja3NfMC4xLjIxX2FhcmNoNjQuYXBwLnRhci5negoyNFBVbnIrZ0o4aUQvYXBaa2tQVnBUNEd6Z3VvVG9JVzRNeVJzcGFiSktBa2hDKzBsc09lcE85U3poN1M1bVZRczlvRUVFV0pURGlOTXFtbFZRaTFCQT09Cg==",
+      "url": "https://hicks-update-gatekeeper.hicks-update.workers.dev/download/hicks-macos-aarch64.tar.gz"
     }
   }
 }
