@@ -1,6 +1,6 @@
 {
-  "version": "0.1.21",
-  "notes": "Bug #87 — Fix update notification and install failure\n\n- Fixed update notification not appearing when a new version is available\n- Fixed update install failure on macOS\n",
+  "version": "0.1.22",
+  "notes": "Test update — verify download and install flow works\n",
   "pub_date": "2026-07-22T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
