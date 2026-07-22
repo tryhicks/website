@@ -1,11 +1,11 @@
 {
-  "version": "0.1.0",
-  "notes": "First public launch of Hicks — a local-first wiki app for macOS.\n\n- Local-first note intelligence\n- Wiki-style knowledge management\n- Markdown-based notes on disk\n- Full-text search and backlinks\n- Auto-update support\n",
+  "version": "0.1.1",
+  "notes": "Help vault v3 — rebuilt from 14 to 26 pages.\n\n- 12 new help pages added\n- All 14 existing pages updated\n- Help vault version bumped from 2 to 3\n",
   "pub_date": "2026-07-22T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2pLbnVQRVVVVklDelNncVpqdWtvUm1Rb2xaci8wTFRzY1dsV3p4QmxzWWdIOFFjSUdCbkVUekdDeEU2clV6MXZkc0d0ejB3UFRnNDJ6eldmMlVKRHdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzE3MzY4CWZpbGU6SGlja3NfMC4xLjBfYWFyY2g2NC5kbWcKTUV1TDFZUmtyZUJlN1pWeG5mZGRPeDdZamtNK2hpeUpNeVpKTW9tR09rU3NlU1I2Ykt1anVvYkllaWRIVnZxZ0wrdXlPZmFyaUtvZUFTT0pCNDdUQ2c9PQo=",
-      "url": "https://github.com/tryhicks/app/releases/download/v0.1.0/Hicks.dmg"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2h3MlpXQlZiRWhRUWJsU1JRam9YYjV1d0ZqUTBZakNkTWp0TElxVGFhL2ZoeE9VeE96LzA5VFJidWJRb215NFJoVGpWc3RTNEJIa2orSTZrbmFGYlFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzQwNzU5CWZpbGU6SGlja3NfMC4xLjFfYWFyY2g2NC5kbWcKQjVNUHVGSTFlZVEyMUNuclBwMlFOeVd0QktPRmlXRXdsb3c2Q3NnaHVCRmJGSlpwRGRCU2FoN2FXUW92ZGhMaDlsTCthMStodWtmVms0S05SV3JxQ0E9PQo=",
+      "url": "https://github.com/tryhicks/app/releases/download/v0.1.1/Hicks.dmg"
     }
   }
 }
