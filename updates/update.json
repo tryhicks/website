@@ -5,7 +5,7 @@
   "platforms": {
     "darwin-aarch64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2pLbnVQRVVVVklDelNncVpqdWtvUm1Rb2xaci8wTFRzY1dsV3p4QmxzWWdIOFFjSUdCbkVUekdDeEU2clV6MXZkc0d0ejB3UFRnNDJ6eldmMlVKRHdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0NzE3MzY4CWZpbGU6SGlja3NfMC4xLjBfYWFyY2g2NC5kbWcKTUV1TDFZUmtyZUJlN1pWeG5mZGRPeDdZamtNK2hpeUpNeVpKTW9tR09rU3NlU1I2Ykt1anVvYkllaWRIVnZxZ0wrdXlPZmFyaUtvZUFTT0pCNDdUQ2c9PQo=",
-      "url": "https://github.com/tryhicks/app/releases/download/v0.1.0/Hicks_0.1.0_aarch64.dmg"
+      "url": "https://github.com/tryhicks/app/releases/download/v0.1.0/Hicks.dmg"
     }
   }
 }
