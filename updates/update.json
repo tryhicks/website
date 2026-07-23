@@ -1,11 +1,11 @@
 {
-  "version": "0.1.24",
-  "notes": "v0.1.24 — process plugin fix for relaunch after update",
+  "version": "0.1.26",
+  "notes": "v0.1.26 — test the update flow from fixed 0.1.25",
   "pub_date": "2026-07-23T12:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3NJbWU2Nys0dFY4cHFuT3NsY1B3UlFYVjVOWUs3NndEbVUveG5VSUJ2c2h6TzZhSkpPNnFJSmF0OGxEVXVsMnREWDhwM1llekRYNlN6VEoxUG5XN0EwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODA3NTYxCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKejVEVVRpWXIvUFlCUzBFdTdqRTl3KzJVR293OWRtTUliNGE4NVRNVjhyUVR4TmcxOVRRU2hmdFlpZjBmQmIzYmw5cklCQjJNOVBTL1l0aVFmc2dqREE9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.24/hicks-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3JEYnFnNUVlVDMvODdmbWoweHRwR3BsdXZJR3E1UUdJOFFtbDBIWTZqWDdSQ2JJdjVSdHM2YVpqL0xvdmVyRkx6TGFvTk1zdHZyMEJhaGphZnFDNEFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODA4MDg4CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKMEhUeVNueGFzVTA2L29EMlZYUHNVeUtGY0NwbThnVER1bVlvdENkMHlJcXNPK3J6Rlc4N2RwU09qWjB6NzFUWjhsZElYV1YyQy9KVGpBeG9HZmlMQUE9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.26/hicks-macos-aarch64.tar.gz"
     }
   }
 }
