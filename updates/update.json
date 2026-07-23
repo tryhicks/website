@@ -1,11 +1,11 @@
 {
-  "version": "0.1.31",
-  "notes": "FIXED\n- Process plugin now registered for relaunch after update\n- Removed \"Read the changelog\" link from settings\n\nIMPROVED\n- Version badge now shows v0.1.27 (+1) format\n- Section headings use grey color with no bullet\n- Settings release notes now match modal styling\n\nNEW\n- Update modal with white Hicks logo and centered layout",
-  "pub_date": "2026-07-23T12:00:00Z",
+  "version": "0.1.32",
+  "notes": "FIXED\n- .hicks/ vault structure — system data no longer pollutes vault root\n- Note index page written to .hicks/notes.md instead of vault root\n- Database paths use .hicks/database/ prefix\n- Threads/ directory removed from note file sync\n- All system page types use .hicks/ prefix (topics, activity, reports)\n- Profile and daily-log paths use .hicks/ prefix\n- Tags removed from wiki page viewer metadata line\n\nIMPROVED\n- White logo in update modal (instead of sage)\n- Settings release notes now match modal styling (FIXED/IMPROVED/NEW sections)\n- Badge format: v0.1.27 (+1) in bottom-right corner\n- Removed \"Read the changelog\" link from settings",
+  "pub_date": "2026-07-23T00:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR25nQ0Rxdkg2YzVvWkVMdUZMcjV0T2VPeTErY1VCdDRoWjRjclpSdzNYZ0xVMngyL0tCYzhEL3Z0Z05vRDFTRmVzRVgrdHBOM0YxdFA0LzZQR1NCc3dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODExNjczCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKSTlNUkRNQzF2ZEJjVysyMnNkcVhVRzFmTlAxTnNwK1BmWlJhOTdhdjNibUdHN0RYNG4zY0lHTE5ETytFRk9SRytxdWRybEt0cGcvT29QalFZRWJmQXc9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.31/hicks-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR25BMzFFT3dQL2RCMHQyTHpEQURsZDhUdFNyNVhTOThOa1BxWEFRV1d3SGdCU3RwaHo5SkZ3RDVtSzhpYUMyOWZzMTZic0IwNXd0R1U5OG9tTld6RHdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODMxNjA3CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKMS9uS0EvaTdPWkpZQ1cwakl3dzlaencrZ3pUVFJLa1lZSTFLWnpQMktOb0MwYzByTW1HeHlmaVc3N0QwMmhzdjBROTBkWVdHSXVrc2xPSWlLbFpEQ0E9PQo=",
+      "url": "https://github.com/tryhicks/app/releases/download/v0.1.32/hicks-macos-aarch64.tar.gz"
     }
   }
 }
