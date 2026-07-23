@@ -1,10 +1,10 @@
 {
   "version": "0.1.23",
-  "notes": "See https://github.com/tryhicks/website/releases/tag/v0.1.23",
+  "notes": "Test release for update flow verification",
   "pub_date": "2026-07-23T12:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3NQNFhDV1NyLzFyc3FnWEIreTZra0paZXdESEExZVRLN0FPTjZWbU1WVWRPSUlMa0xmWGp3eWk2UUh4bG1pVlVUWTNiWGg5UldESDdkSUFKaFlhYmdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0Nzk4MzEzCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKdDYzT2JpQUF1aDNGQVhwZzJibzlTRmxrcVV3TVpjcUxEbXVUdGZMaTVuTUZCK25hNVg0TmpubDhZVnlrWDNLNHlaRkdLQkc4MG5mbVk3UEtnSzlmQ3c9PQo=",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3BQUjBkYmRQc3VwanNHbjNZSXRtN2dkTnZmRnVzaHRZWlhZUVh1TW1wU3AxTHRJK0Z5b3ROaUZ5YVpsYktBczlzSDRuZ2VxTHBrUFkyZ0JKZ3FOSXd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODA0NjA0CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKSm5pdlB2SmQ0Z3hUQlVDd292c1JzSnJkVWEzVllkMXI4Z2thVFZ3L2Z0VmRra0R1amNtQk1zbUFhTUlnUkhTUlpLem00VEpGdEdWRi96WGQ4cWFYRHc9PQo=",
       "url": "https://github.com/tryhicks/website/releases/download/v0.1.23/hicks-macos-aarch64.tar.gz"
     }
   }
