@@ -1,11 +1,11 @@
 {
-  "version": "0.1.28",
-  "notes": "FIXED\n- Process plugin now registered for relaunch after update\n- Removed \"Read the changelog\" link from settings\n\nIMPROVED\n- Version badge now shows update count instead of orange dot\n- Update modal shows structured release notes\n\nNEW\n- Update modal with Hicks logo and centered layout",
+  "version": "0.1.29",
+  "notes": "FIXED\n- Process plugin now registered for relaunch after update\n- Removed \"Read the changelog\" link from settings\n\nIMPROVED\n- Version badge now shows v0.1.27 (+1) format\n- Section headings use grey color with no bullet\n\nNEW\n- Update modal with Hicks logo and centered layout",
   "pub_date": "2026-07-23T12:00:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2xRdGdFa0ZEOTRLZ1dFa3JFNXhHSW1UT2d3enAxNGY0dWFhZE9INjQ0QTNSM2NKUFJiTzA1MUJFYmFzY2RFV2ZGOUFVcThwRGxDZ0t1NFpZWGVld1EwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODA5ODcwCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKR082bXdIRGljL29rYzZEdlZMYkwzRzFjcjkwS0l0UURjRjZYYzhQV2p5K0djK21XN3EycCtyMW5FNGxwaTlBczBkR1B3TnBiTUMrbDdJUUU0VEdGQ2c9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.28/hicks-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2tDV3BJemROR3lSRUthUW5kN01GcWJqVjNRK21Kd1d4aVVVdmthMnBNMHhDcm9mZDdrUXZNVlRnY3RFS0V3NVpWRDJrWGNJWUxlK1N6b1VFTFBob1FJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODEwMzg1CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKeVpyUU1mRnFTS2dSVjJpZjFGOXhrT3JNd0IrWnliZUVIM2p1ZTdydW1GbFl3bUtKdzZveUFPU0UwSGV6VVBrYzhGb25pbHB5VDlXbGp3S3FlQ0NuQVE9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.29/hicks-macos-aarch64.tar.gz"
     }
   }
 }
