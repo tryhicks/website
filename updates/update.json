@@ -5,7 +5,7 @@
   "platforms": {
     "darwin-aarch64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR25BMzFFT3dQL2RCMHQyTHpEQURsZDhUdFNyNVhTOThOa1BxWEFRV1d3SGdCU3RwaHo5SkZ3RDVtSzhpYUMyOWZzMTZic0IwNXd0R1U5OG9tTld6RHdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODMxNjA3CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKMS9uS0EvaTdPWkpZQ1cwakl3dzlaencrZ3pUVFJLa1lZSTFLWnpQMktOb0MwYzByTW1HeHlmaVc3N0QwMmhzdjBROTBkWVdHSXVrc2xPSWlLbFpEQ0E9PQo=",
-      "url": "https://github.com/tryhicks/app/releases/download/v0.1.32/hicks-macos-aarch64.tar.gz"
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.32/hicks-macos-aarch64.tar.gz"
     }
   }
 }
