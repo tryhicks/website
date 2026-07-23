@@ -1,10 +1,10 @@
 {
   "version": "0.1.22",
-  "notes": "Test update — verify download and install flow works\n",
-  "pub_date": "2026-07-22T00:00:00Z",
+  "notes": "See https://github.com/tryhicks/website/releases/tag/v0.1.22",
+  "pub_date": "2026-07-23T10:56:12Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3NQNFhDV1NyLzFyc3FnWEIreTZra0paZXdESEExZVRLN0FPTjZWbU1WVWRPSUlMa0xmWGp3eWk2UUh4bG1pVlVUWTNiWGg5UldESDdkSUFKaFlhYmdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0Nzk4MzEzCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKdDYzT2JpQUF1aDNGQVhwZzJibzlTRmxrcVV3TVpjcUxEbXVUdGZMaTVuTUZCK25hNVg0TmpubDhZVnlrWDNLNHlaRkdLQkc4MG5mbVk3UEtnSzlmQ3c9PQo=",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR281U2VzUXN4MVE1M2IrK29udFdzR1FveUF0anlYcDFxQSs0VWZNNDFJNnVYZXA0UndvcHBkSE9qR2IxcnpaVjc1UCtnakIzNkJ5cTB2ZkFkaHRpaHdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg0ODA0MTQ3CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKWEpUb0RwQzM3UHV6Y3MrbTVNbmlYTVA2dWlWRGh3eHdNRnBZWHl2UDB4UlhnU3JobGlZTkxBZ1AvUktWQ3Z4UThFRUNaOTI0eWN4eVlZTCtjaThmREE9PQo=",
       "url": "https://github.com/tryhicks/website/releases/download/v0.1.22/hicks-macos-aarch64.tar.gz"
     }
   }
