@@ -1,7 +1,7 @@
 {
   "version": "0.1.33",
-  "notes": "See https://github.com/tryhicks/website/releases/tag/v0.1.33",
-  "pub_date": "2026-07-28T14:18:38Z",
+  "notes": "FIXED\n- File watcher now uses polling — no more missed changes on macOS\n- Notes no longer jump back to old folder after rename or move\n- Index.md now appears in the left menu\n- Editor no longer loses content or desyncs from the title\n- Folder rename on disk no longer orphans subfolders\n- Pinned items stay in the tree menu (pinned section is a shortcut only)\n- Rename inputs now appear for notes inside pinned folders\n- Auto-increment note/folder names when creating duplicates ('Untitled (2)')\n- Name collision errors shown when manually renaming to an existing name\n- Help vault restructured into version folder (0.1.32)\n\nIMPROVED\n- Rust Backend Engine — consolidated file I/O and DB sync (Spec 48)\n- Simplified frontend file event handler — reconcileVaultFromDisk replaces 7-branch handler\n- Bidirectional rename buffer handles both macOS FSEvents and PollWatcher\n- Folder rename detection improved with fresh DB folder list\n\nNEW\n- Polling watcher replaces macOS FSEvents for reliable cross-platform file sync\n- Consolidated DbState replaces VaultDbState for all database operations",
+  "pub_date": "2026-07-28T14:24:35Z",
   "platforms": {
     "darwin-aarch64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3QrbnU1aE1ZNnYrcEphMFc3VnlnOHRVRXlGNlhrQTI2NzJCTjBRczNkL2t0UWlINHd1cEVpaTJseDIrbE9iejR4cW5oaUR4UjR1OVl3K1VFYU5sYXdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjQ4MjE2CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKVHlqZDU3cE5SR1BUamE5VHc4VGlrd0dQRlJWRk1XeXBvTnR1QjFSLyt6MU1TSytjSUZBenV0L3ZseGFUdDk5aXJrSHhLMUR1b2s4dFdGNld1eTJKRGc9PQo=",
