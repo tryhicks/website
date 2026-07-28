@@ -192,6 +192,80 @@ line-height: 1.5;
 .editor-content a:hover { color: var(--ink-body); }
 .editor-content .wiki-link { color: var(--ink-quiet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; user-select: none; transition: color 0.15s; }
 .editor-content .wiki-link:hover { color: var(--ink-body); }
+
+/* ── Wiki page layout (matches real app) ── */
+.wiki-page-wrap { flex: 1; overflow-y: auto; }
+.wiki-page-inner { padding: 48px 64px 120px; max-width: 900px; margin: 0 auto; width: 100%; }
+.wiki-page-inner::-webkit-scrollbar { width: 4px; }
+.wiki-page-inner::-webkit-scrollbar-track { background: transparent; }
+.wiki-page-inner::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.page-title { font-size: 36px; line-height: 1.1; font-weight: 900; color: var(--ink); font-family: var(--font-sans); letter-spacing: -0.01em; margin-bottom: 16px; word-break: break-word; overflow-wrap: break-word; white-space: pre-wrap; }
+.page-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--ink-faint); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-light); }
+.prose-wiki { font-size: 16px; line-height: 1.7; color: var(--ink-body); }
+.prose-wiki p { margin-bottom: 12px; }
+.prose-wiki h2 { font-size: 24px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-top: 28px; margin-bottom: 8px; }
+.prose-wiki h3 { font-size: 20px; font-weight: 600; color: var(--ink-body); letter-spacing: -0.01em; line-height: 1.35; margin-top: 24px; margin-bottom: 8px; }
+.prose-wiki ul { list-style: disc; padding-left: 24px; margin-bottom: 12px; }
+.prose-wiki li { margin-bottom: 4px; }
+.prose-wiki li::marker { color: var(--ink-quiet); }
+.prose-wiki strong { color: var(--ink); font-weight: 700; }
+.prose-wiki blockquote { border-left: 2px solid var(--sage); padding-left: 16px; color: var(--ink-quiet); font-style: italic; margin: 16px 0; }
+.prose-wiki .wiki-link { color: var(--ink-quiet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; user-select: none; transition: color 0.15s; }
+.prose-wiki .wiki-link:hover { color: var(--ink-body); }
+.wiki-backlinks { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--rule-light); }
+.wiki-backlinks h3 { font-size: 13px; font-weight: 600; color: var(--ink-quiet); margin-bottom: 12px; }
+.wiki-backlink-row { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.15s; }
+.wiki-backlink-row:hover { background: var(--menu-hover); }
+.wiki-backlink-row span { font-size: 14px; color: var(--ink-quiet); }
+.wiki-backlink-row:hover span { color: var(--ink); }
+.wiki-backlink-type { font-size: 11px; color: var(--ink-faint); flex-shrink: 0; }
+
+/* ── Topics page (matches real app TopicsPage.tsx) ── */
+.topics-page { flex: 1; overflow-y: auto; }
+.topics-page-inner { padding: 48px 64px 120px; max-width: 900px; margin: 0 auto; width: 100%; }
+.topics-page-inner::-webkit-scrollbar { width: 4px; }
+.topics-page-inner::-webkit-scrollbar-track { background: transparent; }
+.topics-page-inner::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.topics-title { font-size: 30px; font-weight: 700; color: var(--ink); font-family: var(--font-sans); letter-spacing: -0.01em; margin-bottom: 4px; }
+.topics-subtitle { font-size: 15px; color: var(--ink-quiet); font-style: italic; font-family: var(--font-sans); margin-bottom: 20px; }
+.topics-filter-wrap { position: relative; margin-bottom: 24px; }
+.topics-filter-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--ink-faint); pointer-events: none; }
+.topics-filter-wrap input { width: 100%; background: var(--page); border: 1px solid var(--rule); border-radius: var(--radius-md); padding: 10px 12px 10px 36px; font-size: 15px; color: var(--ink); font-family: var(--font-sans); outline: none; transition: border-color 0.15s; }
+.topics-filter-wrap input::placeholder { color: var(--ink-faint); }
+.topics-filter-wrap input:focus { border-color: var(--sage); }
+.topics-filter-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--ink-faint); background: transparent; border: none; cursor: pointer; }
+.topics-filter-clear:hover { color: var(--ink); }
+.cluster-card { background: var(--card); border: 1px solid var(--rule-light); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 16px; }
+.cluster-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; cursor: pointer; transition: background 0.15s; }
+.cluster-header:hover { background: var(--surface-hover); }
+.cluster-header svg { width: 12px; height: 12px; color: var(--ink-faint); flex-shrink: 0; transition: transform 0.2s; }
+.cluster-name { font-size: 18px; font-weight: 600; color: var(--ink); font-family: var(--font-sans); flex: 1; }
+.cluster-count { font-size: 13px; color: var(--ink-quiet); flex-shrink: 0; }
+.cluster-body { border-top: 1px solid var(--rule-light); padding: 18px; }
+.topic-block { margin-bottom: 24px; padding-bottom: 22px; border-bottom: 1px solid var(--rule-light); }
+.topic-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.topic-name { font-size: 24px; font-weight: 600; color: var(--ink); font-family: var(--font-sans); margin-bottom: 4px; cursor: pointer; transition: color 0.15s; }
+.topic-name:hover { color: var(--ink-body); }
+.topic-meta { font-size: 13px; color: var(--ink-quiet); margin-bottom: 10px; }
+.topic-badge { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 6px; margin-right: 6px; vertical-align: middle; }
+.topic-badge-new { background: var(--sage-soft); color: var(--sage); }
+.topic-badge-updated { background: var(--state-warning-bg); color: var(--state-warning-text); }
+.topic-summary { font-size: 16px; color: var(--ink-body); line-height: 1.6; margin-bottom: 14px; }
+.topic-connected { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 8px; }
+.topic-connected-label { font-size: 12px; font-weight: 600; color: var(--ink-quiet); flex-shrink: 0; }
+.topic-connected-item { font-size: 14px; color: var(--ink-quiet); cursor: pointer; transition: color 0.15s; }
+.topic-connected-item:hover { color: var(--ink-body); text-decoration: underline; }
+.edge-group { margin-bottom: 12px; }
+.edge-group-header { display: flex; align-items: center; gap: 2px; cursor: pointer; user-select: none; margin-bottom: 8px; }
+.edge-group-header svg { width: 10px; height: 10px; color: var(--ink-faint); flex-shrink: 0; }
+.edge-group-label { font-size: 12px; font-weight: 600; color: var(--ink-quiet); transition: color 0.15s; }
+.edge-group-header:hover .edge-group-label { color: var(--ink); }
+.edge-group-count { font-size: 12px; color: var(--ink-faint); margin-left: 2px; }
+.edge-item { margin-left: 0; margin-bottom: 10px; border-left: 2px solid var(--rule); background: var(--page); border-radius: 0 6px 6px 0; padding: 10px 14px; }
+.edge-item-text { font-size: 15px; color: var(--ink-body); line-height: 1.55; }
+.edge-item-link { color: var(--ink-quiet); cursor: pointer; transition: color 0.15s; }
+.edge-item-link:hover { color: var(--ink-body); text-decoration: underline; }
+
 .block-drag-handle { position: fixed; display: flex; align-items: center; gap: 2px; border-radius: 6px; padding: 0 4px; z-index: 50; transform: translateY(-50%); pointer-events: none; opacity: 0; transition: opacity 0.12s ease; }
 .block-drag-handle.visible { opacity: 1; pointer-events: auto; }
 .block-drag-handle button { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: var(--icon-default); background: transparent; border: none; cursor: pointer; transition: color 0.12s, background 0.12s; }
@@ -356,6 +430,12 @@ line-height: 1.5;
         <button class="tab-btn active" data-tab="threads">Threads</button>
         <button class="tab-btn" data-tab="wiki">Wiki</button>
       </div>
+      <div class="ingest-btn-wrap" style="padding:4px 12px 8px;">
+        <button class="ingest-btn" id="ingestBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Ingest
+        </button>
+      </div>
       <div class="sidebar-content" id="sidebarContent">
         <div id="threadsTab">
           <div class="search-box">
@@ -395,12 +475,6 @@ line-height: 1.5;
               <input type="text" placeholder="Filter" id="wikiSearch">
             </div>
           </div>
-          <div class="ingest-btn-wrap">
-            <button class="ingest-btn" id="ingestBtn" onclick="if(window.ingestOpen)window.closeIngest();else window.openIngest();">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              Ingest
-            </button>
-          </div>
           <div class="sidebar-content" id="wikiMenuContent">
             <div style="padding:0 8px;">
               <div style="padding:6px 12px 4px;">
@@ -426,9 +500,9 @@ line-height: 1.5;
                         <span style="font-size:11px;color:var(--ink-faint);flex-shrink:0;">8</span>
                       </button>
                       <div id="month-jul2026" style="display:none;padding:2px 2px 0;">
-                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">23</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Customer call — Acme Corp</span></button>
-                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">22</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Sprint planning — transcription API</span></button>
-                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">21</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Investor update prep</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-07-23" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">23</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Customer call — Acme Corp</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-07-22" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">22</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Sprint planning — transcription API</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-07-21" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">21</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Investor update prep</span></button>
                       </div>
                     </div>
                     <div>
@@ -438,7 +512,12 @@ line-height: 1.5;
                         <span style="font-size:11px;color:var(--ink-faint);flex-shrink:0;">6</span>
                       </button>
                       <div id="month-jun2026" style="display:none;padding:2px 2px 0;">
-                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">30</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Beta user feedback session</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-06-30" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">30</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Beta user feedback session</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-06-28" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">28</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Whisper model benchmark results</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-06-25" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">25</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Pricing model review</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-06-22" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">22</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Competitive analysis deep dive</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-06-18" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">18</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">User persona interviews</span></button>
+                        <button class="sidebar-nav-item" data-dailylog="2026-06-15" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">15</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Architecture review — local-first</span></button>
                       </div>
                     </div>
                   </div>
@@ -456,8 +535,8 @@ line-height: 1.5;
                     <span style="font-size:15px;color:var(--ink-body);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Meeting Summary</span>
                   </button>
                   <div id="skillMeetingRuns" style="display:none;padding:2px 2px 0;">
-                    <button class="sidebar-nav-item" style="display:flex;padding-left:22px;"><span style="font-size:15px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">23 Jul 2026</span></button>
-                    <button class="sidebar-nav-item" style="display:flex;padding-left:22px;"><span style="font-size:15px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">16 Jul 2026</span></button>
+                    <button class="sidebar-nav-item" data-skillrun="meeting-summary-2026-07-23" style="display:flex;padding-left:22px;"><span style="font-size:15px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">23 Jul 2026</span></button>
+                    <button class="sidebar-nav-item" data-skillrun="meeting-summary-2026-07-16" style="display:flex;padding-left:22px;"><span style="font-size:15px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">16 Jul 2026</span></button>
                   </div>
                 </div>
               </div>
@@ -739,6 +818,12 @@ splitBackBtn.addEventListener('click', () => { if (splitHistory.length > 0) { co
 function switchNote(index) {
   const note = notes[index];
   if (!note) return;
+  // Restore note editor view (hide wiki page layout if visible)
+  const wikiWrap = document.getElementById('wikiPageWrap');
+  if (wikiWrap) wikiWrap.remove();
+  noteTitle.style.display = '';
+  noteContent.style.display = '';
+  noteFooter.style.display = '';
   sidebarItems.forEach((item, i) => item.classList.toggle('active', i === index));
   noteTitle.value = note.title;
   noteContent.innerHTML = note.body;
@@ -761,6 +846,24 @@ tabBtns.forEach(btn => {
     const tab = this.dataset.tab;
     threadsTab.style.display = tab === 'threads' ? 'block' : 'none';
     wikiTab.style.display = tab === 'wiki' ? 'block' : 'none';
+    // When switching back to Threads, restore the note editor if a wiki page was showing
+    if (tab === 'threads') {
+      const wikiWrap = document.getElementById('wikiPageWrap');
+      if (wikiWrap) {
+        wikiWrap.remove();
+        noteTitle.style.display = '';
+        noteContent.style.display = '';
+        noteFooter.style.display = '';
+        // Re-show the currently active note
+        const activeItem = document.querySelector('.wiki-item.active');
+        if (activeItem) {
+          const idx = parseInt(activeItem.dataset.note);
+          if (!isNaN(idx) && notes[idx]) switchNote(idx);
+        } else {
+          switchNote(0);
+        }
+      }
+    }
   });
 });
 
@@ -804,42 +907,432 @@ document.getElementById('skillMeetingToggle')?.addEventListener('click', functio
 const wikiPages = {
   profile: {
     title: 'Profile',
-    body: `<h2>About</h2><p>Solo entrepreneur building Meeting Memory — an AI that sits in your calls, takes notes, and links them to your projects. Previously built a SaaS analytics tool that was acquired in 2023.</p><h2>Current Focus</h2><p>Shipping the MVP by end of August. Key milestones: transcription pipeline (done), topic extraction (in progress), project linking (next sprint).</p><h2>Stack Preferences</h2><p>TypeScript, React, Tauri for desktop. Local-first with Whisper + Mistral. Graph DB for entity linking. No cloud dependencies until launch.</p><h2>Working Style</h2><p>Deep work mornings, meetings after 2pm. Uses Hicks as the single source of truth for all product decisions. Reviews the Index page every morning to see what changed.</p>`
+    created: '28 Jul 2026',
+    edited: '28 Jul 2026',
+    body: `<h2>Who I Am</h2><p>Solo entrepreneur building Meeting Memory — an AI that sits in your calls, takes notes, and links them to your projects. Previously built a SaaS analytics tool that was acquired in 2023. Background in product engineering and ML. Based in London.</p><h2>Key People</h2><ul><li><strong>Sarah</strong> — Head of Ops at Acme Corp, beta user and pricing feedback source</li><li><strong>Advisory team</strong> — 2 former founders who review product decisions weekly</li><li><strong>Beta users</strong> — 3 solo founders testing the transcription pipeline</li><li><strong>Investors</strong> — Angel round closed Q1 2026, monthly update cadence</li></ul><h2>Projects</h2><ul><li><strong>Meeting Memory</strong> — Core product. MVP target end of August. Transcription pipeline done, topic extraction in progress, project linking next sprint.</li><li><strong>Transcription Pipeline</strong> — Whisper-based local transcription with speaker diarisation. Base model selected, chunking implemented.</li><li><strong>Topic Extraction</strong> — Mistral 7B via Ollama for extracting topics and entities from meeting transcripts.</li></ul><h2>How I Think</h2><p>Deep work mornings, meetings after 2pm. Prefer writing over talking — notes are the single source of truth for all product decisions. Review the Index page every morning to see what changed. Decisions get documented immediately, not deferred. Local-first philosophy extends beyond tech — own your data, own your process.</p><h2>My Preferences for Working with AI</h2><ul><li>AI should summarise and connect, not generate from scratch</li><li>Never add a bot to a call — the tool should be invisible</li><li>Citations matter — always show where information came from ("Drew from")</li><li>Local-first for privacy and speed — no cloud dependency</li><li>AI should learn from my corrections, not start from zero each time</li></ul><h2>Personal</h2><p>Finds stillness in the spaces between things — the gap between a question and an answer, the silence after a meeting ends, the moment before a decision settles. The best ideas arrive unannounced, usually on a run or in the shower. Keeps a notebook by the bed. Reads to be challenged, not comforted. Believes attention is the only non-renewable resource.</p>`
   },
   index: {
     title: 'Index',
-    body: `<h1>Index</h1><p>This page lists every note in the vault. Each bullet links to the full note.</p><ul><li><a class="wiki-link" data-note="0">Meeting Memory — Product Spec</a></li><li><a class="wiki-link" data-note="1">Competitive Analysis</a></li><li><a class="wiki-link" data-note="2">Pricing Model</a></li><li><a class="wiki-link" data-note="3">User Personas</a></li><li><a class="wiki-link" data-note="4">Architecture Decisions</a></li><li><a class="wiki-link" data-note="5">Transcription Pipeline</a></li></ul>`
+    created: '28 Jul 2026',
+    edited: '28 Jul 2026',
+    body: `<h2>About</h2><p>This page lists every note in the vault. Each bullet links to the full note.</p><ul><li><a class="wiki-link" data-note="0">Meeting Memory — Product Spec</a></li><li><a class="wiki-link" data-note="1">Competitive Analysis</a></li><li><a class="wiki-link" data-note="2">Pricing Model</a></li><li><a class="wiki-link" data-note="3">User Personas</a></li><li><a class="wiki-link" data-note="4">Architecture Decisions</a></li><li><a class="wiki-link" data-note="5">Transcription Pipeline</a></li></ul>`
   },
   topics: {
     title: 'Topics',
-    body: `<h1>Topics</h1><h2>Product Strategy</h2><p>Notes about product direction, competitive positioning, and go-to-market. Includes <a class="wiki-link" data-note="0">Meeting Memory — Product Spec</a>, <a class="wiki-link" data-note="1">Competitive Analysis</a>, <a class="wiki-link" data-note="2">Pricing Model</a>.</p><h2>Users & Research</h2><p>Understanding the target audience. Includes <a class="wiki-link" data-note="3">User Personas</a>.</p><h2>Engineering</h2><p>Technical architecture and implementation details. Includes <a class="wiki-link" data-note="4">Architecture Decisions</a>, <a class="wiki-link" data-note="5">Transcription Pipeline</a>.</p>`
+    created: '28 Jul 2026',
+    edited: '28 Jul 2026',
+    isTopics: true,
+    clusters: [
+      {
+        name: 'Product & Strategy',
+        topics: [
+          {
+            name: 'Meeting Memory — Product Spec',
+            status: 'updated',
+            date: '28 Jul 2026',
+            threadCount: 5,
+            summary: 'The core product spec for Meeting Memory — an AI that sits in your calls, takes notes, and links them to your projects. Covers elevator pitch, core problem, key insight, target users, business model, competitive landscape, and architecture.',
+            connected: ['Competitive Analysis', 'Pricing Model', 'User Personas'],
+            hicksFound: [
+              'The best meeting note-taker is the one you don\'t have to think about — no bot in the room, no "now recording" announcements.',
+              'Meeting Memory doesn\'t just transcribe — it connects decisions to the threads they affect.',
+              'Local-first architecture with Whisper + Mistral 7B, all running on-device via Ollama.'
+            ],
+            fromThreads: [
+              '[[Meeting Memory — Product Spec]] — initial draft with full spec',
+              '[[Competitive Analysis]] — added competitor matrix and positioning',
+              '[[Pricing Model]] — refined business model section with three tiers'
+            ]
+          },
+          {
+            name: 'Competitive Analysis',
+            status: 'updated',
+            date: '27 Jul 2026',
+            threadCount: 3,
+            summary: 'Deep dive into Fireflies, Otter, Fathom, and Granola. Every competitor solves transcription — none solve connection to your knowledge base. That\'s the gap.',
+            connected: ['Meeting Memory — Product Spec', 'Pricing Model'],
+            hicksFound: [
+              'Average price point in the space: $15-30/user/mo.',
+              'No competitor does project linking or knowledge base integration.',
+              'Granola is the closest competitor — runs locally but has no project linking.'
+            ],
+            fromThreads: [
+              '[[Competitive Analysis]] — added Granola to competitor matrix',
+              '[[Meeting Memory — Product Spec]] — refined competitive positioning section'
+            ]
+          },
+          {
+            name: 'Pricing Model',
+            status: 'updated',
+            date: '26 Jul 2026',
+            threadCount: 3,
+            summary: 'Three-tier pricing: Free (5 meetings/mo), Pro $29/mo, Team $79/mo. No per-seat pricing — flat rate per tier. 20% annual discount available.',
+            connected: ['Meeting Memory — Product Spec', 'Competitive Analysis'],
+            hicksFound: [
+              'Per-seat pricing is a dealbreaker for 10+ person teams — confirmed by Acme Corp call.',
+              'Flat-rate tiers are easier for small teams to budget.',
+              'Free tier needs to be generous enough to evaluate but limited enough to convert.'
+            ],
+            fromThreads: [
+              '[[Pricing Model]] — finalised all tiers and pricing',
+              '[[Meeting Memory — Product Spec]] — updated business model section'
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Users & Research',
+        topics: [
+          {
+            name: 'User Personas',
+            status: 'new',
+            date: '25 Jul 2026',
+            threadCount: 2,
+            summary: 'Three personas validated: Alex the Solo Founder (primary), Small Team Lead (secondary), Freelance Consultant (tertiary). Design for Alex first.',
+            connected: ['Meeting Memory — Product Spec'],
+            hicksFound: [
+              'Solo founders have 10-15 meetings/week on average.',
+              'Willingness to pay is $29/mo for individuals, $79/mo for teams.',
+              'Forgetting decisions is the #1 pain point across all personas.'
+            ],
+            fromThreads: [
+              '[[User Personas]] — documented all three personas with pain points',
+              '[[Meeting Memory — Product Spec]] — refined target users section'
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Engineering',
+        topics: [
+          {
+            name: 'Architecture Decisions',
+            status: 'new',
+            date: '24 Jul 2026',
+            threadCount: 3,
+            summary: 'Local-first architecture with Whisper for transcription, Mistral 7B for topic extraction, graph DB for entity linking. All running locally via Ollama.',
+            connected: ['Transcription Pipeline', 'Meeting Memory — Product Spec'],
+            hicksFound: [
+              'Local-first eliminates cloud costs entirely for MVP.',
+              'Whisper runs in <1s per 30s chunk on M-series hardware.',
+              'Privacy is a key selling point for the target market.'
+            ],
+            fromThreads: [
+              '[[Architecture Decisions]] — documented full rationale and stack',
+              '[[Meeting Memory — Product Spec]] — added architecture section'
+            ]
+          },
+          {
+            name: 'Transcription Pipeline',
+            status: 'new',
+            date: '23 Jul 2026',
+            threadCount: 3,
+            summary: 'Audio processing chain: loopback capture → 30s chunks with overlap → Whisper inference → segment merge → topic extraction. Speaker diarisation via energy-based VAD + embedding clustering.',
+            connected: ['Architecture Decisions', 'Meeting Memory — Product Spec'],
+            hicksFound: [
+              'Whisper Base model hits the sweet spot for speed/accuracy (1.4s per chunk, 8% WER).',
+              '30-second chunks with 5-second overlap provide good transcription quality.',
+              'Energy-based VAD works reliably for 2-4 person calls.'
+            ],
+            fromThreads: [
+              '[[Transcription Pipeline]] — initial draft with full pipeline details',
+              '[[Architecture Decisions]] — added audio capture trade-off analysis'
+            ]
+          }
+        ]
+      }
+    ]
   },
   activity: {
     title: 'Activity',
-    body: `<h1>Activity</h1><p>Recent changes across the vault.</p><h2>Today</h2><ul><li>Updated <a class="wiki-link" data-note="0">Meeting Memory — Product Spec</a> — added architecture section</li><li>Created <a class="wiki-link" data-note="5">Transcription Pipeline</a> — initial draft</li></ul><h2>Yesterday</h2><ul><li>Updated <a class="wiki-link" data-note="2">Pricing Model</a> — added annual discount</li><li>Updated <a class="wiki-link" data-note="1">Competitive Analysis</a> — added Granola to matrix</li></ul><h2>3 days ago</h2><ul><li>Created <a class="wiki-link" data-note="3">User Personas</a></li><li>Created <a class="wiki-link" data-note="4">Architecture Decisions</a></li></ul>`
+    created: '28 Jul 2026',
+    edited: '28 Jul 2026',
+    body: `<h2>Today</h2><ul><li>Updated <a class="wiki-link" data-note="0">Meeting Memory — Product Spec</a> — added architecture section</li><li>Created <a class="wiki-link" data-note="5">Transcription Pipeline</a> — initial draft</li></ul><h2>Yesterday</h2><ul><li>Updated <a class="wiki-link" data-note="2">Pricing Model</a> — added annual discount</li><li>Updated <a class="wiki-link" data-note="1">Competitive Analysis</a> — added Granola to matrix</li></ul><h2>3 days ago</h2><ul><li>Created <a class="wiki-link" data-note="3">User Personas</a></li><li>Created <a class="wiki-link" data-note="4">Architecture Decisions</a></li></ul>`
+  },
+  '2026-07-23': {
+    title: '23 Jul 2026 · Customer call with Acme Corp',
+    body: `<h2>Index</h2><p>Customer call with Sarah from Acme Corp. They're a 12-person team evaluating meeting note-taking solutions. Key outcome: confirmed demand for team plan at $79/mo flat rate.</p><h2>Session 1 — Acme Corp discovery call</h2><p>Spoke with Sarah (Head of Ops) about their meeting note-taking pain points. They run 30+ meetings a week across 12 people and have tried multiple solutions.</p><h2>Summary</h2><p>Acme Corp is actively looking for a meeting notes solution. They've tried Fireflies but the bot changed the room dynamic. They currently use a shared Google Doc that nobody updates. Sarah was enthusiastic about the no-bot approach and the project-linking feature.</p><h2>Conversations</h2><p>Sarah described how action items fall through cracks constantly. Decisions get made in meetings and then nobody can find them later. She specifically asked about per-seat pricing — said it would be a dealbreaker for their team. They want a flat team rate they can budget.</p><h2>Decisions made</h2><ul><li>Team plan should be flat rate, not per-seat — directly influenced by this call</li><li>Prioritise team analytics feature for the $79/mo tier</li><li>Send beta access when team plan is ready</li></ul><h2>Notes edited or created</h2><ul><li>Updated <a class="wiki-link" data-note=\"2\">Pricing Model</a> — added flat-rate team pricing based on Acme feedback</li></ul><h2>Open items / next steps</h2><ul><li>Follow up with Sarah when beta is ready</li><li>Build team analytics dashboard before team plan launch</li><li>Get 2-3 more beta testers in the solo founder space</li></ul><h2>Key facts or context learned</h2><ul><li>12-person teams run 30+ meetings/week</li><li>Per-seat pricing is a dealbreaker for mid-size teams</li><li>Fireflies is the main competitor they've tried — they disliked the bot presence</li><li>Willing to pay $79/mo for a solution that works</li></ul>`
+  },
+  '2026-07-22': {
+    title: '22 Jul 2026 · Sprint planning for transcription API',
+    body: `<h2>Index</h2><p>Sprint planning session for the transcription pipeline. Set goals for the next sprint, assigned tasks, and identified blockers around audio capture approach.</p><h2>Session 1 — Sprint planning</h2><p>Planned the next sprint for the transcription pipeline. Key focus areas: Whisper integration, audio capture, and speaker diarisation.</p><h2>Summary</h2><p>Set three sprint goals: complete Whisper integration with loopback audio capture, implement 30-second chunking with overlap, and build speaker diarisation for 2-4 person calls. Audio capture module is in progress with 3-day ETA. Speaker diarisation is still in research phase.</p><h2>Conversations</h2><p>Discussed trade-offs between loopback API and browser tab capture for audio input. Loopback is more reliable but requires system permissions. Browser tab capture is easier to set up but less reliable for background recording. Decision deferred to end of week.</p><h2>Decisions made</h2><ul><li>Use 30-second chunks with 5-second overlap for transcription</li><li>Whisper Base model as default, Tiny as fallback</li><li>Energy-based VAD + embedding clustering for speaker diarisation</li></ul><h2>Notes edited or created</h2><ul><li>Updated <a class=\"wiki-link\" data-note=\"5\">Transcription Pipeline</a> — added sprint goals and assignments</li><li>Updated <a class=\"wiki-link\" data-note=\"4\">Architecture Decisions</a> — added audio capture trade-off analysis</li></ul><h2>Open items / next steps</h2><ul><li>Decide on loopback API vs browser tab capture by end of week</li><li>Complete audio capture module (3 days)</li><li>Start chunking + Whisper inference implementation next sprint</li></ul><h2>Key facts or context learned</h2><ul><li>30-second chunks with overlap provide good transcription quality</li><li>Energy-based VAD works reliably for 2-4 person calls</li><li>Loopback API requires system-level permissions on macOS</li></ul>`
+  },
+  '2026-07-21': {
+    title: '21 Jul 2026 · Investor update preparation',
+    body: `<h2>Index</h2><p>Prepared the monthly investor update for Meeting Memory. Compiled key metrics, progress since last update, and identified asks for the next month.</p><h2>Session 1 — Investor update prep</h2><p>Compiled the monthly investor update covering progress on the transcription pipeline, topic extraction prototype, and competitive analysis.</p><h2>Summary</h2><p>Good progress to report: transcription pipeline MVP is complete with Whisper local inference working on M-series Macs. Topic extraction prototype running with Mistral 7B via Ollama. Competitive analysis completed — identified a clear market gap. Need introductions to 2-3 more beta testers in the solo founder space.</p><h2>Conversations</h2><p>Reviewed burn rate: minimal since local-first means no cloud costs. Discussed MVP target of end of August. Beta users lined up include Acme Corp and two others. Need to expand beta program to validate the solo founder persona more broadly.</p><h2>Decisions made</h2><ul><li>MVP target remains end of August</li><li>Focus beta on solo founders (Alex persona) for initial validation</li><li>Keep burn rate minimal — no cloud spend until post-MVP</li></ul><h2>Notes edited or created</h2><ul><li>Created investor update draft in <a class=\"wiki-link\" data-note=\"0\">Meeting Memory — Product Spec</a></li><li>Updated <a class=\"wiki-link\" data-note=\"3\">User Personas</a> — added beta program criteria</li></ul><h2>Open items / next steps</h2><ul><li>Get introductions to 2-3 more beta testers</li><li>Schedule next investor update for mid-August</li><li>Prepare demo video of transcription pipeline for investors</li></ul><h2>Key facts or context learned</h2><ul><li>Burn rate is minimal with local-first architecture</li><li>3 beta users lined up, need 5-6 for meaningful validation</li><li>Investors are interested in the no-bot differentiation</li></ul>`
+  },
+  '2026-06-30': {
+    title: '30 Jun 2026 · Beta user feedback session',
+    body: `<h2>Index</h2><p>Ran a feedback session with 3 beta users testing the transcription pipeline prototype. Gathered what worked, what didn't, and prioritised improvements for the next sprint.</p><h2>Session 1 — Beta feedback session</h2><p>Three beta users tested the transcription pipeline prototype. Focus on transcription quality, user experience, and feature gaps.</p><h2>Summary</h2><p>Transcription quality was better than expected — Whisper tiny model is fast enough for real-time use. Users loved that there's no bot in the room. The "Drew from" citations in chat were a hit. However, speaker diarisation needs improvement for 2+ speaker calls, and users want inline transcript editing and real-time transcription during calls.</p><h2>Conversations</h2><p>Users consistently praised the no-bot approach, saying it changes the meeting dynamic for the better. The "Drew from" feature made them feel the AI understood context rather than just transcribing. Speaker confusion was the top complaint — the system couldn't reliably distinguish who said what in group calls.</p><h2>Decisions made</h2><ul><li>Prioritise speaker diarisation improvements next sprint</li><li>Add inline transcript editing to the roadmap</li><li>Investigate real-time partial transcription for future release</li></ul><h2>Notes edited or created</h2><ul><li>Updated <a class=\"wiki-link\" data-note=\"5\">Transcription Pipeline</a> — added beta feedback findings</li><li>Updated <a class=\"wiki-link\" data-note=\"0\">Meeting Memory — Product Spec</a> — added inline editing to roadmap</li></ul><h2>Open items / next steps</h2><ul><li>Improve speaker diarisation for 2+ speaker calls</li><li>Add inline transcript editing capability</li><li>Research real-time partial transcription approach</li><li>Schedule follow-up feedback session in 2 weeks</li></ul><h2>Key facts or context learned</h2><ul><li>Whisper tiny model is fast enough for real-time use (<1s per 30s chunk)</li><li>No-bot approach is a key differentiator — users love it</li><li>"Drew from" citations build trust in AI responses</li><li>Speaker diarisation is the biggest technical gap</li></ul>`
+  },
+  '2026-06-28': {
+    title: '28 Jun 2026 · Whisper model benchmark results',
+    body: `<h2>Index</h2><p>Benchmarked Whisper tiny, base, and small models for the transcription pipeline. Goal was to find the best speed/accuracy trade-off for real-time meeting transcription.</p><h2>Session 1 — Model benchmarking</h2><p>Ran benchmarks on all three Whisper models (tiny, base, small) measuring inference speed and word error rate on meeting audio samples.</p><h2>Summary</h2><p>Tiny: 0.8s per 30s chunk, 12% WER. Base: 1.4s per chunk, 8% WER. Small: 3.2s per chunk, 5% WER. Decision: use Base as default with Tiny as fallback for low-power devices. Small runs as a background refinement pass after meetings end.</p><h2>Conversations</h2><p>Discussed the trade-off between speed and accuracy. For real-time transcription during meetings, sub-2s latency is critical. Base model hits the sweet spot. Small model is too slow for real-time but valuable for a post-meeting accuracy pass.</p><h2>Decisions made</h2><ul><li>Whisper Base as default transcription model</li><li>Tiny as fallback for low-power devices (Intel Macs, older hardware)</li><li>Small model runs as background refinement after meeting ends</li></ul><h2>Notes edited or created</h2><ul><li>Updated <a class=\"wiki-link\" data-note=\"4\">Architecture Decisions</a> — added benchmark results and model selection rationale</li><li>Updated <a class=\"wiki-link\" data-note=\"5\">Transcription Pipeline</a> — added model pipeline details</li></ul><h2>Open items / next steps</h2><ul><li>Test Base model on Intel Mac to confirm Tiny fallback threshold</li><li>Implement background refinement pass with Small model</li><li>Benchmark on Windows and Linux for cross-platform support</li></ul><h2>Key facts or context learned</h2><ul><li>Base model is 1.75x slower than Tiny but 33% more accurate</li><li>Small model is 4x slower than Tiny — not viable for real-time</li><li>All models run well on M-series hardware</li><li>8% WER is acceptable for meeting transcription</li></ul>`
+  },
+  '2026-06-25': {
+    title: '25 Jun 2026 · Pricing model review',
+    body: `<h2>Index</h2><p>Finalised the three-tier pricing model after incorporating feedback from beta users and competitor analysis. Decided against per-seat pricing in favour of flat-rate tiers.</p><h2>Session 1 — Pricing review</h2><p>Reviewed the pricing model with the advisory team. Incorporated feedback from Acme Corp call and competitive analysis.</p><h2>Summary</h2><p>Finalised three tiers: Free (5 meetings/month, basic transcription, 7-day history), Pro $29/mo (unlimited meetings, topic linking, project integration), Team $79/mo (shared knowledge base, team analytics, admin controls). 20% annual discount available. No per-seat pricing.</p><h2>Conversations</h2><p>The Acme Corp call was the deciding factor against per-seat pricing. Small teams want a flat rate they can budget. Per-seat penalises the teams that need us most. The advisory team agreed that the three-tier structure is simple and clear.</p><h2>Decisions made</h2><ul><li>Three-tier structure: Free, Pro ($29/mo), Team ($79/mo)</li><li>No per-seat pricing — flat rate per tier</li><li>20% annual discount: Pro $278/yr, Team $758/yr</li><li>Free tier intentionally limited to drive conversion</li></ul><h2>Notes edited or created</h2><ul><li>Updated <a class=\"wiki-link\" data-note=\"2\">Pricing Model</a> — finalised all tiers and pricing</li><li>Updated <a class=\"wiki-link\" data-note=\"0\">Meeting Memory — Product Spec</a> — updated business model section</li></ul><h2>Open items / next steps</h2><ul><li>Build pricing page for the website</li><li>Set up Stripe billing for all three tiers</li><li>Define team analytics feature set for $79/mo tier</li></ul><h2>Key facts or context learned</h2><ul><li>Per-seat pricing is a dealbreaker for 10+ person teams</li><li>Flat-rate tiers are easier for small teams to budget</li><li>20% annual discount is standard in the space</li><li>Free tier needs to be generous enough to evaluate but limited enough to convert</li></ul>`
+  },
+  '2026-06-22': {
+    title: '22 Jun 2026 · Competitive analysis deep dive',
+    body: `<h2>Index</h2><p>Deep dive into the competitive landscape for AI meeting note-takers. Every competitor solves transcription — none solve connection to your knowledge base.</p><h2>Session 1 — Competitive research</h2><p>Analysed Fireflies, Otter, Fathom, and Granola. Focused on understanding what existing solutions miss and where Meeting Memory can differentiate.</p><h2>Summary</h2><p>The AI meeting notes space is crowded but shallow. Every competitor solves transcription. None solve connection — linking what was said to what you're building. Fireflies ($10/user/mo) has good transcription but terrible search. Otter ($16.99/user/mo) has best quality but no integration. Fathom (free/$29/user/mo) has great UI but same gap. Granola ($30/mo) runs locally but no project linking.</p><h2>Conversations</h2><p>Confirmed that the core differentiator is project linking and knowledge base integration. None of the competitors connect meeting content to existing notes and projects. The "Drew from" citations and wiki-linking features are unique in the market.</p><h2>Decisions made</h2><ul><li>Double down on project linking as the core differentiator</li><li>Don't compete on transcription quality — it's a commodity</li><li>Price at $29/mo Pro to undercut Fathom and Granola</li></ul><h2>Notes edited or created</h2><ul><li>Updated <a class=\"wiki-link\" data-note=\"1\">Competitive Analysis</a> — added full competitor matrix</li><li>Updated <a class=\"wiki-link\" data-note=\"0\">Meeting Memory — Product Spec</a> — refined competitive positioning</li></ul><h2>Open items / next steps</h2><ul><li>Monitor Granola's feature development — closest competitor</li><li>Build project linking demo for investor conversations</li><li>Consider free tier to drive adoption against Fathom's free offering</li></ul><h2>Key facts or context learned</h2><ul><li>Average price point in the space: $15-30/user/mo</li><li>No competitor does project linking or knowledge base integration</li><li>Granola is the closest competitor — local-first but no linking</li><li>Bot-joins-call model is the standard but users dislike it</li></ul>`
+  },
+  '2026-06-18': {
+    title: '18 Jun 2026 · User persona interviews',
+    body: `<h2>Index</h2><p>Conducted interviews with 5 solo founders and small team leads to validate target user personas for Meeting Memory. Three personas validated.</p><h2>Session 1 — User research interviews</h2><p>Interviewed 5 people: 2 solo founders, 2 small team leads, 1 freelance consultant. Validated the three target personas and their willingness to pay.</p><h2>Summary</h2><p>Three personas validated: Alex the Solo Founder (15 meetings/week, forgets decisions, willing to pay $29/mo), Small Team Lead (20+ meetings/week as a group, needs shared knowledge base, will pay $79/mo), Freelance Consultant (10 meetings/week, needs per-client memory, free tier may be enough).</p><h2>Conversations</h2><p>Solo founders consistently described the same pain: they forget what was agreed in meetings and can't find their notes afterward. Small team leads want a shared knowledge base that auto-populates. Freelance consultants need per-client memory separation.</p><h2>Decisions made</h2><ul><li>Primary persona: Alex the Solo Founder — design the product for them first</li><li>Secondary: Small Team Lead — team features in v2</li><li>Tertiary: Freelance Consultant — free tier covers their needs</li></ul><h2>Notes edited or created</h2><ul><li>Created <a class=\"wiki-link\" data-note=\"3\">User Personas</a> — documented all three personas with pain points</li><li>Updated <a class=\"wiki-link\" data-note=\"0\">Meeting Memory — Product Spec</a> — refined target users section</li></ul><h2>Open items / next steps</h2><ul><li>Recruit 5 more interview subjects for quantitative validation</li><li>Build feature prioritisation matrix based on persona needs</li><li>Design onboarding flow specifically for Alex persona</li></ul><h2>Key facts or context learned</h2><ul><li>Solo founders have 10-15 meetings/week on average</li><li>Willingness to pay is $29/mo for individuals, $79/mo for teams</li><li>Forgetting decisions is the #1 pain point across all personas</li><li>Per-client memory is a niche need for consultants</li></ul>`
+  },
+  '2026-06-15': {
+    title: '15 Jun 2026 · Architecture review — local-first decision',
+    body: `<h2>Index</h2><p>Final architecture review to decide between local-first and cloud-dependent approaches. Unanimous decision to go local-first for privacy, latency, and cost reasons.</p><h2>Session 1 — Architecture review</h2><p>Final architecture review with the technical team. Evaluated local-first vs cloud-dependent approaches for Meeting Memory.</p><h2>Summary</h2><p>Unanimous decision to go local-first. Three reasons: privacy (meeting content never leaves the device), latency (no round-trip to cloud API — Whisper runs locally in <1s per chunk), and cost (Whisper is free, cloud transcription APIs cost ~$0.024/min at scale). Stack: Whisper → sentence embeddings → Mistral 7B for topic extraction → graph DB for entity linking. All running locally via Ollama.</p><h2>Conversations</h2><p>Discussed the trade-off: local-first means no real-time collaboration on notes (yet). But for a solo founder tool, that's fine. Cloud sync for backup is a future feature. The team agreed that privacy is a key selling point for the target market.</p><h2>Decisions made</h2><ul><li>Local-first architecture — no cloud dependencies until post-MVP</li><li>Whisper for transcription, Mistral 7B for topic extraction</li><li>Graph DB for entity linking between meetings and projects</li><li>Ollama as the local LLM runtime</li></ul><h2>Notes edited or created</h2><ul><li>Created <a class=\\\"wiki-link\\\" data-note=\\\"4\\\">Architecture Decisions</a> — documented full rationale and stack</li><li>Updated <a class=\\\"wiki-link\\\" data-note=\\\"0\\\">Meeting Memory — Product Spec</a> — added architecture section</li></ul><h2>Open items / next steps</h2><ul><li>Set up Ollama integration with Mistral 7B</li><li>Design graph DB schema for entity linking</li><li>Plan cloud sync feature for post-MVP</li></ul><h2>Key facts or context learned</h2><ul><li>Local-first eliminates cloud costs entirely for MVP</li><li>Whisper runs in <1s per 30s chunk on M-series hardware</li><li>Privacy is a key selling point for the target market</li><li>Cloud transcription APIs would cost ~$0.024/min at scale</li></ul>`
+  },
+  'meeting-summary-2026-07-23': {
+    title: 'Meeting Summary — 23 Jul 2026',
+    body: `<h2>Meeting Summary — Acme Corp Customer Call</h2><p>Skill run on 23 Jul 2026. Analysed the Acme Corp customer call transcript and extracted key decisions, action items, and project links.</p><h2>Summary</h2><p>Customer call with Sarah from Acme Corp. They're evaluating meeting note-taking solutions for their 12-person team. Key concerns: per-seat pricing is a dealbreaker, they want a flat team rate, and they disliked the bot-in-the-room model of Fireflies.</p><h2>Key Decisions</h2><ul><li>Team plan should be flat rate ($79/mo), not per-seat</li><li>Prioritise team analytics for the team tier</li><li>Send beta access when ready</li></ul><h2>Action Items</h2><ul><li>Follow up with Sarah when beta is ready</li><li>Build team analytics dashboard</li><li>Get 2-3 more beta testers</li></ul><h2>Linked Notes</h2><ul><li><a class="wiki-link" data-note="2">Pricing Model</a> — flat-rate team pricing added based on this call</li><li><a class="wiki-link" data-note="0">Meeting Memory — Product Spec</a> — team plan requirements updated</li></ul><h2>Tokens Used</h2><p>1,247 tokens · 8.2 seconds</p>`
+  },
+  'meeting-summary-2026-07-16': {
+    title: 'Meeting Summary — 16 Jul 2026',
+    body: `<h2>Meeting Summary — Sprint Retrospective</h2><p>Skill run on 16 Jul 2026. Analysed the sprint retrospective transcript and extracted team feedback, process improvements, and project links.</p><h2>Summary</h2><p>Sprint retrospective for the transcription pipeline sprint. Team reviewed what went well (Whisper integration completed on time, audio capture module shipped) and what could improve (better task estimation, more frequent check-ins on blockers).</p><h2>Key Decisions</h2><ul><li>Adopt 2-day sprint cycles instead of 1-week to catch blockers earlier</li><li>Add daily 10-minute standup for the transcription pipeline workstream</li><li>Use GitHub Projects for task tracking instead of ad-hoc notes</li></ul><h2>Action Items</h2><ul><li>Set up GitHub Projects board for next sprint</li><li>Schedule daily standups at 9:30am</li><li>Break down Whisper integration tasks into smaller units</li></ul><h2>Linked Notes</h2><ul><li><a class="wiki-link" data-note="5">Transcription Pipeline</a> — sprint retrospective findings added</li><li><a class="wiki-link" data-note="4">Architecture Decisions</a> — updated with sprint process changes</li></ul><h2>Tokens Used</h2><p>983 tokens · 6.1 seconds</p>`
   }
 };
 
-// Wiki page click handler
+// Helper: convert [[wiki links]] in text to clickable spans
+function renderWikiLinks(text) {
+  return text.replace(/\[\[([^\]]+)\]\]/g, function(match, title) {
+    return '<span class="edge-item-link" data-topic-link="' + title.trim() + '">' + title.trim() + '</span>';
+  });
+}
+
+// Wiki page click handler — renders with proper wiki page layout (H1, meta, content, backlinks)
 document.querySelectorAll('[data-wikipage]').forEach(btn => {
   btn.addEventListener('click', function() {
     const page = wikiPages[this.dataset.wikipage];
     if (!page) return;
-    // Show wiki page content in the editor
-    noteTitle.value = page.title;
-    noteContent.innerHTML = page.body;
-    // Re-bind wiki-links inside wiki page content
-    noteContent.querySelectorAll('.wiki-link').forEach(el => {
+    // Hide the note editor, show wiki page layout
+    noteTitle.style.display = 'none';
+    noteContent.style.display = 'none';
+    noteFooter.style.display = 'none';
+    // Create or reuse wiki page container
+    let wikiWrap = document.getElementById('wikiPageWrap');
+    if (!wikiWrap) {
+      wikiWrap = document.createElement('div');
+      wikiWrap.id = 'wikiPageWrap';
+      wikiWrap.className = 'wiki-page-wrap';
+      editorScroll.appendChild(wikiWrap);
+    }
+
+    // Special handling for Topics page — render cluster/topic-block layout
+    if (page.isTopics) {
+      let html = `<div class="topics-page-inner">
+        <h1 class="topics-title">Topics</h1>
+        <p class="topics-subtitle">The map Hicks has woven from your garden.</p>
+        <div class="topics-filter-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Filter topics" id="topicsFilter">
+          <button class="topics-filter-clear" id="topicsFilterClear" style="display:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        </div>`;
+
+      page.clusters.forEach(cluster => {
+        html += `<div class="cluster-card">
+          <div class="cluster-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            <span class="cluster-name">${cluster.name}</span>
+            <span class="cluster-count">${cluster.topics.length} topics</span>
+          </div>
+          <div class="cluster-body" style="display:none;">`;
+
+        cluster.topics.forEach(topic => {
+          const badge = topic.status === 'new'
+            ? `<span class="topic-badge topic-badge-new">New</span>`
+            : `<span class="topic-badge topic-badge-updated">Updated</span>`;
+          const connectedHtml = topic.connected.length > 0
+            ? `<div class="topic-connected"><span class="topic-connected-label">Connected topics:</span>${topic.connected.map(c => `<span class="topic-connected-item" data-topic-link="${c}">${c}</span>`).join('')}</div>`
+            : '';
+          const hicksHtml = topic.hicksFound.length > 0
+            ? `<div class="edge-group"><div class="edge-group-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="edge-group-label">Hicks found</span><span class="edge-group-count">(${topic.hicksFound.length})</span></div><div class="edge-group-body">${topic.hicksFound.map(h => `<div class="edge-item"><div class="edge-item-text">${h}</div></div>`).join('')}</div></div>`
+            : '';
+          const fromHtml = topic.fromThreads.length > 0
+            ? `<div class="edge-group"><div class="edge-group-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="edge-group-label">From your threads</span><span class="edge-group-count">(${topic.fromThreads.length})</span></div><div class="edge-group-body" style="display:none;">${topic.fromThreads.map(t => `<div class="edge-item"><div class="edge-item-text">${renderWikiLinks(t)}</div></div>`).join('')}</div></div>`
+            : '';
+
+          html += `<div class="topic-block">
+            <div class="topic-name" data-topic-link="${topic.name}">${topic.name}</div>
+            <div class="topic-meta">${badge}<span>${topic.date}</span><span> · from ${topic.threadCount} threads</span></div>
+            <div class="topic-summary">${topic.summary}</div>
+            ${connectedHtml}
+            ${hicksHtml}
+            ${fromHtml}
+          </div>`;
+        });
+
+        html += `</div></div>`;
+      });
+
+      html += `</div>`;
+      wikiWrap.innerHTML = html;
+      wikiWrap.className = 'topics-page';
+
+      // Cluster header toggle
+      wikiWrap.querySelectorAll('.cluster-header').forEach(h => {
+        h.addEventListener('click', function() {
+          const body = this.nextElementSibling;
+          const chevron = this.querySelector('svg');
+          if (body.style.display === 'none') {
+            body.style.display = 'block';
+            chevron.style.transform = 'rotate(90deg)';
+          } else {
+            body.style.display = 'none';
+            chevron.style.transform = '';
+          }
+        });
+      });
+
+      // Edge group toggle (Hicks found / From your threads)
+      wikiWrap.querySelectorAll('.edge-group-header').forEach(h => {
+        h.addEventListener('click', function() {
+          const body = this.nextElementSibling;
+          const chevron = this.querySelector('svg');
+          if (body.style.display === 'none') {
+            body.style.display = 'block';
+            chevron.style.transform = 'rotate(90deg)';
+          } else {
+            body.style.display = 'none';
+            chevron.style.transform = '';
+          }
+        });
+      });
+
+      // Topic name click — open in split view (delegated handler)
+      wikiWrap.addEventListener('click', function(e) {
+        const link = e.target.closest('[data-topic-link]');
+        if (!link) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const name = link.dataset.topicLink;
+        const idx = notes.findIndex(n => n.title === name);
+        if (idx !== -1) { splitHistory = []; openSplitView(idx); }
+      });
+
+      // Filter
+      const filterInput = wikiWrap.querySelector('#topicsFilter');
+      const filterClear = wikiWrap.querySelector('#topicsFilterClear');
+      if (filterInput) {
+        filterInput.addEventListener('input', function() {
+          const q = this.value.toLowerCase();
+          filterClear.style.display = q ? 'flex' : 'none';
+          wikiWrap.querySelectorAll('.topic-block').forEach(b => {
+            const name = b.querySelector('.topic-name')?.textContent?.toLowerCase() || '';
+            b.style.display = name.includes(q) ? '' : 'none';
+          });
+        });
+      }
+      if (filterClear) {
+        filterClear.addEventListener('click', function() {
+          if (filterInput) { filterInput.value = ''; filterInput.dispatchEvent(new Event('input')); }
+        });
+      }
+
+      editorScroll.scrollTop = 0;
+      sidebarItems.forEach(item => item.classList.remove('active'));
+      return;
+    }
+
+    // Default wiki page layout for non-topics pages
+    wikiWrap.className = 'wiki-page-wrap';
+    const backlinksHtml = page.backlinks && page.backlinks.length > 0
+      ? `<div class="wiki-backlinks"><h3>Linked from</h3>${page.backlinks.map(bl => `<div class="wiki-backlink-row"><span>${bl}</span><span class="wiki-backlink-type">Wiki</span></div>`).join('')}</div>`
+      : '';
+    wikiWrap.innerHTML = `<div class="wiki-page-inner">
+      <h1 class="page-title">${page.title}</h1>
+      <div class="page-meta">
+        <span>Created ${page.created || '28 Jul 2026'}</span>
+        <span>Edited ${page.edited || '28 Jul 2026'}</span>
+      </div>
+      <div class="prose-wiki" id="wikiPageBody">${page.body}</div>
+      ${backlinksHtml}
+    </div>`;
+    // Delegated click handler for wiki-links inside wiki page
+    wikiWrap.addEventListener('click', function(e) {
+      const link = e.target.closest('.wiki-link');
+      if (!link) return;
+      e.preventDefault();
+      const idx = parseInt(link.dataset.note);
+      if (!isNaN(idx) && notes[idx]) { splitHistory = []; openSplitView(idx); }
+    });
+    editorScroll.scrollTop = 0;
+    // Deselect sidebar note items
+    sidebarItems.forEach(item => item.classList.remove('active'));
+  });
+});
+
+// Daily log click handler — renders with wiki page layout
+document.querySelectorAll('[data-dailylog]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const dateKey = this.dataset.dailylog;
+    const page = wikiPages[dateKey];
+    if (!page) return;
+    // Hide note editor, show wiki page layout
+    noteTitle.style.display = 'none';
+    noteContent.style.display = 'none';
+    noteFooter.style.display = 'none';
+    let wikiWrap = document.getElementById('wikiPageWrap');
+    if (!wikiWrap) {
+      wikiWrap = document.createElement('div');
+      wikiWrap.id = 'wikiPageWrap';
+      wikiWrap.className = 'wiki-page-wrap';
+      editorScroll.appendChild(wikiWrap);
+    }
+    wikiWrap.innerHTML = `<div class="wiki-page-inner">
+      <h1 class="page-title">${page.title}</h1>
+      <div class="page-meta">
+        <span>Created ${page.created || '28 Jul 2026'}</span>
+        <span>Edited ${page.edited || '28 Jul 2026'}</span>
+      </div>
+      <div class="prose-wiki" id="wikiPageBody">${page.body}</div>
+    </div>`;
+    wikiWrap.querySelectorAll('.wiki-link').forEach(el => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         const idx = parseInt(el.dataset.note);
         if (!isNaN(idx) && notes[idx]) { splitHistory = []; openSplitView(idx); }
       });
     });
-    // Clear footer for wiki pages
-    noteFooter.innerHTML = '';
     editorScroll.scrollTop = 0;
-    // Deselect sidebar note items
+    sidebarItems.forEach(item => item.classList.remove('active'));
+  });
+});
+
+// Skill run click handler — renders with wiki page layout
+document.querySelectorAll('[data-skillrun]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const key = this.dataset.skillrun;
+    const page = wikiPages[key];
+    if (!page) return;
+    noteTitle.style.display = 'none';
+    noteContent.style.display = 'none';
+    noteFooter.style.display = 'none';
+    let wikiWrap = document.getElementById('wikiPageWrap');
+    if (!wikiWrap) {
+      wikiWrap = document.createElement('div');
+      wikiWrap.id = 'wikiPageWrap';
+      wikiWrap.className = 'wiki-page-wrap';
+      editorScroll.appendChild(wikiWrap);
+    }
+    wikiWrap.innerHTML = `<div class="wiki-page-inner">
+      <h1 class="page-title">${page.title}</h1>
+      <div class="page-meta">
+        <span>Created ${page.created || '28 Jul 2026'}</span>
+        <span>Edited ${page.edited || '28 Jul 2026'}</span>
+      </div>
+      <div class="prose-wiki" id="wikiPageBody">${page.body}</div>
+    </div>`;
+    wikiWrap.querySelectorAll('.wiki-link').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(el.dataset.note);
+        if (!isNaN(idx) && notes[idx]) { splitHistory = []; openSplitView(idx); }
+      });
+    });
+    editorScroll.scrollTop = 0;
     sidebarItems.forEach(item => item.classList.remove('active'));
   });
 });
@@ -889,11 +1382,18 @@ function closeIngest() {
   ingestOverlay.style.display = 'none';
   ingestPanel.classList.remove('open');
   ingestPanel.classList.add('closed');
+  ingestPanel.style.left = '';
   ingestProgress.style.display = 'none';
   ingestBuildBtn.style.display = 'flex';
   ingestBuildBtn.disabled = false;
   ingestBuildBtn.textContent = 'Ingest';
 }
+
+// Ingest button toggle — use addEventListener with stopPropagation
+document.getElementById('ingestBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  if (ingestOpen) closeIngest(); else openIngest();
+});
 
 // Click outside closes panel
 document.addEventListener('click', function(e) {
