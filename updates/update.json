@@ -1,11 +1,11 @@
 {
-  "version": "0.1.34",
-  "notes": "FIXED\n- Bug #108: Note file paths now repair automatically when re-opening a vault — re-importing a vault no longer corrupts file_path in the database\n\nIMPROVED\n- Help vault regenerated for Writing Notes page",
-  "pub_date": "2026-07-30T13:30:00Z",
+  "version": "0.1.35",
+  "notes": "FIXED\n- Bug #109: trash delete now finds the right vault\n- Bug #109: frontmatter sync on Finder rename\n- Bug #109: delete_path no longer self-writes\n- Bug #109: empty trash now awaits properly\n- Bug #109: restore after trash no longer deletes note content",
+  "pub_date": "2026-07-30T17:26:34Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR21vVHJsakFMRkZFYTBrVkNGbktNZkNJYlJGWXNNNkVLS1dPZlJCNjNjWmRGWUZuN1RuaDI4M2VzZUJhV2piZmltY0xFZEh6cG41d3NxNmVvRHBueWdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NDE0NjQzCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKbUVIeVp0bVliNkhEWFdraDdWYmNnM0VyMk91Z2V0T1dLSWk1Z3lVdE1HcmhmTm9WdlczWXdZQXFEYnM4V0REay9XZnp1TDJuMHk4YVIzWUdLWVFWQnc9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.34/hicks-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2d2YzVHOFJaaU9pSjhwaXJDWmg0TGo4WnI1N3pTcGR1WTk3Qmo0WlhDb0dYRkREOXI3dW54QnpPSXVXTzZ2MHVYZEpEYmJvdSsrcERZdC9teDk4MmdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NDMyMzAwCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKbGpFVWY0V3p2UnVXN3VYUHkxTk80QXc5b2tkYnB6dVlMNFVhZHJJK1VnK0V1UHh0Y0RRNUlUYXRqV0ZOZEdxcWlMSXhJblo5ZXoyZDllb2s2b3VyQkE9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.35/hicks-macos-aarch64.tar.gz"
     }
   }
 }
