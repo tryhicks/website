@@ -1,11 +1,11 @@
 {
-  "version": "0.1.33",
-  "notes": "FIXED\n- File watcher now uses polling — no more missed changes on macOS\n- Notes no longer jump back to old folder after rename or move\n- Index.md now appears in the left menu\n- Editor no longer loses content or desyncs from the title\n- Folder rename on disk no longer orphans subfolders\n- Pinned items stay in the tree menu (pinned section is a shortcut only)\n- Rename inputs now appear for notes inside pinned folders\n- Auto-increment note/folder names when creating duplicates ('Untitled (2)')\n- Name collision errors shown when manually renaming to an existing name\n- Help vault restructured into version folder (0.1.32)\n\nIMPROVED\n- Rust Backend Engine — consolidated file I/O and DB sync (Spec 48)\n- Simplified frontend file event handler — reconcileVaultFromDisk replaces 7-branch handler\n- Bidirectional rename buffer handles both macOS FSEvents and PollWatcher\n- Folder rename detection improved with fresh DB folder list\n\nNEW\n- Polling watcher replaces macOS FSEvents for reliable cross-platform file sync\n- Consolidated DbState replaces VaultDbState for all database operations",
-  "pub_date": "2026-07-28T14:24:35Z",
+  "version": "0.1.34",
+  "notes": "FIXED\n- Bug #108: Note file paths now repair automatically when re-opening a vault — re-importing a vault no longer corrupts file_path in the database\n\nIMPROVED\n- Help vault regenerated for Writing Notes page",
+  "pub_date": "2026-07-30T13:30:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3QrbnU1aE1ZNnYrcEphMFc3VnlnOHRVRXlGNlhrQTI2NzJCTjBRczNkL2t0UWlINHd1cEVpaTJseDIrbE9iejR4cW5oaUR4UjR1OVl3K1VFYU5sYXdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1MjQ4MjE2CWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKVHlqZDU3cE5SR1BUamE5VHc4VGlrd0dQRlJWRk1XeXBvTnR1QjFSLyt6MU1TSytjSUZBenV0L3ZseGFUdDk5aXJrSHhLMUR1b2s4dFdGNld1eTJKRGc9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.33/hicks-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR21vVHJsakFMRkZFYTBrVkNGbktNZkNJYlJGWXNNNkVLS1dPZlJCNjNjWmRGWUZuN1RuaDI4M2VzZUJhV2piZmltY0xFZEh6cG41d3NxNmVvRHBueWdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NDE0NjQzCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKbUVIeVp0bVliNkhEWFdraDdWYmNnM0VyMk91Z2V0T1dLSWk1Z3lVdE1HcmhmTm9WdlczWXdZQXFEYnM4V0REay9XZnp1TDJuMHk4YVIzWUdLWVFWQnc9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.34/hicks-macos-aarch64.tar.gz"
     }
   }
 }
