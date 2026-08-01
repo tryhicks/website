@@ -269,14 +269,16 @@
       .hero h1 .line { white-space: normal; }
     }
     .hero-sub {
-      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-      line-height: 1.55;
-      color: var(--quiet);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: var(--ink);
       max-width: 28em;
       margin: 0 auto 22px;
     }
     .hero-sub strong { color: var(--ink); font-weight: 500; }
-    h2.hero-sub { color: var(--ink); font-weight: 500; }
+    h2.hero-sub { color: var(--ink); font-weight: 400; }
     .cta-row { display: flex; justify-content: center; gap: 12px; }
     .local {
       font-size: 14px;
@@ -1442,7 +1444,7 @@
       text-align: center;
     }
     .problem h2 {
-      font-size: clamp(1.65rem, 3.4vw, 2.25rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
@@ -1706,7 +1708,7 @@
       margin: 0 auto 36px;
     }
     .skills-intro h2 {
-      font-size: clamp(1.65rem, 3.4vw, 2.25rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
@@ -2092,7 +2094,7 @@
       .how-inner { grid-template-columns: 1fr; }
     }
     .how h2 {
-      font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
@@ -2149,7 +2151,7 @@
       margin-bottom: 12px;
     }
     .knows h2 {
-      font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
@@ -2263,7 +2265,7 @@
       .voice-inner { grid-template-columns: 1fr; }
     }
     .voice h2 {
-      font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
@@ -2379,7 +2381,7 @@
       .local-sec { grid-template-columns: 1fr; }
     }
     .local-sec h2 {
-      font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
       font-weight: 400;
       letter-spacing: -0.03em;
       line-height: 1.25;
@@ -2583,7 +2585,8 @@
       .knows h2,
       .voice h2,
       .local-sec h2,
-      .close h2 {
+      .close h2,
+      .hero-sub {
         font-size: clamp(1.45rem, 6.5vw, 1.85rem);
       }
       .problem .body,
