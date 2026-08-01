@@ -1,11 +1,11 @@
 {
-  "version": "0.1.35",
-  "notes": "FIXED\n- Bug #109: trash delete now finds the right vault\n- Bug #109: frontmatter sync on Finder rename\n- Bug #109: delete_path no longer self-writes\n- Bug #109: empty trash now awaits properly\n- Bug #109: restore after trash no longer deletes note content",
-  "pub_date": "2026-07-30T17:26:34Z",
+  "version": "0.1.36",
+  "notes": "Changes since last release\n- Bug #111: Add voice rule to keep 'ulana' lowercase (AI was capitalizing it)\n- Bug #111: Replace 'Hicks' with 'ulana' in prompts.json (missed in Spec 49 rename)\n- Bug #110: Load transcription engine from saved config on app startup\n- Spec 49 bugfixes: update 2 error messages from .hicks to .ulana\n- Spec 49 — Rename 'Hicks' to 'ulana' (always lowercase)\n- Bug #109: trash delete, frontmatter sync, restore fixes\n- Bug #108: Fix file_path corruption on re-import\n- Various help vault updates and fixes",
+  "pub_date": "2026-08-01T21:54:50Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2d2YzVHOFJaaU9pSjhwaXJDWmg0TGo4WnI1N3pTcGR1WTk3Qmo0WlhDb0dYRkREOXI3dW54QnpPSXVXTzZ2MHVYZEpEYmJvdSsrcERZdC9teDk4MmdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NDMyMzAwCWZpbGU6aGlja3MtbWFjb3MtYWFyY2g2NC50YXIuZ3oKbGpFVWY0V3p2UnVXN3VYUHkxTk80QXc5b2tkYnB6dVlMNFVhZHJJK1VnK0V1UHh0Y0RRNUlUYXRqV0ZOZEdxcWlMSXhJblo5ZXoyZDllb2s2b3VyQkE9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.35/hicks-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR29RZ1grdkQzVGRtcktJU0Q0Nnp0bkpPUE1uNmpOdUcybkNYSWxkZ2xTUUZmVzRvV0ZiS1MvbCtPb2FPOE5CVWxFMEFTbXNVVVlZSFRWbXNjNncyV0FRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NjIxMjQwCWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKREgyKzFvbjVwUFd1QzlFcUxqR20rOS8vMzR6d1V5c0U1dUE2ZUo1SVhxZkpqRGNnRWFjbGhVdEQwdkw4ZFNSUE4xb0FtelRZRU53VU92Ym5tQ1NLQ1E9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.36/ulana-macos-aarch64.tar.gz"
     }
   }
 }
