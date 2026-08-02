@@ -1305,53 +1305,101 @@
       padding-top: 12px;
     }
 
-    /* ── Trust section (dark, left-aligned) ── */
+    /* ── Trust section (dark, two-column) ── */
     .trust-section {
       width: 100vw;
       height: 100vh;
       background: #2E333A;
       display: flex;
       align-items: center;
-      padding: 10vh 5vw;
+      padding: 80px 5vw;
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
-    .trust-section .inner {
-      max-width: 800px;
+    .trust-section .trust-layout {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      width: 100%;
+    }
+    .trust-section .trust-copy {
+      min-width: 0;
     }
     .trust-section h2 {
       font-size: 48px;
       font-weight: 700;
       line-height: 1.2;
       color: #F0ECD9;
-      margin-bottom: 3.2vh;
+      margin-bottom: 20px;
     }
-    .trust-section p {
+    .trust-section .trust-copy p {
       font-size: 16px;
       line-height: 1.7;
       color: #F0ECD9;
       opacity: 0.7;
       margin-bottom: 1.6vh;
     }
-    .trust-section .cta-row {
+    .trust-section .trust-copy .cta-row {
       display: flex;
       gap: 1.2vw;
       margin-top: 4vh;
       flex-wrap: wrap;
       align-items: center;
     }
-    .trust-section .btn-primary {
+    .trust-section .trust-copy .btn-primary {
       background: #F0ECD9;
       color: #2E333A;
     }
-    .trust-section .btn-secondary {
-      color: #F0ECD9;
-      border-color: #F0ECD9;
+    .trust-section .trust-copy .btn-primary:hover {
+      opacity: 0.85;
     }
-    .trust-section .btn-secondary:hover {
-      background: #F0ECD9;
-      color: #2E333A;
+
+    /* ── Knowledge meter (left column) ── */
+    .know-meter {
+      min-width: 0;
     }
+    .know-meter .km-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: #656565;
+      margin-bottom: 16px;
+    }
+    .know-meter .km-row {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: start;
+    }
+    .know-meter .km-when {
+      font-size: 11px;
+      font-weight: 600;
+      color: #656565;
+      padding-top: 1px;
+    }
+    .know-meter .km-ans {
+      font-size: 13px;
+      color: #656565;
+      margin-bottom: 6px;
+    }
+    .know-meter .km-bar {
+      height: 3px;
+      background: #2C2C2C;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .know-meter .km-bar-fill {
+      display: block;
+      height: 3px;
+      background: #c8893f;
+      border-radius: 2px;
+    }
+    .know-meter .km-row.thin .km-bar-fill { width: 16%; }
+    .know-meter .km-row.mid .km-bar-fill { width: 40%; }
+    .know-meter .km-row.full .km-bar-fill { width: 67%; }
 
     /* ── Pricing section (cream) ── */
     .pricing-section {
@@ -2000,13 +2048,39 @@
 
   <!-- Trust / source of truth section -->
   <section class="trust-section">
-    <div class="inner">
-      <h2>Your thinking is the source of truth.</h2>
-      <p>Not the internet. Not training data. Not an AI trained to guess what you want to hear.</p>
-      <p>ulana answers from what you've actually written and collected — your notes, links, drafts, voice memos, and clips.</p>
-      <p>The more you add, the better it learns how you think. And the sharper the answers get.</p>
-      <div class="cta-row">
-        <button class="btn-primary">Buy ulana</button>
+    <div class="trust-layout">
+      <div class="know-meter" aria-hidden="true">
+        <div class="km-label">How well ulana knows you</div>
+        <div class="km-row thin">
+          <span class="km-when">Start</span>
+          <div>
+            <div class="km-ans">Barely knows you yet.</div>
+            <div class="km-bar"><i class="km-bar-fill"></i></div>
+          </div>
+        </div>
+        <div class="km-row mid">
+          <span class="km-when">As you write</span>
+          <div>
+            <div class="km-ans">Starting to see your patterns.</div>
+            <div class="km-bar"><i class="km-bar-fill"></i></div>
+          </div>
+        </div>
+        <div class="km-row full">
+          <span class="km-when">Over time</span>
+          <div>
+            <div class="km-ans">Knows how you think.</div>
+            <div class="km-bar"><i class="km-bar-fill"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-copy">
+        <h2>Your thinking is the source of truth.</h2>
+        <p>Not the internet. Not training data. Not an AI trained to guess what you want to hear.</p>
+        <p>ulana answers from what you've actually written and collected — your notes, links, drafts, voice memos, and clips.</p>
+        <p>The more you add, the better it learns how you think. And the sharper the answers get.</p>
+        <div class="cta-row">
+          <button class="btn-primary">Buy ulana</button>
+        </div>
       </div>
     </div>
   </section>
