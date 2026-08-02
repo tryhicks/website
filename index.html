@@ -1210,6 +1210,7 @@
       border-radius: 12px;
       padding: 18px 20px 16px;
       margin-bottom: 12px;
+      overflow: hidden;
     }
     .skills-card .step-name {
       font-size: 21.6px;
@@ -1233,6 +1234,12 @@
       font-size: 15px;
       color: #949494;
       line-height: 1.4;
+      min-width: 0;
+    }
+    .skills-card .saved span {
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .skills-card .badge {
       background: #2a1a00;
@@ -1253,6 +1260,7 @@
       grid-template-columns: 60px 1fr;
       gap: 10px;
       padding: 4px 0 10px;
+      min-width: 0;
     }
     .skills-card .hits .mo {
       font-size: 11px;
@@ -1263,6 +1271,9 @@
       font-size: 14px;
       color: #949494;
       font-style: italic;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      min-width: 0;
     }
     .skills-card .footer {
       font-size: 13px;
