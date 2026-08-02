@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hicks — Interactive Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --page: #1C1C1C; --panel: #1C1C1C; --surface: #1C1C1C; --surface-hover: #303030;
+  --card: #262626; --surface-field: #262626; --menu-hover: #252525;
+  --rule-light: #2C2C2C; --rule: #2C2C2C; --rule-strong: #2C2C2C;
+  --ink: #ECECEC; --ink-body: #ECECEC; --ink-quiet: #949494; --ink-faint: #656565;
+  --ink-inverse: #1a1918; --sage: #c8893f; --sage-hover: #dba35a; --sage-soft: #1f1508;
+  --sage-soft-text: #c8893f; --state-active-bg: #1e2d24; --state-active-text: #8db89d;
+  --state-resting-bg: #2d2a28; --state-resting-text: #a89b8e; --state-warning-bg: #302820;
+  --state-warning-text: #d4aa8d; --state-error-bg: #302020; --state-error-text: #c89090;
+  --icon-default: #949494; --icon-muted: #656565; --icon-active: #8db89d;
+  --placeholder: #656565; --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px;
+  --font-sans: "Manrope", system-ui, sans-serif; --sidebar-width: 280px; --chat-width: 480px;
+}
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { background: var(--page); color: var(--ink); font-family: var(--font-sans); line-height: 1.5; height: 100vh; overflow: hidden; font-feature-settings: "lnum", "locl"; }
+.app-shell { display: flex; height: 100vh; overflow: hidden; position: relative; }
+.sidebar { width: var(--sidebar-width); min-width: var(--sidebar-width); display: flex; flex-direction: column; height: 100%; background: var(--panel); border-right: 1px solid var(--rule-light); overflow: hidden; flex-shrink: 0; position: relative; z-index: 40; transition: width 0.25s ease, min-width 0.25s ease, border-width 0.25s ease; }
+.sidebar.collapsed { width: 0; min-width: 0; border-right-width: 0; overflow: hidden; }
+.sidebar-inner { display: flex; flex-direction: column; height: 100%; width: var(--sidebar-width); min-width: var(--sidebar-width); }
+.sidebar-toggle { position: absolute; top: 12px; z-index: 50; width: 30px; height: 30px; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--icon-default); background: transparent; border: none; cursor: pointer; transition: left 0.25s ease, color 0.15s, background 0.15s; }
+.sidebar-toggle:hover { color: var(--ink); background: var(--surface-hover); }
+.sidebar-toggle svg { width: 16px; height: 16px; }
+.sidebar-header { display: flex; align-items: center; gap: 8px; padding: 12px 12px 16px; flex-shrink: 0; }
+.sidebar-header .logo svg { width: 18px; height: 18px; color: var(--ink); display: block; }
+.tab-strip { display: flex; gap: 0; flex-shrink: 0; padding: 0 12px; }
+.tab-btn { padding: 8px 0; font-size: 14px; font-weight: 500; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--ink-faint); cursor: pointer; font-family: var(--font-sans); transition: color 0.15s, border-color 0.15s; }
+.tab-btn.active { color: var(--ink-body); border-bottom-color: var(--ink-body); }
+.tab-btn:not(.active):hover { color: var(--ink-quiet); }
+.tab-btn + .tab-btn { margin-left: 20px; }
+.sidebar-content { flex: 1; overflow-y: auto; min-height: 0; }
+.sidebar-content::-webkit-scrollbar { width: 4px; }
+.sidebar-content::-webkit-scrollbar-track { background: transparent; }
+.sidebar-content::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.sidebar-nav-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 6px 10px; border-radius: var(--radius-sm); font-size: 15px; transition: background 0.15s, color 0.15s; cursor: pointer; background: transparent; border: none; color: var(--ink-body); text-align: left; font-family: var(--font-sans); }
+.sidebar-nav-item:hover { background: var(--menu-hover); color: var(--ink); }
+.sidebar-nav-item.active { background: var(--surface-hover); color: var(--ink); }
+.sidebar-nav-item svg { width: 16px; height: 16px; color: var(--icon-default); flex-shrink: 0; }
+.sidebar-footer { flex-shrink: 0; border-top: 1px solid var(--rule-light); padding: 10px 12px; display: flex; align-items: center; gap: 4px; background: var(--panel); }
+.vault-selector { flex: 1; display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: var(--radius-sm); cursor: pointer; color: var(--ink-quiet); font-size: 13px; transition: background 0.12s; border: none; background: transparent; font-family: var(--font-sans); text-align: left; }
+.vault-selector:hover { background: var(--surface-hover); color: var(--ink); }
+.vault-selector .chevron { margin-left: auto; color: var(--icon-muted); font-size: 10px; }
+.settings-btn { width: 30px; height: 30px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--ink-quiet); background: transparent; border: none; cursor: pointer; flex-shrink: 0; transition: color 0.15s; }
+.settings-btn:hover { color: var(--ink); }
+.settings-btn svg { width: 16px; height: 16px; }
+.search-box { padding: 12px 12px 8px; flex-shrink: 0; }
+.search-box-inner { position: relative; }
+.search-box-inner svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--ink-quiet); }
+.search-box-inner input { width: 100%; background: var(--page); border: 1px solid var(--rule); border-radius: var(--radius-sm); padding: 7px 8px 7px 30px; font-size: 14px; color: var(--ink-quiet); font-family: var(--font-sans); outline: none; transition: border-color 0.15s, background 0.15s; }
+.search-box-inner input::placeholder { color: var(--ink-faint); }
+.search-box-inner input:focus { border-color: rgba(236,236,236,0.3); background: var(--surface-hover); }
+.ingest-btn-wrap { padding: 0 12px 8px; flex-shrink: 0; }
+.ingest-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 0; background: var(--ink); color: var(--page); border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 600; font-family: var(--font-sans); cursor: pointer; transition: background 0.15s; }
+.ingest-btn:hover { background: var(--ink-quiet); }
+.wiki-section { padding: 0 8px; }
+.wiki-section-header { padding: 6px 12px 4px; font-size: 20px; font-weight: 700; color: var(--ink); font-family: var(--font-sans); letter-spacing: -0.01em; }
+.wiki-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.wiki-item:hover { background: var(--menu-hover); }
+.wiki-item.active { background: var(--surface-hover); }
+.wiki-item .wiki-title { font-size: 14px; color: var(--ink-body); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color 0.15s; }
+.wiki-item:hover .wiki-title { color: var(--ink); }
+.wiki-item.active .wiki-title { color: var(--ink); }
+.wiki-item .wiki-time { font-size: 11px; color: var(--ink-faint); flex-shrink: 0; }
+.theme-row { display: flex; align-items: center; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.15s; }
+.theme-row:hover { background: var(--menu-hover); }
+.theme-row .theme-name { font-size: 13px; color: var(--ink-body); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color 0.15s; }
+.theme-row:hover .theme-name { color: var(--ink); }
+.archive-header { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.15s; }
+.archive-header:hover { background: var(--menu-hover); }
+.archive-header .archive-chevron { width: 14px; height: 14px; color: var(--ink-faint); flex-shrink: 0; transition: transform 0.2s; }
+.archive-header .archive-chevron.open { transform: rotate(90deg); }
+.archive-header .archive-label { font-size: 13px; color: var(--ink-body); transition: color 0.15s; }
+.archive-header:hover .archive-label { color: var(--ink); }
+.main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; position: relative; }
+.main-inner { display: flex; flex: 1; min-width: 0; overflow: hidden; }
+.focus-page { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+.focus-page.split { flex-direction: row; }
+.editor-pane { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+.editor-scroll { flex: 1; overflow-y: auto; padding: 48px 64px 120px; max-width: 900px; margin: 0 auto; width: 100%; }
+.editor-scroll::-webkit-scrollbar { width: 4px; }
+.editor-scroll::-webkit-scrollbar-track { background: transparent; }
+.editor-scroll::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.split-pane { width: 50%; border-left: 1px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.split-pane-header { display: flex; align-items: center; gap: 4px; padding: 12px 12px 0; position: absolute; top: 0; left: 0; z-index: 10; }
+.split-pane-header button { width: 28px; height: 28px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--ink-quiet); background: transparent; border: none; cursor: pointer; transition: color 0.15s, background 0.15s; }
+.split-pane-header button:hover { color: var(--ink); background: var(--surface-hover); }
+.split-pane-header button svg { width: 16px; height: 16px; }
+.split-pane-content { flex: 1; overflow-y: auto; padding: 48px 32px 80px; }
+.split-pane-content::-webkit-scrollbar { width: 4px; }
+.split-pane-content::-webkit-scrollbar-track { background: transparent; }
+.split-pane-content::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.split-pane-content .note-title { font-size: 28px; font-weight: 900; color: var(--ink); font-family: var(--font-sans); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 16px; }
+.split-pane-content .note-body { font-size: 15px; line-height: 1.65; color: var(--ink-body); }
+.split-pane-content .note-body p { margin-bottom: 12px; }
+.split-pane-content .note-body blockquote { border-left: 2px solid var(--sage); padding-left: 16px; color: var(--ink-quiet); font-style: italic; margin: 16px 0; }
+.split-pane-content .note-body .wiki-link { color: var(--ink-quiet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; user-select: none; transition: color 0.15s; }
+.split-pane-content .note-body .wiki-link:hover { color: var(--ink-body); }
+.note-title-input { font-size: 36px; font-weight: 900; color: var(--ink); font-family: var(--font-sans); letter-spacing: -0.01em; line-height: 1.1; background: transparent; border: none; outline: none; width: 100%; margin-bottom: 16px; padding: 0; }
+.editor-content { font-size: 16px; line-height: 1.65; color: var(--ink-body); min-height: 400px; outline: none; }
+.editor-content p { margin-bottom: 12px; }
+.editor-content h1 { font-size: 36px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; margin-top: 32px; margin-bottom: 12px; }
+.editor-content h2 { font-size: 24px; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; margin-top: 28px; margin-bottom: 8px; }
+.editor-content h3 { font-size: 20px; font-weight: 600; color: var(--ink-body); letter-spacing: -0.01em; line-height: 1.35; margin-top: 24px; margin-bottom: 8px; }
+.editor-content blockquote { border-left: 2px solid var(--sage); padding-left: 16px; color: var(--ink-quiet); font-style: italic; margin: 16px 0; }
+.editor-content ul { list-style: disc; padding-left: 24px; margin-bottom: 12px; }
+.editor-content ol { list-style: decimal; padding-left: 24px; margin-bottom: 12px; }
+.editor-content li { margin-bottom: 4px; }
+.editor-content li::marker { color: var(--ink-quiet); }
+.editor-content strong { color: var(--ink); font-weight: 700; }
+.editor-content code { background: var(--rule-light); color: var(--ink-quiet); font-family: monospace; font-size: 0.85em; padding: 2px 6px; border-radius: 4px; }
+.editor-content pre { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 16px 0; }
+.editor-content pre code { background: transparent; padding: 0; font-size: 14px; color: var(--ink); }
+.editor-content hr { border: none; border-top: 1px solid var(--rule-strong); margin: 32px 0; }
+.editor-content a { color: var(--ink-quiet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.editor-content a:hover { color: var(--ink-body); }
+.editor-content .wiki-link { color: var(--ink-quiet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; user-select: none; transition: color 0.15s; }
+.editor-content .wiki-link:hover { color: var(--ink-body); }
+.block-drag-handle { position: fixed; display: flex; align-items: center; gap: 2px; border-radius: 6px; padding: 0 4px; z-index: 50; transform: translateY(-50%); pointer-events: none; opacity: 0; transition: opacity 0.12s ease; }
+.block-drag-handle.visible { opacity: 1; pointer-events: auto; }
+.block-drag-handle button { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: var(--icon-default); background: transparent; border: none; cursor: pointer; transition: color 0.12s, background 0.12s; }
+.block-drag-handle button:hover { color: var(--ink); background: var(--rule); }
+.block-drag-handle button svg { width: 14px; height: 14px; }
+.block-drag-handle .grip { cursor: grab; }
+.block-drag-handle .grip:active { cursor: grabbing; }
+.note-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule-light); }
+.footer-section { margin-bottom: 20px; }
+.footer-section h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 8px; }
+.footer-link { display: flex; align-items: center; gap: 8px; padding: 4px 0; color: var(--ink-quiet); font-size: 14px; cursor: pointer; transition: color 0.15s; text-decoration: none; }
+.footer-link:hover { color: var(--ink-body); }
+.footer-link .arrow { color: var(--ink-faint); font-size: 12px; flex-shrink: 0; }
+.version-badge { position: absolute; bottom: 8px; right: 8px; font-size: 11px; color: var(--ink-quiet); background: transparent; border: none; cursor: pointer; font-family: var(--font-sans); display: flex; align-items: center; gap: 4px; transition: color 0.15s; }
+.version-badge:hover { color: var(--ink); }
+.chat-panel { height: 100%; background: var(--panel); border-left: 1px solid var(--rule-light); display: flex; flex-direction: column; flex-shrink: 0; overflow: hidden; transition: width 0.25s ease, border-width 0.25s ease; }
+.chat-panel.collapsed { width: 0 !important; border-left: none; overflow: hidden; }
+.chat-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 12px 16px; border-bottom: 1px solid var(--rule-light); flex-shrink: 0; position: relative; z-index: 10; }
+.chat-header-left { display: flex; align-items: center; gap: 8px; }
+.new-chat-btn { display: flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: var(--radius-sm); background: transparent; border: none; color: var(--ink); font-size: 13px; font-weight: 590; cursor: pointer; font-family: var(--font-sans); font-feature-settings: "lnum", "locl"; transition: background 0.12s ease; }
+.new-chat-btn:hover { background: var(--surface-hover); }
+.new-chat-btn svg { width: 14px; height: 14px; }
+.panel-actions { display: flex; align-items: center; gap: 2px; }
+.panel-action-wrap { position: relative; }
+.panel-action-btn { width: 24px; height: 24px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--icon-default); cursor: pointer; border: none; background: transparent; transition: background 0.12s ease, color 0.12s ease; }
+.panel-action-btn:hover { background: var(--surface-hover); color: var(--ink); }
+.panel-action-btn.active { background: var(--surface-hover); color: var(--ink); }
+.panel-action-btn svg { width: 14px; height: 14px; }
+.chat-history-area { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 20px; }
+.chat-history-area::-webkit-scrollbar { width: 4px; }
+.chat-history-area::-webkit-scrollbar-track { background: transparent; }
+.chat-history-area::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.chat-message { position: relative; max-width: 90%; padding: 12px 14px; border-radius: var(--radius-md); font-size: 14px; line-height: 1.5; }
+.chat-message.user { align-self: flex-end; background: var(--surface-hover); color: var(--ink); position: relative; white-space: pre-wrap; }
+.chat-message.user .chat-message-actions { position: absolute; top: calc(100% + 12px); left: 0; display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity 0.15s ease; pointer-events: none; z-index: 1; }
+.chat-message.user::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 32px; }
+.chat-message.user:hover .chat-message-actions { opacity: 1; pointer-events: auto; }
+.chat-message.hicks { align-self: flex-start; color: var(--ink-quiet); padding-bottom: 28px; margin-bottom: 0; }
+.chat-message.hicks a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.chat-message.hicks a:hover { color: var(--sage-hover); }
+.drew-from { margin-top: 8px; font-size: 11px; color: var(--ink-faint); display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
+.drew-from-label { font-style: italic; }
+.drew-from a { color: var(--ink-faint) !important; text-decoration: none !important; cursor: pointer; }
+.drew-from a:hover { color: var(--ink) !important; text-decoration: underline !important; text-underline-offset: 2px; }
+.chat-message-actions { display: flex; align-items: center; gap: 8px; position: absolute; bottom: 0; left: 0; opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
+.chat-message.hicks:hover .chat-message-actions, .chat-message:hover .chat-message-actions { opacity: 1; pointer-events: auto; }
+.chat-action-btn { display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 510; color: var(--icon-default); background: transparent; border: none; cursor: pointer; font-family: var(--font-sans); transition: background 0.12s ease, color 0.12s ease; }
+.chat-action-btn:hover { color: var(--ink-quiet); background: var(--surface-hover); }
+.chat-action-btn:active { background: transparent; }
+.chat-action-btn.feedback-up { color: var(--state-active-text); }
+.chat-action-btn.feedback-down { color: var(--state-error-text); }
+.chat-action-btn:focus-visible { outline: none; }
+.chat-input-area { padding: 16px; margin-top: auto; flex-shrink: 0; }
+.chat-input-container { position: relative; border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: 12px; background: var(--surface-field); }
+.chat-input-container:focus-within { border-color: var(--rule); }
+.chat-input-field { width: 100%; background: transparent; border: none; outline: none; color: var(--ink); font-size: 15px; font-family: var(--font-sans); font-feature-settings: "lnum", "locl"; resize: none; min-height: 20px; }
+.chat-input-field::placeholder { color: var(--placeholder); }
+.chat-input-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.chat-input-left { display: flex; align-items: center; gap: 8px; }
+.chat-input-right { display: flex; align-items: center; gap: 8px; }
+.attach-btn { width: 24px; height: 24px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--icon-default); cursor: pointer; border: none; background: transparent; transition: color 0.12s; }
+.attach-btn:hover { color: var(--ink); background: var(--surface-hover); }
+.attach-btn svg { width: 14px; height: 14px; }
+.dropdown-btn { display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: var(--radius-sm); color: var(--icon-default); font-size: 13px; font-weight: 400; cursor: pointer; border: none; background: transparent; font-family: var(--font-sans); transition: background 0.12s ease, color 0.12s ease; }
+.dropdown-btn:hover { color: var(--ink); background: var(--surface-hover); }
+.dropdown-btn svg { width: 14px; height: 14px; }
+.mic-btn, .send-btn { width: 28px; height: 28px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--icon-default); cursor: pointer; border: none; background: transparent; position: relative; transition: background 0.15s ease, color 0.15s ease; }
+.mic-btn:hover, .send-btn:hover { color: var(--ink); background: var(--surface-hover); }
+.mic-btn svg, .send-btn svg { width: 15px; height: 15px; }
+.send-btn.streaming { color: var(--icon-active); }
+.send-btn.streaming::before { content: ''; position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 1.5px solid transparent; border-top-color: var(--icon-active); animation: stop-spin 0.8s linear infinite; }
+@keyframes stop-spin { to { transform: rotate(360deg); } }
+.mic-btn.recording { background: var(--sage); color: var(--ink-inverse); animation: mic-pulse 1.5s ease-in-out infinite; }
+@keyframes mic-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(141,184,157,0.4); } 50% { box-shadow: 0 0 0 6px rgba(141,184,157,0); } }
+.chat-toggle { position: absolute; top: 12px; z-index: 60; width: 30px; height: 30px; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--icon-default); background: transparent; border: none; cursor: pointer; transition: right 0.25s ease, color 0.15s, background 0.15s; }
+.chat-toggle:hover { color: var(--ink); background: var(--surface-hover); }
+.chat-toggle svg { width: 16px; height: 16px; }
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 0 24px; }
+.empty-state h3 { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.empty-state p { font-size: 14px; color: var(--ink-quiet); max-width: 280px; }
+.ingest-overlay { position: fixed; inset: 0; z-index: 29; pointer-events: none; }
+.ingest-panel { position: fixed; top: 0; bottom: 0; width: 400px; background: var(--page); border-right: 1px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; z-index: 30; transition: left 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.ingest-panel.closed { left: -400px; }
+.ingest-panel.open { left: var(--sidebar-width); }
+.ingest-body { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 20px; }
+.ingest-body::-webkit-scrollbar { width: 4px; }
+.ingest-body::-webkit-scrollbar-track { background: transparent; }
+.ingest-body::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+.stats-card { border: 1px solid var(--rule-light); border-radius: 8px; background: var(--panel); padding: 16px; }
+.stats-card-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.stats-card-number { font-size: 32px; font-weight: 700; color: var(--ink); font-family: var(--font-sans); line-height: 1; letter-spacing: -0.01em; }
+.stats-card-label { font-size: 14px; color: var(--ink-quiet); margin-top: 4px; }
+.stats-card-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.badge-new { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 6px; background: var(--sage-soft); color: var(--sage); }
+.badge-updated { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 6px; border-radius: 6px; background: var(--state-warning-bg); color: var(--state-warning-text); }
+.badge-uptodate { font-size: 12px; color: var(--ink-faint); }
+.stats-card-bottom { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule-light); }
+.stats-card-bottom .est { font-size: 12px; color: var(--ink-quiet); }
+.ingest-desc { font-size: 14px; color: var(--ink-quiet); line-height: 1.6; }
+.ingest-divider { border: none; border-top: 1px solid var(--rule-light); }
+.ingest-section-label { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-quiet); }
+.skill-checkbox { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none; }
+.skill-checkbox input[type="checkbox"] { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--sage); cursor: pointer; flex-shrink: 0; }
+.skill-checkbox .skill-name { font-size: 14px; color: var(--ink); }
+.skill-checkbox .skill-desc { font-size: 14px; color: var(--ink-quiet); margin-top: 2px; line-height: 1.5; }
+.ingest-btn-main { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 0; background: var(--ink); color: var(--page); border: none; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: var(--font-sans); cursor: pointer; transition: background 0.15s; }
+.ingest-btn-main:hover { background: var(--ink-quiet); }
+.ingest-btn-main:disabled { opacity: 0.4; cursor: not-allowed; }
+.ingest-btn-main:disabled:hover { background: var(--ink); }
+.progress-area { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--rule-light); border-radius: 999px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--sage); border-radius: 999px; transition: width 0.3s ease-out; }
+.progress-status { font-size: 14px; color: var(--ink-quiet); }
+.progress-cancel { align-self: flex-start; font-size: 14px; color: var(--ink-quiet); cursor: pointer; background: none; border: none; font-family: var(--font-sans); text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+.progress-cancel:hover { color: var(--ink); }
+.ingest-footer { padding: 12px 16px; border-top: 1px solid var(--rule-light); flex-shrink: 0; }
+.ingest-footer p { font-size: 14px; color: var(--ink-quiet); }
+@media (max-width: 768px) { .sidebar { display: none; } .editor-scroll { padding: 24px 20px 80px; } .chat-panel { position: fixed; right: 0; top: 0; z-index: 100; height: 100vh; } .split-pane { display: none; } .ingest-panel { width: 100%; } }
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <button class="sidebar-toggle" id="sidebarToggle" title="Collapse sidebar" style="left: calc(var(--sidebar-width) - 34px);">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg viewBox="0 0 213 213" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z" fill="currentColor"/>
+            <path d="M60.3962 125.84L101.995 167.109C97.1813 170.826 91.5262 173.606 85.5409 175.448L34.2079 124.339C27.5836 117.746 22.3651 110.238 18.5098 101.931C2.18334 66.7009 20.0327 25.283 57.2971 14.2283C71.3551 10.0535 86.4142 11.4913 99.077 16.976C99.077 16.976 94.7957 19.7237 90.8659 22.7483C86.9361 25.7729 83.0488 30.4483 83.0488 30.4483C62.047 25.8262 41.599 36.178 33.4517 56.3597C20.8315 87.6281 41.0878 106.681 60.3962 125.83V125.84Z" fill="currentColor"/>
+            <path d="M130.1 182.328C152.306 186.545 173.776 175.374 181.327 155.011C182.307 152.37 184.82 145.064 182.296 140.324C181.444 138.727 180.262 137.417 179.016 136.65C170.56 131.474 163.158 137.896 159.175 141.549H135.5L148.504 129.834C148.504 129.834 156.086 123.679 157.886 122.656C162.508 120.004 167.237 118.449 172.69 118.162C188.015 117.374 200.369 128.993 200.55 144.595C200.699 157.535 194.757 168.962 186.695 178.664C174.585 193.234 157.577 200.891 138.567 200.124C130.068 199.783 121.655 199.187 114.062 195.161C122.56 190.678 127.044 185.417 130.111 182.339L130.1 182.328Z" fill="currentColor"/>
+            <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+      <div class="tab-strip">
+        <button class="tab-btn active" data-tab="threads">Threads</button>
+        <button class="tab-btn" data-tab="wiki">Wiki</button>
+      </div>
+      <div class="sidebar-content" id="sidebarContent">
+        <div id="threadsTab">
+          <div class="search-box">
+            <div class="search-box-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Filter" id="threadSearch">
+            </div>
+          </div>
+          <div class="wiki-section">
+            <div class="wiki-section-header" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-quiet);padding:6px 12px 4px;">Pinned</div>
+            <div class="wiki-item active" data-note="0">
+              <span class="wiki-title">Hicks — Product Vision</span>
+              <span class="wiki-time">now</span>
+            </div>
+          </div>
+          <div class="wiki-section" style="margin-top:4px;">
+            <div class="wiki-section-header" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-quiet);padding:6px 12px 4px;">Spaces</div>
+            <div class="archive-header" data-folder="product">
+              <svg class="archive-chevron open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span class="archive-label">Product</span>
+            </div>
+            <div class="wiki-item" data-note="1" style="padding-left:28px;"><span class="wiki-title">Competitive Analysis</span><span class="wiki-time">1d</span></div>
+            <div class="wiki-item" data-note="2" style="padding-left:28px;"><span class="wiki-title">Pricing Model</span><span class="wiki-time">2d</span></div>
+            <div class="wiki-item" data-note="3" style="padding-left:28px;"><span class="wiki-title">User Personas</span><span class="wiki-time">3d</span></div>
+            <div class="archive-header" data-folder="marketing" style="margin-top:2px;">
+              <svg class="archive-chevron open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              <span class="archive-label">Marketing</span>
+            </div>
+            <div class="wiki-item" data-note="4" style="padding-left:28px;"><span class="wiki-title">Marketing Strategy</span><span class="wiki-time">5d</span></div>
+            <div class="wiki-item" data-note="5" style="padding-left:28px;"><span class="wiki-title">Content & SEO</span><span class="wiki-time">1w</span></div>
+          </div>
+        </div>
+        <div id="wikiTab" style="display:none;">
+          <div class="search-box">
+            <div class="search-box-inner">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Filter" id="wikiSearch">
+            </div>
+          </div>
+          <div class="ingest-btn-wrap">
+            <button class="ingest-btn" id="ingestBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Ingest
+            </button>
+          </div>
+          <div class="sidebar-content" id="wikiMenuContent">
+            <div style="padding:0 8px;">
+              <div style="padding:6px 12px 4px;">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-faint);">Pages</span>
+              </div>
+              <div style="padding:0 2px;">
+                <button class="sidebar-nav-item" data-wikipage="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+                <button class="sidebar-nav-item" data-wikipage="index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg><span>Index</span></button>
+                <button class="sidebar-nav-item" data-wikipage="topics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg><span>Topics</span></button>
+                <button class="sidebar-nav-item" data-wikipage="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Activity</span></button>
+                <div>
+                  <button class="sidebar-nav-item" id="dailyLogToggle" style="display:flex;">
+                    <svg width="14" height="14" style="color:var(--ink-faint);flex-shrink:0;transition:transform 0.2s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg width="16" height="16" style="color:var(--icon-default);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Daily Log</span>
+                    <span style="font-size:11px;color:var(--ink-faint);flex-shrink:0;">14</span>
+                  </button>
+                  <div id="dailyLogMonths" style="display:none;padding:2px 2px 0;">
+                    <div>
+                      <button class="sidebar-nav-item" style="display:flex;padding-left:22px;" data-month="jul2026">
+                        <svg width="12" height="12" style="color:var(--ink-faint);flex-shrink:0;transition:transform 0.2s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        <span style="font-size:14px;color:var(--ink-quiet);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Jul 2026</span>
+                        <span style="font-size:11px;color:var(--ink-faint);flex-shrink:0;">8</span>
+                      </button>
+                      <div id="month-jul2026" style="display:none;padding:2px 2px 0;">
+                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">23</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Knowledge graph — entity extraction working</span></button>
+                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">22</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Sprint planning — marketing site launch</span></button>
+                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">21</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Second brain — investor update prep</span></button>
+                      </div>
+                    </div>
+                    <div>
+                      <button class="sidebar-nav-item" style="display:flex;padding-left:22px;" data-month="jun2026">
+                        <svg width="12" height="12" style="color:var(--ink-faint);flex-shrink:0;transition:transform 0.2s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        <span style="font-size:14px;color:var(--ink-quiet);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Jun 2026</span>
+                        <span style="font-size:11px;color:var(--ink-faint);flex-shrink:0;">6</span>
+                      </button>
+                      <div id="month-jun2026" style="display:none;padding:2px 2px 0;">
+                        <button class="sidebar-nav-item" style="display:flex;padding-left:32px;gap:8px;"><span style="font-size:13px;font-weight:500;color:var(--ink-faint);flex-shrink:0;width:28px;">30</span><span style="font-size:14px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">AI knowledge base — beta user feedback</span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:0 8px;margin-top:8px;">
+              <div style="padding:6px 12px 4px;">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-faint);">Skills</span>
+              </div>
+              <div style="padding:0 2px;">
+                <div>
+                  <button class="sidebar-nav-item" id="skillMeetingToggle" style="display:flex;">
+                    <svg width="14" height="14" style="color:var(--ink-faint);flex-shrink:0;transition:transform 0.2s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    <span style="font-size:15px;color:var(--ink-body);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Knowledge Graph</span>
+                  </button>
+                  <div id="skillMeetingRuns" style="display:none;padding:2px 2px 0;">
+                    <button class="sidebar-nav-item" style="display:flex;padding-left:22px;"><span style="font-size:15px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">23 Jul 2026</span></button>
+                    <button class="sidebar-nav-item" style="display:flex;padding-left:22px;"><span style="font-size:15px;color:var(--ink-faint);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">16 Jul 2026</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <button class="vault-selector"><span>Main Vault</span><span class="chevron">▾</span></button>
+        <button class="settings-btn" title="Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-area" id="mainArea">
+    <div class="main-inner">
+      <div class="focus-page" id="focusPage">
+        <div class="editor-pane" id="editorPane">
+          <div class="editor-scroll" id="editorScroll">
+            <input class="note-title-input" id="noteTitle" value="Hicks — Product Vision" readonly>
+            <div class="editor-content" id="noteContent">
+              <h2>Elevator Pitch</h2>
+              <p>Hicks is a local-first AI knowledge base for solo entrepreneurs. It's your second brain — it reads everything you write, connects the dots, and answers questions about your work without you having to dig through notes. No cloud dependency. No subscription for your own data. Just a coxswain for your thinking.</p>
+
+              <h2>Core Problem</h2>
+              <p>Solo founders and small teams generate hundreds of notes, decisions, and ideas every week. They lose track of what they decided, why they decided it, and what's connected to what. Existing tools (Notion, Obsidian, Roam) are filing cabinets — they store but don't think. Hicks is different: it's a personal knowledge base that actively connects your thinking.</p>
+
+              <h2>Key Insight</h2>
+              <p>The best second brain is the one you don't have to maintain. Hicks works from the <a class="wiki-link" data-note="5">content & SEO</a> — it processes your notes locally, extracts topics, entities, and relationships, and builds a living graph of your thinking. It doesn't just store — it <em>connects</em>.</p>
+
+              <h2>Target Users</h2>
+              <p>Solo entrepreneurs who wear every hat. They're evaluating <a class="wiki-link" data-note="3">user personas</a> like "Alex the solo founder" who has 15 meetings a week, writes daily notes, and needs an AI knowledge base that surfaces what matters without being asked.</p>
+
+              <h2>Business Model</h2>
+              <p>Freemium: free tier (5 AI queries/day, basic knowledge graph), Pro ($19/mo — unlimited queries, full knowledge graph, custom skills), Team ($49/mo — shared knowledge base, team analytics). See <a class="wiki-link" data-note="2">pricing model</a> for full breakdown.</p>
+
+              <h2>Competitive Landscape</h2>
+              <p>Obsidian, Notion, Roam, Logseq — all great filing cabinets. None of them actively read your notes and answer questions. That's the gap. See <a class="wiki-link" data-note="1">competitive analysis</a> for the full matrix.</p>
+
+              <blockquote>"Your notes don't need a home. They need a coxswain."</blockquote>
+
+              <h2>Architecture</h2>
+              <p>We use a local embedding model for semantic understanding, a small LLM for entity extraction and relationship mapping, and a graph database for the knowledge base. The <a class="wiki-link" data-note="4">marketing strategy</a> doc covers why we chose local-first over cloud. The <a class="wiki-link" data-note="5">content & SEO</a> doc covers the processing chain.</p>
+            </div>
+            <div class="note-footer" id="noteFooter"></div>
+          </div>
+        </div>
+        <div class="block-drag-handle" id="blockDragHandle">
+          <button title="Dictate into note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+          <button title="Insert block below"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="grip" title="Drag to reorder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="5" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/></svg></div>
+        </div>
+        <div class="split-pane" id="splitPane" style="display:none;">
+          <div class="split-pane-header">
+            <button id="splitBackBtn" title="Back" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+            <button id="splitCloseBtn" title="Close split view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+          </div>
+          <div class="split-pane-content" id="splitContent">
+            <div class="note-title" id="splitTitle"></div>
+            <div class="note-body" id="splitBody"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="version-badge">v0.4</button>
+  </main>
+
+  <button class="chat-toggle" id="chatToggle" title="Collapse chat" style="right: 480px;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+  </button>
+
+  <div class="chat-panel" id="chatPanel" style="width: 480px;">
+    <div style="display:flex;flex-direction:column;height:100%;width:480px;min-width:480px;">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <button class="new-chat-btn" id="newChatBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> New chat</button>
+        </div>
+        <div class="panel-actions">
+          <div class="panel-action-wrap"><button class="panel-action-btn" title="Chat history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></button></div>
+          <div class="panel-action-wrap"><button class="panel-action-btn" title="This chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button></div>
+        </div>
+      </div>
+      <div class="chat-history-area" id="chatMessages">
+        <div class="chat-message hicks">
+          <p>I'm Hicks — your second brain. Ask me anything about your knowledge base.</p>
+          <div class="chat-message-actions">
+            <button class="chat-action-btn" title="Add to thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg></button>
+            <button class="chat-action-btn" title="Save as thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></button>
+            <button class="chat-action-btn" title="Copy thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            <button class="chat-action-btn feedback-up" title="Useful"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13v-2a2 2 0 0 1 2-2h2.5l1.5-5A2 2 0 0 1 10 3h1.5A1.5 1.5 0 0 1 13 4.5V9h6.5a2 2 0 0 1 1.9 2.6l-2 7A2 2 0 0 1 17.5 20H8a2 2 0 0 1-2-2v-5"/></svg></button>
+            <button class="chat-action-btn" title="Not useful"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2v9M22 11v2a2 2 0 0 1-2 2h-2.5l-1.5 5A2 2 0 0 1 14 21h-1.5A1.5 1.5 0 0 1 11 19.5V15H4.5a2 2 0 0 1-1.9-2.6l2-7A2 2 0 0 1 6.5 4H16a2 2 0 0 1 2 2v5"/></svg></button>
+          </div>
+        </div>
+        <div class="chat-message user">
+          What's the latest on the marketing strategy?
+          <div class="chat-message-actions"><button class="chat-action-btn" title="Copy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+        </div>
+        <div class="chat-message hicks">
+          <p>From your notes, here's where things stand:</p>
+          <p>The <strong>marketing strategy</strong> is focused on three pillars: positioning Hicks as a local-first AI knowledge base, content marketing around second brain and personal knowledge base keywords, and a Product Hunt launch for the beta. The <a class="wiki-link" data-note="4">marketing strategy</a> note has the full GTM plan.</p>
+          <p>You decided to lead with the "second brain" angle for solo entrepreneurs — privacy-first, local-only, no cloud dependency. The <a class="wiki-link" data-note="5">content & SEO</a> doc has the keyword strategy and content pillars.</p>
+          <div class="drew-from">
+            <span class="drew-from-label">Drew from: </span>
+            <a class="wiki-link" data-note="4">Marketing Strategy</a>
+            <span>, </span>
+            <a class="wiki-link" data-note="5">Content & SEO</a>
+          </div>
+          <div class="chat-message-actions">
+            <button class="chat-action-btn" title="Add to thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg></button>
+            <button class="chat-action-btn" title="Save as thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></button>
+            <button class="chat-action-btn" title="Copy thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+            <button class="chat-action-btn feedback-up" title="Useful"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13v-2a2 2 0 0 1 2-2h2.5l1.5-5A2 2 0 0 1 10 3h1.5A1.5 1.5 0 0 1 13 4.5V9h6.5a2 2 0 0 1 1.9 2.6l-2 7A2 2 0 0 1 17.5 20H8a2 2 0 0 1-2-2v-5"/></svg></button>
+            <button class="chat-action-btn" title="Not useful"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2v9M22 11v2a2 2 0 0 1-2 2h-2.5l-1.5 5A2 2 0 0 1 14 21h-1.5A1.5 1.5 0 0 1 11 19.5V15H4.5a2 2 0 0 1-1.9-2.6l2-7A2 2 0 0 1 6.5 4H16a2 2 0 0 1 2 2v5"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <div class="chat-input-container">
+          <textarea class="chat-input-field" rows="2" placeholder="Ask Hicks. Type @ to bring a thread in." id="chatInput"></textarea>
+          <div class="chat-input-footer">
+            <div class="chat-input-left">
+              <button class="attach-btn" title="Bring a thread in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg></button>
+              <button class="dropdown-btn" id="modeBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>Chat</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            </div>
+            <div class="chat-input-right">
+              <button class="mic-btn" title="Speak your message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+              <button class="send-btn" title="Send message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ingest-overlay" id="ingestOverlay" style="display:none;"></div>
+  <div class="ingest-panel closed" id="ingestPanel">
+    <div class="ingest-body">
+      <div class="stats-card">
+        <div class="stats-card-top">
+          <div><div class="stats-card-number">6</div><div class="stats-card-label">notes ready</div></div>
+          <div class="stats-card-badges"><span class="badge-new">2 New</span><span class="badge-updated">1 Updated</span></div>
+        </div>
+        <div class="stats-card-bottom"><div class="est">~1,500 tokens · 1 AI call</div></div>
+      </div>
+      <p class="ingest-desc">Ingest runs every time — it only reads threads that are new or changed. Skills are optional — check the ones you want to include.</p>
+      <hr class="ingest-divider">
+      <div><span class="ingest-section-label">Skills</span></div>
+      <label class="skill-checkbox"><input type="checkbox" checked><div><div class="skill-name">Knowledge Graph</div><div class="skill-desc">Builds a living graph of entities, topics, and relationships from your notes. Powers the second brain.</div></div></label>
+      <label class="skill-checkbox"><input type="checkbox" checked><div><div class="skill-name">Topic Clustering</div><div class="skill-desc">Groups related notes into themes and builds a topic index for your personal knowledge base.</div></div></label>
+      <button class="ingest-btn-main" id="ingestBuildBtn">Ingest</button>
+      <div class="progress-area" id="ingestProgress" style="display:none;">
+        <div class="progress-bar"><div class="progress-bar-fill" id="progressFill" style="width:0%;"></div></div>
+        <p class="progress-status" id="progressStatus">Reading your notes...</p>
+        <button class="progress-cancel" id="progressCancel">Cancel</button>
+      </div>
+    </div>
+    <div class="ingest-footer"><p>You can keep using the app while the build runs.</p></div>
+  </div>
+
+</div>
+
+<script>
+const notes = [
+  {
+    title: 'Hicks — Product Vision',
+    body: `<h2>Elevator Pitch</h2><p>Hicks is a local-first AI knowledge base for solo entrepreneurs. It's your second brain — it reads everything you write, connects the dots, and answers questions about your work without you having to dig through notes. No cloud dependency. No subscription for your own data. Just a coxswain for your thinking.</p><h2>Core Problem</h2><p>Solo founders and small teams generate hundreds of notes, decisions, and ideas every week. They lose track of what they decided, why they decided it, and what's connected to what. Existing tools (Notion, Obsidian, Roam) are filing cabinets — they store but don't think. Hicks is different: it's a personal knowledge base that actively connects your thinking.</p><h2>Key Insight</h2><p>The best second brain is the one you don't have to maintain. Hicks works from the <a class="wiki-link" data-note="5">content & SEO</a> — it processes your notes locally, extracts topics, entities, and relationships, and builds a living graph of your thinking. It doesn't just store — it <em>connects</em>.</p><h2>Target Users</h2><p>Solo entrepreneurs who wear every hat. They're evaluating <a class="wiki-link" data-note="3">user personas</a> like "Alex the solo founder" who has 15 meetings a week, writes daily notes, and needs an AI knowledge base that surfaces what matters without being asked.</p><h2>Business Model</h2><p>Freemium: free tier (5 AI queries/day, basic knowledge graph), Pro ($19/mo — unlimited queries, full knowledge graph, custom skills), Team ($49/mo — shared knowledge base, team analytics). See <a class="wiki-link" data-note="2">pricing model</a> for full breakdown.</p><h2>Competitive Landscape</h2><p>Obsidian, Notion, Roam, Logseq — all great filing cabinets. None of them actively read your notes and answer questions. That's the gap. See <a class="wiki-link" data-note="1">competitive analysis</a> for the full matrix.</p><blockquote>"Your notes don't need a home. They need a coxswain."</blockquote><h2>Architecture</h2><p>We use a local embedding model for semantic understanding, a small LLM for entity extraction and relationship mapping, and a graph database for the knowledge base. The <a class="wiki-link" data-note="4">marketing strategy</a> doc covers why we chose local-first over cloud. The <a class="wiki-link" data-note="5">content & SEO</a> doc covers the processing chain.</p>`,
+    incoming: ['Competitive Analysis', 'Pricing Model', 'Marketing Strategy'],
+    outgoing: ['Competitive Analysis', 'Pricing Model', 'User Personas', 'Marketing Strategy', 'Content & SEO']
+  },
+  {
+    title: 'Competitive Analysis',
+    body: `<h2>Market Overview</h2><p>The AI knowledge base space is growing fast but most tools are just filing cabinets with AI search bolted on. Every competitor stores notes. None <em>think</em> — actively reading your notes, connecting ideas, and answering questions without being asked.</p><h2>Competitors</h2><p><strong>Obsidian</strong> — Great for power users. Local-first, plugin ecosystem. But no AI reading your notes — it's a manual graph you build yourself. Free.</p><p><strong>Notion</strong> — The Swiss Army knife. AI features exist but are cloud-dependent and bolted on. No local processing. $10/user/mo.</p><p><strong>Roam Research</strong> — Block-based, great for bidirectional linking. But no AI knowledge base features. $15/user/mo.</p><p><strong>Logseq</strong> — Open-source, local-first, similar to Roam. Great for personal knowledge management but no AI reading layer. Free.</p><h2>Our Advantage</h2><p>None of them actively read your notes and build a knowledge graph. Hicks doesn't just store — it connects decisions to the context that matters. That's the moat.</p>`,
+    incoming: ['Hicks — Product Vision'],
+    outgoing: ['Hicks — Product Vision', 'Pricing Model']
+  },
+  {
+    title: 'Pricing Model',
+    body: `<h2>Three Tiers</h2><p><strong>Free</strong> — 5 AI queries/day, basic knowledge graph, 7-day history. Good for evaluation.</p><p><strong>Pro</strong> — $19/mo. Unlimited AI queries, full knowledge graph, custom skills, full history, export.</p><p><strong>Team</strong> — $49/mo. Everything in Pro plus shared knowledge base, team analytics, admin controls, priority support.</p><h2>Why Not Per-Seat</h2><p>After user research, we decided against per-seat pricing. Solo founders and small teams want a flat rate they can budget. Per-seat penalises the teams that need a shared knowledge base most.</p><h2>Annual Discount</h2><p>20% off annual. Pro = $182/yr ($15.17/mo). Team = $470/yr ($39.17/mo).</p>`,
+    incoming: ['Hicks — Product Vision', 'Competitive Analysis'],
+    outgoing: ['Hicks — Product Vision', 'Competitive Analysis']
+  },
+  {
+    title: 'User Personas',
+    body: `<h2>Primary: Alex the Solo Founder</h2><p>15 meetings a week. Customer calls, investor pitches, contractor syncs. Writes 20+ notes a week but never finds them again. Uses a mix of Apple Notes and Google Docs. Needs a second brain that surfaces what matters without being asked. Willing to pay $19/mo to stop losing context.</p><h2>Secondary: Small Team Lead</h2><p>3-5 person team. Everyone takes notes in different places. Needs a shared AI knowledge base that auto-populates from everyone's writing. Will pay $49/mo for the team.</p><h2>Tertiary: Freelance Consultant</h2><p>10 meetings a week with different clients. Needs per-client knowledge separation. Free tier might be enough, but will upgrade for client-specific knowledge bases.</p>`,
+    incoming: ['Hicks — Product Vision'],
+    outgoing: ['Hicks — Product Vision']
+  },
+  {
+    title: 'Marketing Strategy',
+    body: `<h2>Positioning</h2><p>Hicks is the only local-first AI knowledge base that actively reads your notes and connects your thinking. Not a filing cabinet — a second brain. Our tagline: "Your notes don't need a home. They need a coxswain."</p><h2>Target Audience</h2><p>Solo entrepreneurs, indie founders, and small teams who take lots of notes and need an AI knowledge base that surfaces what matters. Primary channels: Twitter/X, Indie Hackers, Hacker News, and solo founder newsletters.</p><h2>Go-To-Market</h2><p>Launch on Product Hunt with a "local-first AI knowledge base" angle. Free tier to drive adoption. Content marketing focused on second brain, personal knowledge base, and AI note-taking keywords. Partner with solo founder communities for beta access.</p><h2>Key Metrics</h2><p>DAU, notes ingested, AI queries per user, knowledge graph connections created. Target: 1,000 active users in first 90 days.</p>`,
+    incoming: ['Hicks — Product Vision', 'Content & SEO'],
+    outgoing: ['Hicks — Product Vision', 'Content & SEO']
+  },
+  {
+    title: 'Content & SEO',
+    body: `<h2>SEO Strategy</h2><p>Target keywords: "AI knowledge base", "second brain app", "personal knowledge base", "local-first note-taking AI", "AI note-taking for entrepreneurs", "knowledge management tool". Long-tail: "AI that reads my notes and answers questions", "local AI knowledge base for solo founders".</p><h2>Content Pillars</h2><p>1. <strong>Second Brain</strong> — How to build a personal knowledge base with AI. Compare Hicks to Obsidian, Notion, Roam. 2. <strong>Local-First AI</strong> — Why your notes should stay on your device. Privacy-first knowledge management. 3. <strong>Solo Founder Productivity</strong> — How an AI knowledge base saves 5+ hours a week for solo entrepreneurs.</p><h2>Content Formats</h2><p>Blog posts (2,000+ words with SEO optimization), Twitter threads, YouTube demos, and a "build in public" series on Indie Hackers. Each piece links back to the product and targets specific keywords from the SEO strategy.</p><h2>Distribution</h2><p>Cross-post to Dev.to, Medium, and LinkedIn. Submit to solo founder newsletters. Engage in relevant Reddit communities (r/SoloEntrepreneur, r/ObsidianMD, r/PKM).</p>`,
+    incoming: ['Marketing Strategy'],
+    outgoing: ['Marketing Strategy', 'Hicks — Product Vision']
+  }
+];
+
+const noteTitle = document.getElementById('noteTitle');
+const noteContent = document.getElementById('noteContent');
+const noteFooter = document.getElementById('noteFooter');
+const editorScroll = document.getElementById('editorScroll');
+const threadsTab = document.getElementById('threadsTab');
+const wikiTab = document.getElementById('wikiTab');
+const tabBtns = document.querySelectorAll('.tab-btn');
+const sidebarItems = document.querySelectorAll('.wiki-item[data-note]');
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatToggle = document.getElementById('chatToggle');
+const focusPage = document.getElementById('focusPage');
+const splitPane = document.getElementById('splitPane');
+const splitTitle = document.getElementById('splitTitle');
+const splitBody = document.getElementById('splitBody');
+const splitCloseBtn = document.getElementById('splitCloseBtn');
+const splitBackBtn = document.getElementById('splitBackBtn');
+const ingestPanel = document.getElementById('ingestPanel');
+const ingestOverlay = document.getElementById('ingestOverlay');
+const ingestBtn = document.getElementById('ingestBtn');
+const ingestBuildBtn = document.getElementById('ingestBuildBtn');
+const ingestProgress = document.getElementById('ingestProgress');
+const progressFill = document.getElementById('progressFill');
+const progressStatus = document.getElementById('progressStatus');
+const progressCancel = document.getElementById('progressCancel');
+
+let sidebarOpen = true;
+sidebarToggle.addEventListener('click', () => {
+  sidebarOpen = !sidebarOpen;
+  sidebar.classList.toggle('collapsed', !sidebarOpen);
+  sidebarToggle.style.left = sidebarOpen ? 'calc(var(--sidebar-width) - 34px)' : '8px';
+  sidebarToggle.title = sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar';
+  if (ingestPanel.classList.contains('open')) {
+    ingestPanel.style.left = sidebarOpen ? '280px' : '0px';
+  }
+});
+
+let chatOpen = true;
+chatToggle.addEventListener('click', () => {
+  chatOpen = !chatOpen;
+  chatPanel.classList.toggle('collapsed', !chatOpen);
+  chatPanel.style.width = chatOpen ? '480px' : '0';
+  chatToggle.style.right = chatOpen ? '480px' : '8px';
+  chatToggle.title = chatOpen ? 'Collapse chat' : 'Expand chat';
+});
+
+let splitHistory = [];
+
+function openSplitView(index) {
+  const note = notes[index];
+  if (!note) return;
+  focusPage.classList.add('split');
+  splitPane.style.display = 'flex';
+  splitTitle.textContent = note.title;
+  splitBody.innerHTML = note.body;
+  splitBody.querySelectorAll('.wiki-link').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idx = parseInt(el.dataset.note);
+      if (!isNaN(idx) && notes[idx]) { splitHistory.push(index); openSplitView(idx); }
+    });
+  });
+  splitBackBtn.style.display = splitHistory.length > 0 ? 'flex' : 'none';
+}
+
+function closeSplitView() {
+  focusPage.classList.remove('split');
+  splitPane.style.display = 'none';
+  splitHistory = [];
+}
+
+splitCloseBtn.addEventListener('click', closeSplitView);
+splitBackBtn.addEventListener('click', () => { if (splitHistory.length > 0) { const prev = splitHistory.pop(); openSplitView(prev); } });
+
+function switchNote(index) {
+  const note = notes[index];
+  if (!note) return;
+  sidebarItems.forEach((item, i) => item.classList.toggle('active', i === index));
+  noteTitle.value = note.title;
+  noteContent.innerHTML = note.body;
+  noteContent.querySelectorAll('.wiki-link').forEach(el => {
+    el.addEventListener('click', (e) => { e.preventDefault(); const idx = parseInt(el.dataset.note); if (!isNaN(idx) && notes[idx]) { splitHistory = []; openSplitView(idx); } });
+  });
+  const incomingHtml = note.incoming.map(t => { const idx = notes.findIndex(n => n.title === t); return `<a class="footer-link" data-note="${idx}"><span class="arrow">←</span> ${t}</a>`; }).join('');
+  const outgoingHtml = note.outgoing.map(t => { const idx = notes.findIndex(n => n.title === t); return `<a class="footer-link" data-note="${idx}"><span class="arrow">→</span> ${t}</a>`; }).join('');
+  noteFooter.innerHTML = `<div class="footer-section"><h4>Linked here</h4>${incomingHtml || '<span style="color:var(--ink-faint);font-size:13px;">None</span>'}</div><div class="footer-section"><h4>Outgoing links</h4>${outgoingHtml || '<span style="color:var(--ink-faint);font-size:13px;">None</span>'}</div>`;
+  noteFooter.querySelectorAll('.footer-link').forEach(el => { el.addEventListener('click', (e) => { e.preventDefault(); const idx = parseInt(el.dataset.note); if (!isNaN(idx) && notes[idx]) { splitHistory = []; openSplitView(idx); } }); });
+  editorScroll.scrollTop = 0;
+}
+
+sidebarItems.forEach((item, i) => { item.addEventListener('click', () => switchNote(i)); });
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const tab = this.dataset.tab;
+    threadsTab.style.display = tab === 'threads' ? 'block' : 'none';
+    wikiTab.style.display = tab === 'wiki' ? 'block' : 'none';
+  });
+});
+
+document.querySelectorAll('.archive-header[data-folder]').forEach(header => {
+  header.addEventListener('click', function() {
+    const chevron = this.querySelector('.archive-chevron');
+    chevron.classList.toggle('open');
+    let sibling = this.nextElementSibling;
+    while (sibling && sibling.classList.contains('wiki-item')) {
+      sibling.style.display = sibling.style.display === 'none' ? 'flex' : 'none';
+      sibling = sibling.nextElementSibling;
+    }
+  });
+});
+
+document.getElementById('dailyLogToggle')?.addEventListener('click', function() {
+  const chevron = this.querySelector('svg');
+  chevron.style.transform = chevron.style.transform === 'rotate(90deg)' ? '' : 'rotate(90deg)';
+  const items = document.getElementById('dailyLogMonths');
+  items.style.display = items.style.display === 'none' ? 'block' : 'none';
+});
+
+document.querySelectorAll('[data-month]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const chevron = this.querySelector('svg');
+    chevron.style.transform = chevron.style.transform === 'rotate(90deg)' ? '' : 'rotate(90deg)';
+    const monthId = 'month-' + this.dataset.month;
+    const items = document.getElementById(monthId);
+    if (items) items.style.display = items.style.display === 'none' ? 'block' : 'none';
+  });
+});
+
+document.getElementById('skillMeetingToggle')?.addEventListener('click', function() {
+  const chevron = this.querySelector('svg');
+  chevron.style.transform = chevron.style.transform === 'rotate(90deg)' ? '' : 'rotate(90deg)';
+  const items = document.getElementById('skillMeetingRuns');
+  items.style.display = items.style.display === 'none' ? 'block' : 'none';
+});
+
+// Wiki page content data
+const wikiPages = {
+  profile: {
+    title: 'Profile',
+    body: `<h2>About</h2><p>Solo entrepreneur building Hicks — a local-first AI knowledge base and second brain for solo founders. Previously built a SaaS analytics tool that was acquired in 2023.</p><h2>Current Focus</h2><p>Shipping the MVP by end of August. Key milestones: content & SEO strategy (done), marketing site (in progress), beta launch (next sprint).</p><h2>Stack Preferences</h2><p>TypeScript, React, Tauri for desktop. Local-first with embedding models + Mistral. Graph DB for the knowledge base. No cloud dependencies until launch.</p><h2>Working Style</h2><p>Deep work mornings, meetings after 2pm. Uses Hicks as the single source of truth for all product decisions. Reviews the Index page every morning to see what changed in the knowledge base.</p>`
+  },
+  index: {
+    title: 'Index',
+    body: `<h1>Index</h1><p>This page lists every note in the vault. Each bullet links to the full note.</p><ul><li><a class="wiki-link" data-note="0">Hicks — Product Vision</a></li><li><a class="wiki-link" data-note="1">Competitive Analysis</a></li><li><a class="wiki-link" data-note="2">Pricing Model</a></li><li><a class="wiki-link" data-note="3">User Personas</a></li><li><a class="wiki-link" data-note="4">Marketing Strategy</a></li><li><a class="wiki-link" data-note="5">Content & SEO</a></li></ul>`
+  },
+  topics: {
+    title: 'Topics',
+    body: `<p style="color:var(--ink-quiet);font-style:italic;font-size:15px;margin-bottom:24px;padding-left:14px;border-left:2px solid var(--sage);">The map Hicks has woven from your garden. Topics that connect to each other sit together. Click a cluster to expand. Click a topic to read the full page.</p>
+
+<div class="cluster" style="margin-bottom:16px;background:var(--card);border:1px solid var(--rule-light);border-radius:var(--radius-lg);overflow:hidden;">
+  <div class="cluster-header" style="display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;transition:background 0.12s;" onclick="var b=this.nextElementSibling;b.style.display=b.style.display==='block'?'none':'block';this.querySelector('.cluster-chevron').classList.toggle('open');">
+    <svg class="cluster-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-faint);flex-shrink:0;transition:transform 0.2s;"><polyline points="9 18 15 12 9 6"/></svg>
+    <span style="font-size:18px;font-weight:600;color:var(--ink);flex:1;">Product &amp; Pricing</span>
+    <span style="font-size:13px;color:var(--ink-quiet);flex-shrink:0;">3 topics</span>
+  </div>
+  <div class="cluster-body" style="display:none;border-top:1px solid var(--rule-light);padding:18px;">
+    <div class="topic-block" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--rule-light);">
+      <div class="topic-block-title" style="font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px;cursor:pointer;transition:color 0.15s;" onclick="switchNote(0)">Product vision &amp; positioning</div>
+      <div style="font-size:13px;color:var(--ink-quiet);margin-bottom:10px;">New · 29 Jul 2026 · from 4 threads</div>
+      <div style="font-size:15px;color:var(--ink-body);line-height:1.6;margin-bottom:14px;">You're building a local-first AI knowledge base for solo entrepreneurs. The positioning is "second brain" but the competitive landscape (Obsidian, Notion, Roam) is crowded. The tension is between owning a niche (solo founders) and competing broadly in the personal knowledge base space.</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Connected topics</span>
+        <a class="wiki-link" data-note="2" style="color:var(--sage);cursor:pointer;">Pricing model</a>
+        <a class="wiki-link" data-note="4" style="color:var(--sage);cursor:pointer;">Marketing strategy</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">From your threads</span>
+        <a class="wiki-link" data-note="0" style="color:var(--ink-quiet);cursor:pointer;">Product Spec</a>
+        <a class="wiki-link" data-note="1" style="color:var(--ink-quiet);cursor:pointer;">Competitive Analysis</a>
+        <a class="wiki-link" data-note="2" style="color:var(--ink-quiet);cursor:pointer;">Pricing Model</a>
+        <span style="color:var(--ink-faint);font-size:13px;">+1 more</span>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Hicks found</span>
+        <span style="color:var(--state-warning-text);cursor:pointer;">Knowledge Graph — 29 Jul</span>
+      </div>
+    </div>
+    <div class="topic-block" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--rule-light);">
+      <div class="topic-block-title" style="font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px;cursor:pointer;transition:color 0.15s;" onclick="switchNote(2)">Pricing model</div>
+      <div style="font-size:13px;color:var(--ink-quiet);margin-bottom:10px;">New · 29 Jul 2026 · from 3 threads</div>
+      <div style="font-size:15px;color:var(--ink-body);line-height:1.6;margin-bottom:14px;">Freemium tiered model — Free (5 AI queries/day), Pro ($19/mo), Team ($49/mo). Decided against per-seat pricing. The unresolved thread: your target users are price-sensitive solo founders, but the positioning demands premium pricing.</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Connected topics</span>
+        <a class="wiki-link" data-note="0" style="color:var(--sage);cursor:pointer;">Product vision</a>
+        <a class="wiki-link" data-note="1" style="color:var(--sage);cursor:pointer;">Competitive analysis</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">From your threads</span>
+        <a class="wiki-link" data-note="2" style="color:var(--ink-quiet);cursor:pointer;">Pricing Model</a>
+        <a class="wiki-link" data-note="1" style="color:var(--ink-quiet);cursor:pointer;">Competitive Analysis</a>
+        <span style="color:var(--ink-faint);font-size:13px;">+1 more</span>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Hicks found</span>
+        <span style="color:var(--state-warning-text);cursor:pointer;">Knowledge Graph — 29 Jul</span>
+      </div>
+    </div>
+    <div class="topic-block" style="margin-bottom:0;padding-bottom:0;border-bottom:none;">
+      <div class="topic-block-title" style="font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px;cursor:pointer;transition:color 0.15s;" onclick="switchNote(1)">Competitive landscape</div>
+      <div style="font-size:13px;color:var(--ink-quiet);margin-bottom:10px;">New · 29 Jul 2026 · from 2 threads</div>
+      <div style="font-size:15px;color:var(--ink-body);line-height:1.6;margin-bottom:14px;">Obsidian, Notion, Roam, Logseq — all filing cabinets. None actively read your notes and answer questions. The gap is clear, but the moat depends on execution speed before incumbents add similar AI features.</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Connected topics</span>
+        <a class="wiki-link" data-note="0" style="color:var(--sage);cursor:pointer;">Product vision</a>
+        <a class="wiki-link" data-note="2" style="color:var(--sage);cursor:pointer;">Pricing model</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">From your threads</span>
+        <a class="wiki-link" data-note="1" style="color:var(--ink-quiet);cursor:pointer;">Competitive Analysis</a>
+        <a class="wiki-link" data-note="0" style="color:var(--ink-quiet);cursor:pointer;">Product Spec</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Hicks found</span>
+        <span style="color:var(--state-warning-text);cursor:pointer;">Topic Clustering — 28 Jul</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cluster" style="margin-bottom:16px;background:var(--card);border:1px solid var(--rule-light);border-radius:var(--radius-lg);overflow:hidden;">
+  <div class="cluster-header" style="display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;transition:background 0.12s;" onclick="var b=this.nextElementSibling;b.style.display=b.style.display==='block'?'none':'block';this.querySelector('.cluster-chevron').classList.toggle('open');">
+    <svg class="cluster-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-faint);flex-shrink:0;transition:transform 0.2s;"><polyline points="9 18 15 12 9 6"/></svg>
+    <span style="font-size:18px;font-weight:600;color:var(--ink);flex:1;">Users &amp; Marketing</span>
+    <span style="font-size:13px;color:var(--ink-quiet);flex-shrink:0;">3 topics</span>
+  </div>
+  <div class="cluster-body" style="display:none;border-top:1px solid var(--rule-light);padding:18px;">
+    <div class="topic-block" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--rule-light);">
+      <div class="topic-block-title" style="font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px;cursor:pointer;transition:color 0.15s;" onclick="switchNote(3)">User personas</div>
+      <div style="font-size:13px;color:var(--ink-quiet);margin-bottom:10px;">New · 29 Jul 2026 · from 2 threads</div>
+      <div style="font-size:15px;color:var(--ink-body);line-height:1.6;margin-bottom:14px;">Three personas: Alex the solo founder (primary), small team lead (secondary), freelance consultant (tertiary). All share the pain of losing context across meetings and notes. The key insight: they need a second brain, not another filing cabinet.</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Connected topics</span>
+        <a class="wiki-link" data-note="0" style="color:var(--sage);cursor:pointer;">Product vision</a>
+        <a class="wiki-link" data-note="4" style="color:var(--sage);cursor:pointer;">Marketing strategy</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">From your threads</span>
+        <a class="wiki-link" data-note="3" style="color:var(--ink-quiet);cursor:pointer;">User Personas</a>
+        <a class="wiki-link" data-note="0" style="color:var(--ink-quiet);cursor:pointer;">Product Spec</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Hicks found</span>
+        <span style="color:var(--state-warning-text);cursor:pointer;">Knowledge Graph — 29 Jul</span>
+      </div>
+    </div>
+    <div class="topic-block" style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--rule-light);">
+      <div class="topic-block-title" style="font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px;cursor:pointer;transition:color 0.15s;" onclick="switchNote(4)">Marketing strategy</div>
+      <div style="font-size:13px;color:var(--ink-quiet);margin-bottom:10px;">New · 29 Jul 2026 · from 2 threads</div>
+      <div style="font-size:15px;color:var(--ink-body);line-height:1.6;margin-bottom:14px;">GTM focuses on Product Hunt launch, content marketing around "second brain" and "AI knowledge base" keywords, and solo founder community partnerships. Target: 1,000 active users in 90 days.</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Connected topics</span>
+        <a class="wiki-link" data-note="5" style="color:var(--sage);cursor:pointer;">Content & SEO</a>
+        <a class="wiki-link" data-note="3" style="color:var(--sage);cursor:pointer;">User personas</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">From your threads</span>
+        <a class="wiki-link" data-note="4" style="color:var(--ink-quiet);cursor:pointer;">Marketing Strategy</a>
+        <a class="wiki-link" data-note="5" style="color:var(--ink-quiet);cursor:pointer;">Content & SEO</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Hicks found</span>
+        <span style="color:var(--state-warning-text);cursor:pointer;">Topic Clustering — 28 Jul</span>
+      </div>
+    </div>
+    <div class="topic-block" style="margin-bottom:0;padding-bottom:0;border-bottom:none;">
+      <div class="topic-block-title" style="font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px;cursor:pointer;transition:color 0.15s;" onclick="switchNote(5)">Content & SEO</div>
+      <div style="font-size:13px;color:var(--ink-quiet);margin-bottom:10px;">New · 29 Jul 2026 · from 1 thread</div>
+      <div style="font-size:15px;color:var(--ink-body);line-height:1.6;margin-bottom:14px;">Target keywords: "AI knowledge base", "second brain app", "personal knowledge base", "local-first note-taking AI". Content pillars: second brain methodology, local-first AI privacy, solo founder productivity. Distribution across Twitter, Indie Hackers, Dev.to, and solo founder newsletters.</div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Connected topics</span>
+        <a class="wiki-link" data-note="4" style="color:var(--sage);cursor:pointer;">Marketing strategy</a>
+        <a class="wiki-link" data-note="0" style="color:var(--sage);cursor:pointer;">Product vision</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-bottom:6px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">From your threads</span>
+        <a class="wiki-link" data-note="5" style="color:var(--ink-quiet);cursor:pointer;">Content & SEO</a>
+      </div>
+      <div style="display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;font-size:14px;">
+        <span style="font-size:12px;font-weight:600;color:var(--ink-quiet);flex-shrink:0;">Hicks found</span>
+        <span style="color:var(--state-warning-text);cursor:pointer;">Knowledge Graph — 29 Jul</span>
+      </div>
+    </div>
+  </div>
+</div>`
+  },
+  activity: {
+    title: 'Activity',
+    body: `<h1>Activity</h1><p>Recent changes across the knowledge base.</p><h2>Today</h2><ul><li>Updated <a class="wiki-link" data-note="0">Hicks — Product Vision</a> — added architecture section</li><li>Created <a class="wiki-link" data-note="5">Content & SEO</a> — initial draft of the SEO strategy</li></ul><h2>Yesterday</h2><ul><li>Updated <a class="wiki-link" data-note="2">Pricing Model</a> — added annual discount</li><li>Updated <a class="wiki-link" data-note="1">Competitive Analysis</a> — added Logseq to matrix</li></ul><h2>3 days ago</h2><ul><li>Created <a class="wiki-link" data-note="3">User Personas</a></li><li>Created <a class="wiki-link" data-note="4">Marketing Strategy</a></li></ul>`
+  }
+};
+
+// Wiki page click handler
+document.querySelectorAll('[data-wikipage]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const page = wikiPages[this.dataset.wikipage];
+    if (!page) return;
+    // Show wiki page content in the editor
+    noteTitle.value = page.title;
+    noteContent.innerHTML = page.body;
+    // Re-bind wiki-links inside wiki page content
+    noteContent.querySelectorAll('.wiki-link').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(el.dataset.note);
+        if (!isNaN(idx) && notes[idx]) { splitHistory = []; openSplitView(idx); }
+      });
+    });
+    // Clear footer for wiki pages
+    noteFooter.innerHTML = '';
+    editorScroll.scrollTop = 0;
+    // Deselect sidebar note items
+    sidebarItems.forEach(item => item.classList.remove('active'));
+  });
+});
+
+(function() {
+  const editorContent = document.getElementById('noteContent');
+  const blockHandle = document.getElementById('blockDragHandle');
+  if (!editorContent || !blockHandle) return;
+  let handleTimeout = null;
+  editorContent.addEventListener('mousemove', function(e) {
+    const rect = this.getBoundingClientRect();
+    if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+      const paragraphs = this.querySelectorAll('p, blockquote, ul, ol, pre, hr');
+      let closest = null, closestDist = Infinity;
+      paragraphs.forEach(p => {
+        const r = p.getBoundingClientRect();
+        const mid = r.top + r.height / 2;
+        const dist = Math.abs(e.clientY - mid);
+        if (dist < closestDist) { closestDist = dist; closest = p; }
+      });
+      if (closest && closestDist < 30) {
+        const r = closest.getBoundingClientRect();
+        blockHandle.style.top = (r.top + r.height / 2) + 'px';
+        blockHandle.style.left = (rect.left - 84) + 'px';
+        blockHandle.classList.add('visible');
+        if (handleTimeout) clearTimeout(handleTimeout);
+      } else { blockHandle.classList.remove('visible'); }
+    } else { blockHandle.classList.remove('visible'); }
+  });
+  editorContent.addEventListener('mouseleave', function() {
+    handleTimeout = setTimeout(function() { blockHandle.classList.remove('visible'); }, 200);
+  });
+  document.getElementById('editorScroll')?.addEventListener('scroll', function() { blockHandle.classList.remove('visible'); });
+})();
+
+// Ingest Panel
+let ingestOpen = false;
+function openIngest() {
+  ingestOpen = true;
+  ingestOverlay.style.display = 'block';
+  ingestPanel.classList.remove('closed');
+  ingestPanel.classList.add('open');
+  ingestPanel.style.left = sidebarOpen ? '280px' : '0px';
+}
+function closeIngest() {
+  ingestOpen = false;
+  ingestOverlay.style.display = 'none';
+  ingestPanel.classList.remove('open');
+  ingestPanel.classList.add('closed');
+  ingestPanel.style.left = ''; // clear inline style so CSS class takes effect
+  ingestProgress.style.display = 'none';
+  ingestBuildBtn.style.display = 'flex';
+  ingestBuildBtn.disabled = false;
+  ingestBuildBtn.textContent = 'Ingest';
+}
+
+// Ingest button toggle — direct handler on the button
+ingestBtn.onclick = function(e) {
+  if (ingestOpen) closeIngest(); else openIngest();
+};
+
+// Click outside closes panel (explicitly exclude button and panel)
+document.addEventListener('click', function(e) {
+  if (ingestOpen && !e.target.closest('#ingestPanel') && !e.target.closest('#ingestBtn')) {
+    closeIngest();
+  }
+});
+
+ingestBuildBtn.addEventListener('click', function() {
+  this.style.display = 'none';
+  ingestProgress.style.display = 'flex';
+  let progress = 0;
+  const stages = ['Reading your notes...', 'Building concept pages...', 'Running Skills...', 'Finalising...'];
+  let stageIdx = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 8 + 2;
+    if (progress >= 100) {
+      progress = 100; clearInterval(interval);
+      progressStatus.textContent = 'Done!';
+      setTimeout(() => { closeIngest(); }, 800);
+    } else if (progress > 30 && stageIdx === 0) { stageIdx = 1; progressStatus.textContent = stages[1]; }
+    else if (progress > 60 && stageIdx === 1) { stageIdx = 2; progressStatus.textContent = stages[2]; }
+    else if (progress > 85 && stageIdx === 2) { stageIdx = 3; progressStatus.textContent = stages[3]; }
+    progressFill.style.width = Math.min(progress, 100) + '%';
+  }, 300);
+  this._interval = interval;
+});
+progressCancel.addEventListener('click', function() { if (ingestBuildBtn._interval) clearInterval(ingestBuildBtn._interval); closeIngest(); });
+
+document.getElementById('threadSearch')?.addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  sidebarItems.forEach(item => { const t = item.querySelector('.wiki-title').textContent.toLowerCase(); item.style.display = t.includes(q) ? 'flex' : 'none'; });
+});
+
+const chatInput = document.getElementById('chatInput');
+chatInput?.addEventListener('input', function() { this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 120) + 'px'; });
+
+document.addEventListener('keydown', (e) => { if (e.key >= '1' && e.key <= '6') { const idx = parseInt(e.key) - 1; if (notes[idx]) switchNote(idx); } });
+
+document.getElementById('newChatBtn')?.addEventListener('click', function() {
+  const msgs = document.getElementById('chatMessages');
+  msgs.innerHTML = '<div class="empty-state" style="opacity:0.5;"><p class="text-sm font-medium" style="color:var(--ink);margin-bottom:4px;">Ask anything about your knowledge base</p><p style="font-size:12px;color:var(--ink-quiet);">Hicks reads your notes and thinks alongside you.</p></div>';
+});
+
+switchNote(0);
+</script>
+
+</body>
+</html>
