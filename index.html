@@ -1095,65 +1095,181 @@
       justify-content: center;
     }
 
-    /* ── Questions section (dark, left-aligned) ── */
+    /* ── Questions / Skills section (dark, two-column) ── */
     .questions-section {
       width: 100vw;
       height: 100vh;
       background: #2E333A;
       display: flex;
       align-items: center;
-      padding: 10vh 5vw;
+      padding: 72px 5vw 80px;
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
-    .questions-section .inner {
-      max-width: 800px;
+    .questions-section .skills-layout {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 380px 604px;
+      gap: 40px 48px;
+      align-items: start;
+      width: 100%;
+    }
+    .questions-section .skills-intro {
+      min-width: 0;
     }
     .questions-section h2 {
       font-size: 48px;
       font-weight: 700;
       line-height: 1.2;
       color: #F0ECD9;
-      margin-bottom: 3.2vh;
+      margin-bottom: 14px;
     }
-    .questions-section p {
-      font-size: 16px;
-      line-height: 1.7;
+    .questions-section .skills-intro p {
+      font-size: 18px;
+      line-height: 1.65;
       color: #F0ECD9;
       opacity: 0.7;
-      margin-bottom: 1.6vh;
+      margin-bottom: 14px;
     }
-    .questions-section .q-list {
-      margin: 3vh 0;
+    .questions-section .example-block {
+      margin-bottom: 18px;
     }
-    .questions-section .q-list .q-item {
-      font-size: 18px;
-      font-weight: 500;
+    .questions-section .example-block .q {
+      font-size: 18.88px;
+      font-style: italic;
       color: #F0ECD9;
-      opacity: 0.85;
-      padding: 10px 0 10px 24px;
-      border-left: 2px solid #c8893f;
-      margin-bottom: 12px;
-      line-height: 1.4;
+      margin: 6px 0;
+      line-height: 1.45;
     }
-    .questions-section .cta-row {
+    .questions-section .kicker {
+      font-size: 20px;
+      color: #F0ECD9;
+      opacity: 0.7;
+      margin-top: 6px;
+    }
+    .questions-section .skills-cta {
+      margin-top: 3vh;
+    }
+    .questions-section .skills-cta .cta-ghost {
+      display: inline-flex;
+      padding: 0 28px;
+      height: 44px;
+      align-items: center;
+      border: 1px solid rgba(240,236,217,0.3);
+      border-radius: 8px;
+      color: #F0ECD9;
+      opacity: 0.7;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', system-ui, sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .questions-section .skills-cta .cta-ghost:hover {
+      opacity: 1;
+    }
+
+    /* ── Skills flow (right column) ── */
+    .skills-flow {
+      min-width: 0;
+    }
+    .skills-step {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 16px;
+    }
+    .skills-rail {
       display: flex;
-      gap: 1.2vw;
-      margin-top: 4vh;
-      flex-wrap: wrap;
+      flex-direction: column;
       align-items: center;
     }
-    .questions-section .btn-primary {
-      background: #F0ECD9;
-      color: #2E333A;
+    .skills-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #303030;
+      color: #949494;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      flex-shrink: 0;
     }
-    .questions-section .btn-secondary {
-      color: #F0ECD9;
-      border-color: #F0ECD9;
+    .skills-line {
+      width: 2px;
+      flex: 1;
+      background: #2C2C2C;
+      min-height: 12px;
     }
-    .questions-section .btn-secondary:hover {
-      background: #F0ECD9;
-      color: #2E333A;
+    .skills-card {
+      background: #262626;
+      border: 1px solid #2C2C2C;
+      border-radius: 12px;
+      padding: 18px 20px 16px;
+      margin-bottom: 12px;
+    }
+    .skills-card .step-name {
+      font-size: 21.6px;
+      font-weight: 600;
+      color: #ECECEC;
+      margin-bottom: 10px;
+    }
+    .skills-card .step-name em {
+      font-style: normal;
+      color: #c8893f;
+    }
+    .skills-card .ask {
+      font-size: 15px;
+      color: #949494;
+      line-height: 1.45;
+    }
+    .skills-card .saved {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 15px;
+      color: #949494;
+      line-height: 1.4;
+    }
+    .skills-card .badge {
+      background: #2a1a00;
+      color: #c8893f;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .skills-card .hits {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-card .hits li {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 10px;
+      padding: 4px 0 10px;
+    }
+    .skills-card .hits .mo {
+      font-size: 11px;
+      font-weight: 600;
+      color: #656565;
+    }
+    .skills-card .hits .q {
+      font-size: 14px;
+      color: #949494;
+      font-style: italic;
+    }
+    .skills-card .footer {
+      font-size: 13px;
+      color: #656565;
+      margin-top: 12px;
+      border-top: 1px solid #2C2C2C;
+      padding-top: 12px;
     }
 
     /* ── Trust section (dark, left-aligned) ── */
@@ -1365,6 +1481,9 @@
       .build-section h2 { font-size: 36px; }
       .dark-section h2 { font-size: 36px; }
       .cream-section h2 { font-size: 36px; }
+      .questions-section .skills-layout {
+        grid-template-columns: 1fr;
+      }
       .questions-section h2 { font-size: 36px; }
       .trust-section h2 { font-size: 36px; }
       .pricing-section h2 { font-size: 36px; }
@@ -1770,17 +1889,71 @@
 
   <!-- Questions / Skills section -->
   <section class="questions-section">
-    <div class="inner">
-      <h2>The questions you keep circling — save them once.</h2>
-      <p>Not "summarise my notes." Something with teeth. You say it in plain English. ulana sharpens the question, then runs it across the vault every time the wiki builds. The answer lands as a report — next to the notes it used, so you can see why.</p>
-      <div class="q-list">
-        <div class="q-item">"What have I changed my mind on?"</div>
-        <div class="q-item">"What am I contradicting myself about?"</div>
-        <div class="q-item">"What have I quietly concluded and never wrote down?"</div>
+    <div class="skills-layout">
+      <div class="skills-intro">
+        <h2>The questions you keep circling — save them once.</h2>
+        <p>
+          Not "summarise my notes." Something with teeth. You say it in plain English. ulana sharpens the question, then runs it across the vault every time the wiki builds. The answer lands as a report — next to the notes it used, so you can see why.
+        </p>
+        <div class="example-block">
+          <p class="q">"What have I changed my mind on?"</p>
+          <p class="q">"What am I contradicting myself about?"</p>
+          <p class="q">"What have I quietly concluded and never wrote down?"</p>
+        </div>
+        <p class="kicker">You set it up once. It runs daily. You don't have to remember to ask.</p>
+        <div class="skills-cta">
+          <a class="cta-ghost" href="#">Buy ulana</a>
+        </div>
       </div>
-      <p>You set it up once. It runs daily. You don't have to remember to ask.</p>
-      <div class="cta-row">
-        <button class="btn-primary">Buy ulana</button>
+
+      <div class="skills-flow" aria-hidden="true">
+        <div class="skills-step">
+          <div class="skills-rail">
+            <div class="skills-num">1</div>
+            <div class="skills-line"></div>
+          </div>
+          <div class="skills-card">
+            <div class="step-name">Ask</div>
+            <div class="ask">"Where did I change my mind and never say so?"</div>
+          </div>
+        </div>
+        <div class="skills-step">
+          <div class="skills-rail">
+            <div class="skills-num">2</div>
+            <div class="skills-line"></div>
+          </div>
+          <div class="skills-card">
+            <div class="step-name">Save as a <em>skill</em></div>
+            <div class="saved">
+              <span class="badge">Skill</span>
+              <span>Find where an older note and a newer note disagree. Show what flipped, and when the old claim disappeared.</span>
+            </div>
+          </div>
+        </div>
+        <div class="skills-step">
+          <div class="skills-rail">
+            <div class="skills-num">3</div>
+            <div class="skills-line"></div>
+          </div>
+          <div class="skills-card">
+            <div class="step-name">Get a report</div>
+            <ul class="hits">
+              <li>
+                <span class="mo">Earlier</span>
+                <span class="q">"I'll organise the vault before I write."</span>
+              </li>
+              <li>
+                <span class="mo">Later</span>
+                <span class="q">"The system is why I stopped writing."</span>
+              </li>
+              <li>
+                <span class="mo">Never</span>
+                <span class="q">You never wrote which one you believe now.</span>
+              </li>
+            </ul>
+            <div class="footer">Runs with every wiki build.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
