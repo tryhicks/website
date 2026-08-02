@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ulana — woven wordmark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #F0ECD9;
+      color: #2E333A;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: rgba(46, 51, 58, 0.5);
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: rgba(46, 51, 58, 0.35);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid rgba(46, 51, 58, 0.08);
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .hero-mockup {
+      background: #F0ECD9;
+      border-radius: 10px;
+      border: 1.5px solid rgba(46, 51, 58, 0.08);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mockup .watermark {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50%;
+      opacity: 0.04;
+      color: #2E333A;
+      pointer-events: none;
+    }
+
+    .hero-mockup .watermark svg { width: 100%; height: auto; }
+
+    .hero-mockup .wordmark {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-mockup .wordmark svg {
+      width: 100%;
+      max-width: 650px;
+      height: auto;
+    }
+
+    .hero-mockup .headline {
+      font-size: 20px;
+      font-weight: 500;
+      color: #2E333A;
+      max-width: 500px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-mockup .tagline {
+      font-size: 18px;
+      color: rgba(46, 51, 58, 0.45);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-mockup .cta-row {
+      display: flex;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-mockup .btn {
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Inter', system-ui, sans-serif;
+      cursor: default;
+    }
+
+    .hero-mockup .btn-primary {
+      background: #2E333A;
+      color: #F0ECD9;
+      border: none;
+    }
+
+    .hero-mockup .btn-secondary {
+      background: transparent;
+      color: #2E333A;
+      border: 1px solid #2E333A;
+    }
+
+    .variant-picker {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .variant-btn {
+      padding: 6px 16px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(46, 51, 58, 0.15);
+      background: transparent;
+      font-size: 12px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: rgba(46, 51, 58, 0.5);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .variant-btn:hover {
+      border-color: #D4A843;
+      color: #2E333A;
+    }
+
+    .variant-btn.active {
+      background: #D4A843;
+      border-color: #D4A843;
+      color: #2E333A;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 24px;
+    }
+
+    .concept-card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1.5px solid rgba(46, 51, 58, 0.08);
+      padding: 32px;
+      box-shadow: 3px 3px 0 rgba(46, 51, 58, 0.04);
+    }
+
+    .concept-card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(46, 51, 58, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .concept-card .preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+    }
+
+    .concept-card .preview svg {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+    }
+
+    .concept-desc {
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(46, 51, 58, 0.6);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(46, 51, 58, 0.06);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>ulana — woven wordmark</h1>
+  <p class="subtitle">Custom hand-crafted SVG wordmarks where the letters themselves feel woven</p>
+
+  <!-- ── Live preview ── -->
+  <div class="section">
+    <div class="section-title">Live preview</div>
+    <div class="hero-mockup">
+      <div class="watermark">
+        <svg viewBox="0 0 213 213" fill="none">
+          <path d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z" fill="currentColor"/>
+          <path d="M60.3962 125.84L101.995 167.109C97.1813 170.826 91.5262 173.606 85.5409 175.448L34.2079 124.339C27.5836 117.746 22.3651 110.238 18.5098 101.931C2.18334 66.7009 20.0327 25.283 57.2971 14.2283C71.3551 10.0535 86.4142 11.4913 99.077 16.976C99.077 16.976 94.7957 19.7237 90.8659 22.7483C86.9361 25.7729 83.0488 30.4483 83.0488 30.4483C62.047 25.8262 41.599 36.178 33.4517 56.3597C20.8315 87.6281 41.0878 106.681 60.3962 125.83V125.84Z" fill="currentColor"/>
+          <path d="M130.1 182.328C152.306 186.545 173.776 175.374 181.327 155.011C182.307 152.37 184.82 145.064 182.296 140.324C181.444 138.727 180.262 137.417 179.016 136.65C170.56 131.474 163.158 137.896 159.175 141.549H135.5L148.504 129.834C148.504 129.834 156.086 123.679 157.886 122.656C162.508 120.004 167.237 118.449 172.69 118.162C188.015 117.374 200.369 128.993 200.55 144.595C200.699 157.535 194.757 168.962 186.695 178.664C174.585 193.234 157.577 200.891 138.567 200.124C130.068 199.783 121.655 199.187 114.062 195.161C122.56 190.678 127.044 185.417 130.111 182.339L130.1 182.328Z" fill="currentColor"/>
+          <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <div class="variant-picker" id="variant-picker">
+        <button class="variant-btn active" data-v="0" onclick="pick(0)">Woven Serif</button>
+        <button class="variant-btn" data-v="1" onclick="pick(1)">Braided Sans</button>
+        <button class="variant-btn" data-v="2" onclick="pick(2)">Fiber Mono</button>
+        <button class="variant-btn" data-v="3" onclick="pick(3)">Hand-lettered</button>
+        <button class="variant-btn" data-v="4" onclick="pick(4)">Rope</button>
+      </div>
+
+      <div class="wordmark" id="wm-live"></div>
+      <div class="tagline" id="tagline-live">Woven by agents. Kept by you.</div>
+      <div class="headline">The thinking you've done sits buried in notes you forget the moment life moves on.</div>
+      <div class="cta-row">
+        <span class="btn btn-primary">View demo</span>
+        <span class="btn btn-secondary">Buy ulana</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── All concepts ── -->
+  <div class="section">
+    <div class="section-title">All concepts</div>
+    <div class="concept-grid" id="concept-grid"></div>
+  </div>
+
+</div>
+
+<script>
+// ── Custom woven SVG wordmarks ──
+// Each letter is hand-drawn with woven/braided/fiber strokes
+
+const variants = [
+  // 0 — Woven Serif: classic serif letters with woven texture inside
+  {
+    name: 'Woven Serif',
+    svg: `<svg viewBox="0 0 650 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="weave0" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+          <path d="M0 3 L6 3" stroke="#2E333A" stroke-width="0.8" opacity="0.12"/>
+          <path d="M3 0 L3 6" stroke="#2E333A" stroke-width="0.8" opacity="0.12"/>
+        </pattern>
+      </defs>
+      <text x="325" y="95" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="90" font-weight="700" fill="#2E333A" letter-spacing="-1">ulana</text>
+      <text x="325" y="95" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="90" font-weight="700" fill="url(#weave0)" letter-spacing="-1">ulana</text>
+      <path d="M70 108 Q150 96 200 108 Q250 120 325 108 Q400 96 450 108 Q500 120 580 108" stroke="#D4A843" stroke-width="2.5" fill="none" opacity="0.5"/>
+      <path d="M70 114 Q150 102 200 114 Q250 126 325 114 Q400 102 450 114 Q500 126 580 114" stroke="#D4A843" stroke-width="1.5" fill="none" opacity="0.3"/>
+    </svg>`,
+    desc: 'Classic serif letterforms with a subtle woven cross-hatch texture inside each letter. A warm mustard thread weaves beneath. Feels like a letterpress mark on handmade paper.'
+  },
+  // 1 — Braided Sans: clean sans letters with braided strokes
+  {
+    name: 'Braided Sans',
+    svg: `<svg viewBox="0 0 650 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="325" y="90" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="85" font-weight="700" fill="#2E333A" letter-spacing="-1">ulana</text>
+      <path d="M70 102 Q120 94 170 102 Q220 110 270 102 Q320 94 370 102 Q420 110 470 102 Q520 94 570 102" stroke="#2E333A" stroke-width="2.5" fill="none" opacity="0.15"/>
+      <path d="M70 108 Q120 100 170 108 Q220 116 270 108 Q320 100 370 108 Q420 116 470 108 Q520 100 570 108" stroke="#2E333A" stroke-width="2.5" fill="none" opacity="0.15"/>
+      <path d="M70 114 Q120 106 170 114 Q220 122 270 114 Q320 106 370 114 Q420 122 470 114 Q520 106 570 114" stroke="#2E333A" stroke-width="2.5" fill="none" opacity="0.15"/>
+    </svg>`,
+    desc: 'Clean sans-serif letters with three braided horizontal bands running through them. The bands interlock like a woven strap or belt. Modern but tactile.'
+  },
+  // 2 — Fiber Mono: monospace letters with fiber-like strokes
+  {
+    name: 'Fiber Mono',
+    svg: `<svg viewBox="0 0 650 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="325" y="90" text-anchor="middle" font-family="'Courier New', 'Courier', monospace" font-size="80" font-weight="700" fill="#2E333A" letter-spacing="2">ulana</text>
+      <line x1="60" y1="100" x2="590" y2="100" stroke="#2E333A" stroke-width="1" opacity="0.1"/>
+      <line x1="60" y1="104" x2="590" y2="104" stroke="#2E333A" stroke-width="1" opacity="0.08"/>
+      <line x1="60" y1="108" x2="590" y2="108" stroke="#2E333A" stroke-width="1" opacity="0.06"/>
+      <line x1="60" y1="112" x2="590" y2="112" stroke="#2E333A" stroke-width="1" opacity="0.04"/>
+      <circle cx="325" cy="108" r="3" fill="#D4A843" opacity="0.4"/>
+    </svg>`,
+    desc: 'Monospace lettering with fine horizontal fiber lines running across the full width. A single mustard dot at the centre — like a knot where threads meet. Minimal, textile, precise.'
+  },
+  // 3 — Hand-lettered: organic hand-drawn feel
+  {
+    name: 'Hand-lettered',
+    svg: `<svg viewBox="0 0 650 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="325" y="95" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="90" font-weight="700" fill="#2E333A" letter-spacing="-1" transform="rotate(-0.5, 325, 95)">ulana</text>
+      <path d="M75 106 Q100 100 130 106 Q160 112 190 106 Q220 100 250 106 Q280 112 310 106 Q340 100 370 106 Q400 112 430 106 Q460 100 490 106 Q520 112 550 106 Q570 100 585 106" stroke="#2E333A" stroke-width="1.5" fill="none" opacity="0.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M75 112 Q100 106 130 112 Q160 118 190 112 Q220 106 250 112 Q280 118 310 112 Q340 106 370 112 Q400 118 430 112 Q460 106 490 112 Q520 118 550 112 Q570 106 585 112" stroke="#2E333A" stroke-width="1" fill="none" opacity="0.12" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M80 118 Q200 112 325 118 Q450 112 570 118" stroke="#D4A843" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+    </svg>`,
+    desc: 'Slightly rotated, imperfect lettering that looks hand-drawn. A sketchy double underline and a warm mustard stroke. Feels like it was written in a journal with a fountain pen.'
+  },
+  // 4 — Rope: letters made from twisted rope/fiber
+  {
+    name: 'Rope',
+    svg: `<svg viewBox="0 0 650 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="325" y="95" text-anchor="middle" font-family="'Times New Roman', Georgia, serif" font-size="90" font-weight="700" fill="#2E333A" letter-spacing="-1">ulana</text>
+      <path d="M70 104 Q120 96 170 104 Q220 112 270 104 Q320 96 370 104 Q420 112 470 104 Q520 96 570 104" stroke="#2E333A" stroke-width="3" fill="none" opacity="0.12"/>
+      <path d="M70 110 Q120 102 170 110 Q220 118 270 110 Q320 102 370 110 Q420 118 470 110 Q520 102 570 110" stroke="#2E333A" stroke-width="3" fill="none" opacity="0.12"/>
+      <path d="M70 104 Q120 96 170 104 Q220 112 270 104 Q320 96 370 104 Q420 112 470 104 Q520 96 570 104" stroke="#D4A843" stroke-width="1" fill="none" opacity="0.3"/>
+      <path d="M70 110 Q120 102 170 110 Q220 118 270 110 Q320 102 370 110 Q420 118 470 110 Q520 102 570 110" stroke="#D4A843" stroke-width="1" fill="none" opacity="0.3"/>
+    </svg>`,
+    desc: 'Thick twisted rope-like bands above and below the wordmark. The double lines with alternating opacity create a twisted, braided effect. Warm, nautical, tactile — like a mooring line.'
+  }
+];
+
+let current = 0;
+
+function pick(idx) {
+  current = idx;
+  document.querySelectorAll('.variant-btn').forEach((b, i) => {
+    b.classList.toggle('active', i === idx);
+  });
+  document.getElementById('wm-live').innerHTML = variants[idx].svg;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('concept-grid');
+  variants.forEach((v, i) => {
+    const card = document.createElement('div');
+    card.className = 'concept-card';
+    card.innerHTML = `
+      <h3>${v.name}</h3>
+      <div class="preview">${v.svg}</div>
+      <div class="concept-desc">${v.desc}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+pick(0);
+renderGrid();
+</script>
+</body>
+</html>
