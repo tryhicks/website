@@ -13,7 +13,6 @@
     html, body {
       height: 100%;
       width: 100%;
-      overflow: hidden;
     }
 
     body {
@@ -24,33 +23,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    .page {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* ── Background watermark ── */
-    .watermark {
-      position: absolute;
-      right: -5vw;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 85vw;
-      max-width: 1200px;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.06;
-      color: #2E333A;
-    }
-
-    .watermark svg {
-      width: 100%;
-      height: auto;
-    }
-
-    /* ── Top nav (fixed, standard size) ── */
+    /* ── Top nav (fixed) ── */
     .top-nav {
       position: fixed;
       top: 0;
@@ -60,7 +33,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px 5vw;
-      z-index: 10;
+      z-index: 100;
     }
 
     .nav-icon {
@@ -94,8 +67,33 @@
       color: #F0ECD9;
     }
 
-    /* ── Hero content ── */
+    /* ── Hero section ── */
     .hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .watermark {
+      position: absolute;
+      right: -5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 85vw;
+      max-width: 1200px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.06;
+      color: #2E333A;
+    }
+
+    .watermark svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-content {
       position: relative;
       z-index: 1;
       width: 100vw;
@@ -176,9 +174,8 @@
       margin-top: 1.8vh;
     }
 
-    /* ── Bottom wordmark ── */
     .bottom-brand {
-      position: fixed;
+      position: absolute;
       bottom: 5vh;
       left: 5vw;
       z-index: 10;
@@ -198,11 +195,43 @@
       color: #2E333A;
       margin-top: 4px;
     }
+
+    /* ── Screenshot section ── */
+    .screenshot-section {
+      width: 100vw;
+      min-height: 100vh;
+      background: #2E333A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8vh 5vw;
+    }
+
+    .screenshot-section img {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- Background watermark -->
+  <!-- Top nav (fixed) -->
+  <nav class="top-nav">
+    <div class="nav-icon">
+      <svg viewBox="0 0 213 213" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z" fill="currentColor"/>
+        <path d="M60.3962 125.84L101.995 167.109C97.1813 170.826 91.5262 173.606 85.5409 175.448L34.2079 124.339C27.5836 117.746 22.3651 110.238 18.5098 101.931C2.18334 66.7009 20.0327 25.283 57.2971 14.2283C71.3551 10.0535 86.4142 11.4913 99.077 16.976C99.077 16.976 94.7957 19.7237 90.8659 22.7483C86.9361 25.7729 83.0488 30.4483 83.0488 30.4483C62.047 25.8262 41.599 36.178 33.4517 56.3597C20.8315 87.6281 41.0878 106.681 60.3962 125.83V125.84Z" fill="currentColor"/>
+        <path d="M130.1 182.328C152.306 186.545 173.776 175.374 181.327 155.011C182.307 152.37 184.82 145.064 182.296 140.324C181.444 138.727 180.262 137.417 179.016 136.65C170.56 131.474 163.158 137.896 159.175 141.549H135.5L148.504 129.834C148.504 129.834 156.086 123.679 157.886 122.656C162.508 120.004 167.237 118.449 172.69 118.162C188.015 117.374 200.369 128.993 200.55 144.595C200.699 157.535 194.757 168.962 186.695 178.664C174.585 193.234 157.577 200.891 138.567 200.124C130.068 199.783 121.655 199.187 114.062 195.161C122.56 190.678 127.044 185.417 130.111 182.339L130.1 182.328Z" fill="currentColor"/>
+        <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
+      </svg>
+    </div>
+    <button class="btn-buy">Buy ulana</button>
+  </nav>
+
+  <!-- Hero section -->
+  <section class="hero">
     <div class="watermark">
       <svg viewBox="0 0 213 213" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z" fill="currentColor"/>
@@ -212,21 +241,7 @@
       </svg>
     </div>
 
-    <!-- Top nav (fixed, standard size) -->
-    <nav class="top-nav">
-      <div class="nav-icon">
-          <svg viewBox="0 0 213 213" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z" fill="currentColor"/>
-            <path d="M60.3962 125.84L101.995 167.109C97.1813 170.826 91.5262 173.606 85.5409 175.448L34.2079 124.339C27.5836 117.746 22.3651 110.238 18.5098 101.931C2.18334 66.7009 20.0327 25.283 57.2971 14.2283C71.3551 10.0535 86.4142 11.4913 99.077 16.976C99.077 16.976 94.7957 19.7237 90.8659 22.7483C86.9361 25.7729 83.0488 30.4483 83.0488 30.4483C62.047 25.8262 41.599 36.178 33.4517 56.3597C20.8315 87.6281 41.0878 106.681 60.3962 125.83V125.84Z" fill="currentColor"/>
-            <path d="M130.1 182.328C152.306 186.545 173.776 175.374 181.327 155.011C182.307 152.37 184.82 145.064 182.296 140.324C181.444 138.727 180.262 137.417 179.016 136.65C170.56 131.474 163.158 137.896 159.175 141.549H135.5L148.504 129.834C148.504 129.834 156.086 123.679 157.886 122.656C162.508 120.004 167.237 118.449 172.69 118.162C188.015 117.374 200.369 128.993 200.55 144.595C200.699 157.535 194.757 168.962 186.695 178.664C174.585 193.234 157.577 200.891 138.567 200.124C130.068 199.783 121.655 199.187 114.062 195.161C122.56 190.678 127.044 185.417 130.111 182.339L130.1 182.328Z" fill="currentColor"/>
-            <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
-          </svg>
-        </div>
-      <button class="btn-buy">Buy ulana</button>
-    </nav>
-
-    <!-- Hero content -->
-    <section class="hero">
+    <div class="hero-content">
       <div class="hero-inner">
         <h1>The thinking you've done sits buried in notes you forget the moment life moves on.</h1>
         <p class="sub-headline">ulana reads your notes, finds the connections, and builds a private wiki you can query.</p>
@@ -236,13 +251,17 @@
         </div>
         <p class="feature-list">Desktop app · local-first · no account · no telemetry · one-time payment</p>
       </div>
-    </section>
+    </div>
 
-    <!-- Bottom branding -->
     <div class="bottom-brand">
       <div class="wordmark-text">ulana</div>
       <p class="tagline">Woven by agents. Kept by you.</p>
     </div>
-  </div>
+  </section>
+
+  <!-- Screenshot section -->
+  <section class="screenshot-section">
+    <img src="assets/photo_2026-08-02_15-09-11.jpg" alt="Ulana app screenshot">
+  </section>
 </body>
 </html>
