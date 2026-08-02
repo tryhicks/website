@@ -210,6 +210,30 @@
       margin-top: 4px;
     }
 
+    /* ── Scroll-down arrow ── */
+    .scroll-down {
+      position: absolute;
+      bottom: 5vh;
+      right: 5vw;
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #2E333A;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+      animation: sd-bounce 2s ease-in-out infinite;
+    }
+    .scroll-down:hover { opacity: 0.8; }
+    .scroll-down svg { width: 28px; height: 28px; }
+    @keyframes sd-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
     /* ── Screenshot section ── */
     .screenshot-section {
       width: 100vw;
@@ -1533,6 +1557,12 @@
       <div class="wordmark-text">ulana</div>
       <p class="tagline">Woven by agents. Kept by you.</p>
     </div>
+
+    <div class="scroll-down" onclick="scrollToNext(this)" title="Scroll down">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>
+      </svg>
+    </div>
   </section>
 
   <!-- Screenshot section -->
@@ -2015,6 +2045,18 @@
 </div><!-- /snap-scroll -->
 
   <script>
+    function scrollToNext(el) {
+      const snap = document.querySelector('.snap-scroll');
+      if (!snap) return;
+      const sections = snap.querySelectorAll('section');
+      // Find the current section (the one containing the clicked arrow)
+      const current = el.closest('section');
+      const idx = Array.from(sections).indexOf(current);
+      if (idx >= 0 && idx < sections.length - 1) {
+        sections[idx + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     // Toggle between Threads and Wiki views
     const app = document.getElementById('hero-app');
     const tabThreads = app.querySelector('.aw-tab-threads');
