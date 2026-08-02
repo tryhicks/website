@@ -757,217 +757,230 @@
     .app-window.show-wiki .aw-topic-page .wiki-link { color: var(--quiet); text-decoration: underline; text-underline-offset: 2px; cursor: default; }
     .app-window.show-wiki .aw-topic-page .prose em { font-style: italic; color: var(--quiet); }
 
-    /* ── One-click section (cream bg, two-column) ── */
-    .oneclick-section {
+    /* ── Build section (cream bg, two-column: text left, builder panel right) ── */
+    .build-section {
       width: 100vw;
-      min-height: 100vh;
       background: #F0ECD9;
-      display: flex;
-      align-items: center;
-      padding: 8vh 5vw;
-      gap: 5vw;
-    }
-    .oneclick-left {
-      flex: 1;
-      max-width: 560px;
-    }
-    .oneclick-left h2 {
-      font-size: 42px;
-      font-weight: 700;
-      line-height: 1.2;
-      color: #2E333A;
-      margin-bottom: 3.2vh;
-    }
-    .oneclick-left p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #2E333A;
-      opacity: 0.75;
-      margin-bottom: 1.6vh;
-    }
-    .oneclick-left .emph {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #2E333A;
-      opacity: 0.9;
-      font-style: italic;
-      margin-top: 2.4vh;
-    }
-    .oneclick-right {
-      flex: 1;
-      max-width: 700px;
-      min-width: 0;
-    }
-
-    /* ── Compact app window (one-click section) ── */
-    .compact-window {
-      width: 100%;
-      background: #1C1C1C;
-      border: 1px solid #2C2C2C;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      padding: 72px 5vw 80px;
+      position: relative;
+      z-index: 2;
       text-align: left;
     }
-    .cw-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border-bottom: 1px solid #2C2C2C;
-    }
-    .cw-logo {
-      width: 16px;
-      height: 16px;
-      color: #ECECEC;
-      flex-shrink: 0;
-    }
-    .cw-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #ECECEC;
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .cw-tabs {
-      display: flex;
-      gap: 16px;
-    }
-    .cw-tabs span {
-      font-size: 12px;
-      color: #656565;
-      padding-bottom: 2px;
-      border-bottom: 2px solid transparent;
-    }
-    .cw-tabs span.on {
-      color: #ECECEC;
-      border-bottom-color: #ECECEC;
-    }
-    .cw-body {
+    .build-section .build-layout {
+      max-width: 1080px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 240px;
-      min-height: 340px;
+      grid-template-columns: 1fr minmax(280px, 380px);
+      gap: 40px 48px;
+      align-items: start;
     }
-    .cw-editor {
-      padding: 24px 20px 20px;
-      border-right: 1px solid #2C2C2C;
+    .build-section .build-copy {
+      min-width: 0;
     }
-    .cw-editor .cw-note-title {
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #ECECEC;
+    .build-section h2 {
+      font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      color: #2E333A;
+      margin-bottom: 20px;
+    }
+    .build-section p {
+      font-size: 1.125rem;
+      line-height: 1.65;
+      color: #2E333A;
+      opacity: 0.7;
       margin-bottom: 16px;
     }
-    .cw-editor .cw-block {
-      display: flex;
-      align-items: flex-start;
-      gap: 4px;
-      margin-bottom: 10px;
+    .build-section p strong { color: #2E333A; font-weight: 500; }
+    .build-section .close-words {
+      margin-top: 28px;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      color: #2E333A;
+      line-height: 1.5;
+      opacity: 0.9;
     }
-    .cw-editor .cw-handles {
-      width: 28px;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: flex-end;
-      padding-top: 2px;
-    }
-    .cw-editor .cw-handles .mic {
-      width: 14px; height: 14px;
+    .build-section .close-words em {
+      font-style: normal;
       color: #c8893f;
     }
-    .cw-editor .cw-para {
-      flex: 1;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #ECECEC;
-      min-width: 0;
+
+    /* ── Builder panel (dark card on cream bg) ── */
+    .builder-panel {
+      background: var(--page);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      text-align: left;
     }
-    .cw-editor .cw-para.quiet {
-      color: #949494;
-    }
-    .cw-editor .cw-para .cur {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: #c8893f;
-      vertical-align: text-bottom;
-      margin-left: 1px;
-      animation: blink 1s step-end infinite;
-    }
-    .cw-chat-panel {
+    .builder-panel .bp-body {
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
-      background: #1C1C1C;
+      gap: 18px;
     }
-    .cw-chat-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 14px 10px;
-      border-bottom: 1px solid #2C2C2C;
-    }
-    .cw-chat-head .l {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: #ECECEC;
-      font-weight: 500;
-    }
-    .cw-chat-head .l svg { width: 12px; height: 12px; }
-    .cw-chat-msgs {
-      flex: 1;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .cw-chat-msgs .m {
-      font-size: 12px;
-      line-height: 1.5;
-      padding: 8px 10px;
+    .builder-panel .bp-stats {
+      border: 1px solid var(--rule);
       border-radius: 8px;
+      background: var(--card);
+      padding: 16px;
     }
-    .cw-chat-msgs .m.user {
-      align-self: flex-end;
-      max-width: 90%;
-      background: #303030;
-      color: #ECECEC;
-    }
-    .cw-chat-msgs .m.agent {
-      align-self: flex-start;
-      max-width: 95%;
-      color: #949494;
-      padding: 2px 0;
-    }
-    .cw-chat-msgs .m.agent strong { color: #ECECEC; font-weight: 500; }
-    .cw-chat-input {
-      margin: 8px;
-      border: 1px solid #2C2C2C;
-      border-radius: 10px;
-      padding: 8px 10px;
+    .builder-panel .bp-stats-top {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 12px;
     }
-    .cw-chat-input .ph {
+    .builder-panel .bp-count {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .builder-panel .bp-count-label {
+      font-size: 13px;
+      color: var(--quiet);
+      margin-top: 6px;
+    }
+    .builder-panel .bp-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .builder-panel .bp-badge-new,
+    .builder-panel .bp-badge-upd {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .builder-panel .bp-badge-new {
+      background: var(--sage-soft);
+      color: var(--accent);
+    }
+    .builder-panel .bp-badge-upd {
+      background: #302820;
+      color: #d4aa8d;
+    }
+    .builder-panel .bp-tokens {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
       font-size: 12px;
-      color: #656565;
+      color: var(--quiet);
     }
-    .cw-chat-input .send {
-      width: 22px; height: 22px;
-      border-radius: 4px;
-      background: #303030;
-      color: #ECECEC;
+    .builder-panel .bp-help {
+      font-size: 13px;
+      color: var(--quiet);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .builder-panel .bp-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+    .builder-panel .bp-skills-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--quiet);
+    }
+    .builder-panel .bp-skill {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .builder-panel .bp-check {
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      border-radius: 3px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #1a1918;
     }
-    .cw-chat-input .send svg { width: 12px; height: 12px; }
+    .builder-panel .bp-check svg {
+      width: 11px;
+      height: 11px;
+    }
+    .builder-panel .bp-skill-name {
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .builder-panel .bp-skill-desc {
+      font-size: 12px;
+      color: var(--quiet);
+      margin-top: 3px;
+      line-height: 1.45;
+    }
+    .builder-panel .bp-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--page);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', system-ui, sans-serif;
+      border: none;
+      cursor: default;
+    }
+    .builder-panel .bp-btn .spin {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(28,28,28,0.25);
+      border-top-color: var(--page);
+      border-radius: 50%;
+      animation: bp-spin 0.8s linear infinite;
+    }
+    @keyframes bp-spin { to { transform: rotate(360deg); } }
+    .builder-panel .bp-progress {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 2px;
+    }
+    .builder-panel .bp-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--rule);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .builder-panel .bp-bar-fill {
+      height: 100%;
+      width: 38%;
+      background: var(--accent);
+      border-radius: 999px;
+      animation: bp-bar 4.5s ease-in-out infinite;
+    }
+    @keyframes bp-bar {
+      0%, 100% { width: 38%; }
+      50% { width: 62%; }
+    }
+    .builder-panel .bp-status {
+      font-size: 13px;
+      color: var(--quiet);
+      margin: 0;
+    }
 
     /* ── Dark sections ── */
     .dark-section {
@@ -1300,23 +1313,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .oneclick-section {
-        flex-direction: column;
-        padding: 10vh 5vw;
-        gap: 6vh;
-      }
-      .oneclick-left {
-        max-width: 100%;
-      }
-      .oneclick-right {
-        max-width: 100%;
-        width: 100%;
-      }
-      .cw-body {
+      .build-section .build-layout {
         grid-template-columns: 1fr;
-      }
-      .cw-chat-panel {
-        border-top: 1px solid #2C2C2C;
       }
       .app-window {
         grid-template-columns: 180px 1fr;
@@ -1330,7 +1328,7 @@
       .app-window.show-wiki .aw-topic-page { display: none; }
       h1 { font-size: 36px; }
       .sub-headline { font-size: 36px; }
-      .oneclick-left h2 { font-size: 32px; }
+      .build-section h2 { font-size: 1.75rem; }
       .dark-section h2 { font-size: 32px; }
       .cream-section h2 { font-size: 32px; }
       .questions-section h2 { font-size: 32px; }
@@ -1658,69 +1656,76 @@
     </div>
   </section>
 
-  <!-- One-click section: text left, live screenshot right -->
-  <section class="oneclick-section">
-    <div class="oneclick-left">
-      <h2>One click turns your notes into a mind.</h2>
-      <p>Connect a model — local or cloud, your call. Local keeps everything on your machine. Cloud works too.</p>
-      <p>Your notes turn into threads. Threads live in pages. Each page is a topic — and every topic holds the thing your notes say together that no single note says alone. Sometimes two of your notes are arguing. That's the contradiction. You see both.</p>
-      <p>That's how a note gets in: write, talk, or import. Voice sits one click from the mic — and the next build reads it the same as everything else.</p>
-      <p class="emph">Topics. Connections. The contradictions you didn't know were in there.</p>
-    </div>
-    <div class="oneclick-right">
-      <div class="compact-window">
-        <div class="cw-header">
-          <svg class="cw-logo" viewBox="0 0 213 213" fill="none">
-            <path fill="#ECECEC" d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z"/>
-            <path fill="#ECECEC" d="M60.3962 125.84L101.995 167.109C97.1813 170.826 91.5262 173.606 85.5409 175.448L34.2079 124.339C27.5836 117.746 22.3651 110.238 18.5098 101.931C2.18334 66.7009 20.0327 25.283 57.2971 14.2283C71.3551 10.0535 86.4142 11.4913 99.077 16.976C99.077 16.976 94.7957 19.7237 90.8659 22.7483C86.9361 25.7729 83.0488 30.4483 83.0488 30.4483C62.047 25.8262 41.599 36.178 33.4517 56.3597C20.8315 87.6281 41.0878 106.681 60.3962 125.83V125.84Z"/>
-            <path fill="#ECECEC" d="M130.1 182.328C152.306 186.545 173.776 175.374 181.327 155.011C182.307 152.37 184.82 145.064 182.296 140.324C181.444 138.727 180.262 137.417 179.016 136.65C170.56 131.474 163.158 137.896 159.175 141.549H135.5L148.504 129.834C148.504 129.834 156.086 123.679 157.886 122.656C162.508 120.004 167.237 118.449 172.69 118.162C188.015 117.374 200.369 128.993 200.55 144.595C200.699 157.535 194.757 168.962 186.695 178.664C174.585 193.234 157.577 200.891 138.567 200.124C130.068 199.783 121.655 199.187 114.062 195.161C122.56 190.678 127.044 185.417 130.111 182.339L130.1 182.328Z"/>
-            <path fill="#ECECEC" d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z"/>
-          </svg>
-          <span class="cw-title">Who we built this for</span>
-          <div class="cw-tabs">
-            <span class="on">Threads</span>
-            <span>Wiki</span>
-          </div>
-        </div>
-        <div class="cw-body">
-          <div class="cw-editor">
-            <div class="cw-note-title">Who we built this for</div>
-            <div class="cw-block">
-              <div class="cw-handles"></div>
-              <div class="cw-para quiet">Not for people hunting another notes app.</div>
-            </div>
-            <div class="cw-block">
-              <div class="cw-handles"></div>
-              <div class="cw-para">The one who built a vault and walked away from it.</div>
-            </div>
-            <div class="cw-block">
-              <div class="cw-handles"></div>
-              <div class="cw-para quiet">They don't need another place to store notes.</div>
-            </div>
-            <div class="cw-block">
-              <div class="cw-handles">
-                <svg class="mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+  <!-- Build section: text left, builder panel right -->
+  <section class="build-section">
+    <div class="build-layout">
+      <div class="build-copy">
+        <h2>One click turns your notes into a mind.</h2>
+        <p>
+          Connect a model — local or cloud, your call. Local keeps everything on your machine. Cloud works too.
+        </p>
+        <p>
+          Your notes turn into threads. Threads live in pages. Each page is a topic — and every topic holds the thing your notes say together that no single note says alone. Sometimes two of your notes are arguing. That's the contradiction. You see both.
+        </p>
+        <p class="hint">
+          That's how a note gets in: write, talk, or import. Voice sits one click from the mic — and the next build reads it the same as everything else.
+        </p>
+        <p class="close-words">
+          Topics. Connections. <em>The contradictions you didn't know were in there.</em>
+        </p>
+      </div>
+
+      <!-- Wiki Builder panel -->
+      <div class="builder-panel" aria-hidden="true">
+        <div class="bp-body">
+          <div class="bp-stats">
+            <div class="bp-stats-top">
+              <div>
+                <div class="bp-count">420</div>
+                <div class="bp-count-label">notes ready</div>
               </div>
-              <div class="cw-para">That's ulana. Skills keep asking your vault.<span class="cur"></span></div>
-            </div>
-          </div>
-          <div class="cw-chat-panel">
-            <div class="cw-chat-head">
-              <div class="l">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                Chat
+              <div class="bp-badges">
+                <span class="bp-badge-new">12 New</span>
+                <span class="bp-badge-upd">38 Updated</span>
               </div>
             </div>
-            <div class="cw-chat-msgs">
-              <div class="m user">Have I settled who this is for?</div>
-              <div class="m agent"><strong>Mostly.</strong> Abandoned vault builders. You keep drifting toward "everyone" — then walk it back.</div>
+            <div class="bp-tokens">~185,000 tokens · multiple AI calls</div>
+          </div>
+
+          <p class="bp-help">
+            Ingest runs every time — it only reads threads that are new or changed. Skills are optional — check the ones you want to include.
+          </p>
+
+          <hr class="bp-divider">
+
+          <div class="bp-skills-label">Skills</div>
+          <div class="bp-skill">
+            <div class="bp-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
             </div>
-            <div class="cw-chat-input">
-              <span class="ph">Ask ulana...</span>
-              <span class="send">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
-              </span>
+            <div>
+              <div class="bp-skill-name">Where I changed my mind</div>
+              <div class="bp-skill-desc">Surfaces quiet reversals across the vault.</div>
             </div>
+          </div>
+          <div class="bp-skill">
+            <div class="bp-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"></path></svg>
+            </div>
+            <div>
+              <div class="bp-skill-name">What am I contradicting</div>
+              <div class="bp-skill-desc">Finds threads that pull against each other.</div>
+            </div>
+          </div>
+
+          <div class="bp-btn">
+            <span class="spin" aria-hidden="true"></span>
+            Building...
+          </div>
+
+          <div class="bp-progress">
+            <div class="bp-bar"><div class="bp-bar-fill"></div></div>
+            <p class="bp-status">Writing topics… 48 of 126</p>
           </div>
         </div>
       </div>
