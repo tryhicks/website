@@ -240,11 +240,21 @@
       min-height: 100vh;
       background: #2E333A;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 8vh 5vw;
       scroll-snap-align: start;
       scroll-snap-stop: always;
+    }
+    .screenshot-section .ss-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #F0ECD9;
+      margin-bottom: 5vh;
+      text-align: center;
+      max-width: 800px;
     }
 
     /* ── App window mockup ── */
@@ -1567,6 +1577,7 @@
 
   <!-- Screenshot section -->
   <section class="screenshot-section">
+    <h2 class="ss-title">Stop filing. Start connecting.</h2>
     <div class="app-window" id="hero-app">
       <!-- ── Sidebar ── -->
       <aside class="aw-side">
