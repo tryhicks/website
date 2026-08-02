@@ -13,7 +13,8 @@
     html, body {
       height: 100%;
       width: 100%;
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
 
     body {
@@ -22,8 +23,16 @@
       font-family: 'Inter', system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      scroll-snap-type: y mandatory;
+      overflow: hidden;
+    }
+
+    .snap-scroll {
+      height: 100vh;
+      width: 100vw;
       overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
 
     /* ── Top nav (fixed) ── */
@@ -77,6 +86,7 @@
       height: 100vh;
       overflow: hidden;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .watermark {
@@ -210,6 +220,7 @@
       justify-content: center;
       padding: 8vh 5vw;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     /* ── App window mockup ── */
@@ -774,6 +785,7 @@
       display: flex;
       align-items: center;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .build-section .build-layout {
       max-width: 1080px;
@@ -994,13 +1006,14 @@
     /* ── Dark sections ── */
     .dark-section {
       width: 100vw;
-      min-height: 80vh;
+      height: 100vh;
       background: #2E333A;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 10vh 5vw;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .dark-section .inner {
       max-width: 800px;
@@ -1047,13 +1060,14 @@
     /* ── Cream sections ── */
     .cream-section {
       width: 100vw;
-      min-height: 80vh;
+      height: 100vh;
       background: #F0ECD9;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 10vh 5vw;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .cream-section .inner {
       max-width: 800px;
@@ -1085,12 +1099,13 @@
     /* ── Questions section (dark, left-aligned) ── */
     .questions-section {
       width: 100vw;
-      min-height: 80vh;
+      height: 100vh;
       background: #2E333A;
       display: flex;
       align-items: center;
       padding: 10vh 5vw;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .questions-section .inner {
       max-width: 800px;
@@ -1145,12 +1160,13 @@
     /* ── Trust section (dark, left-aligned) ── */
     .trust-section {
       width: 100vw;
-      min-height: 80vh;
+      height: 100vh;
       background: #2E333A;
       display: flex;
       align-items: center;
       padding: 10vh 5vw;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .trust-section .inner {
       max-width: 800px;
@@ -1192,12 +1208,13 @@
     /* ── Pricing section (cream) ── */
     .pricing-section {
       width: 100vw;
-      min-height: 80vh;
+      height: 100vh;
       background: #F0ECD9;
       display: flex;
       align-items: center;
       padding: 10vh 5vw;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .pricing-section .inner {
       max-width: 800px;
@@ -1254,7 +1271,7 @@
     /* ── Closing CTA section ── */
     .closing-section {
       width: 100vw;
-      min-height: 60vh;
+      height: 100vh;
       background: #2E333A;
       display: flex;
       align-items: center;
@@ -1262,6 +1279,7 @@
       padding: 10vh 5vw;
       text-align: center;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .closing-section .inner {
       max-width: 700px;
@@ -1295,6 +1313,7 @@
       flex-wrap: wrap;
       gap: 16px;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .footer .left {
       display: flex;
@@ -1367,6 +1386,8 @@
     </div>
     <button class="btn-buy">Buy ulana</button>
   </nav>
+
+  <div class="snap-scroll">
 
   <!-- Hero section -->
   <section class="hero">
@@ -1828,6 +1849,8 @@
       <a href="#">Support</a>
     </div>
   </footer>
+
+</div><!-- /snap-scroll -->
 
   <script>
     // Toggle between Threads and Wiki views
