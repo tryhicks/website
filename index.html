@@ -1677,6 +1677,161 @@
       .pricing-section h2 { font-size: 36px; }
       .closing-section h2 { font-size: 36px; }
     }
+
+    /* ── Phone responsive ── */
+    @media (max-width: 600px) {
+      .snap-scroll {
+        scroll-snap-type: none;
+      }
+
+      .hero, .screenshot-section, .build-section, .questions-section,
+      .trust-section, .pricing-section, .closing-section,
+      .dark-section, .cream-section, .footer {
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+      }
+
+      .hero {
+        height: auto;
+        min-height: 100dvh;
+      }
+      .hero-content {
+        height: auto;
+        min-height: 100dvh;
+        padding: 80px 5vw 40px;
+      }
+      h1 { font-size: 26px; }
+      .sub-headline { font-size: 24px; margin-top: 16px; }
+      .hero-inner { max-width: 100%; }
+      .cta-row {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 28px;
+      }
+      .cta-row .btn-primary,
+      .cta-row .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+        font-size: 15px;
+      }
+      .feature-list { font-size: 12px; margin-top: 16px; }
+      .bottom-brand { margin-top: 40px; }
+      .wordmark-text { font-size: clamp(36px, 20vw, 60px); }
+      .tagline { font-size: 16px; }
+      .scroll-down { display: none; }
+
+      .top-nav { padding: 12px 4vw; }
+      .btn-buy { padding: 7px 16px; font-size: 12px; }
+
+      .screenshot-section {
+        height: auto;
+        min-height: auto;
+        padding: 48px 4vw;
+      }
+      .screenshot-section .ss-title { font-size: 24px; margin-bottom: 24px; }
+      .app-window {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 320px;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      .app-window .aw-side { display: none; }
+      .app-window .aw-chat { display: none; }
+      .app-window .aw-topics-pane { display: none; }
+      .app-window .aw-topic-page { display: none; }
+      .app-window.show-wiki { grid-template-columns: 1fr; }
+      .app-window.show-wiki .aw-topics-pane { display: none; }
+      .app-window.show-wiki .aw-topic-page { display: none; }
+      .app-window.show-wiki .aw-main { display: flex; }
+      .app-window.show-wiki .aw-chat { display: none; }
+      .aw-editor { padding: 24px 16px; }
+      .aw-editor .title { font-size: 1.3rem; margin-left: 0; }
+      .aw-editor .block { gap: 0; }
+      .aw-editor .handles { display: none; }
+      .aw-editor .para { font-size: 13px; }
+      .aw-backlinks { margin-left: 0; }
+
+      .build-section {
+        height: auto;
+        padding: 48px 5vw;
+      }
+      .build-section .build-layout { gap: 24px; }
+      .build-section h2 { font-size: 26px; }
+      .build-section p { font-size: 15px; }
+      .builder-panel { position: static; }
+
+      .questions-section {
+        height: auto;
+        padding: 48px 5vw;
+      }
+      .questions-section .skills-layout { gap: 24px; }
+      .questions-section h2 { font-size: 26px; }
+      .questions-section .skills-intro p { font-size: 15px; }
+      .questions-section .example-block .q { font-size: 15px; }
+      .questions-section .kicker { font-size: 16px; }
+      .skills-card .step-name { font-size: 17px; }
+      .skills-card .ask { font-size: 13px; }
+      .skills-card .saved { font-size: 13px; }
+      .skills-card .hits .q { font-size: 12px; }
+      .skills-step { gap: 12px; }
+
+      .trust-section {
+        height: auto;
+        padding: 48px 5vw;
+      }
+      .trust-section .trust-layout { gap: 24px; }
+      .trust-section h2 { font-size: 26px; }
+      .trust-section .trust-copy p { font-size: 15px; }
+      .know-meter { padding: 16px; }
+      .know-meter .km-row { grid-template-columns: 44px 1fr; gap: 8px; }
+      .know-meter .km-ans { font-size: 12px; }
+
+      .pricing-section {
+        height: auto;
+        padding: 48px 5vw;
+      }
+      .pricing-section .inner { flex-direction: column; gap: 24px; }
+      .pricing-section h2 { font-size: 26px; }
+      .pricing-section p { font-size: 15px; }
+      .pricing-section .trust-grid { gap: 6px; }
+      .pricing-section .trust-cell { padding: 14px 10px; }
+      .pricing-section .trust-cell b { font-size: 13px; }
+      .pricing-section .trust-cell span { font-size: 11px; }
+      .pricing-section .trust-icon { width: 32px; height: 32px; margin-bottom: 8px; }
+      .pricing-section .trust-icon svg { width: 24px; height: 24px; }
+      .pricing-section .price-card { padding: 20px 24px; }
+      .pricing-section .price-card .amount { font-size: 32px; }
+
+      .closing-section {
+        height: auto;
+        padding: 48px 5vw;
+      }
+      .closing-section h2 { font-size: 24px; }
+      .closing-section .btn-primary {
+        padding: 14px 28px;
+        font-size: 15px;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 5vw;
+      }
+      .footer .right { gap: 14px; }
+
+      .dark-section, .cream-section {
+        height: auto;
+        padding: 48px 5vw;
+      }
+      .dark-section h2, .cream-section h2 { font-size: 26px; }
+      .dark-section p, .cream-section p { font-size: 15px; }
+      .dark-section .cta-row, .cream-section .cta-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
