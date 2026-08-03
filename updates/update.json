@@ -1,0 +1,139 @@
+{
+  "version": "0.1.39",
+  "notes": "Changes since last release\n- Bug #116: fix daily log summarizer reading 'title' instead of 'summary_line' — AI returns summary_line per prompt, parser never found it, so every backfill failed silently with 'incomplete markdown'. Read summary_line first with title fallback. Add step diagnostics to call_ollama (SENDING/RESPONSE/JSON PARSED) and log the incomplete-markdown error path that was silent.
+- Bug #116: reduce token limit to 4000 (no more thinking overhead)
+- Bug #116: rewrite daily log prompt to stop model over-thinking
+- Bug #116: increase daily log summarizer token limit to 8000
+- Bug #116: strip thinking tags + extract JSON from prose in daily log summarizer
+- Bug #116: add success log to llm_summarize_daily_log
+- Bug #116: add error logging to llm_summarize_daily_log for diagnosis
+- Bug #116: Daily Log not created — backfill effect never re-fires + file_path prefix mismatch
+- Help vault: regenerate Synthesis Menu help page with Daily Log section (Bug #116)
+- Bug #115: preserve is_pinned in scan_notes_recursive UPDATE + defensive watcher duplicate check
+- Help vault: regenerate Sidebar help page with pinning info (Bug #115)
+- Help vault: regenerate Vaults and Sidebar help pages (Bug #115)
+- Bug #114 — VERIFICATION: fix_rejected — help page not regenerated
+- Bug #114: import checks file_path before insert to avoid duplicating watcher notes
+- Help vault: regenerate Vaults help page (Bug #113)
+- Bug #113: Fix blank Profile page on adopted vault — call seed_vault_defaults_impl in init_vault
+- Help vault: regenerate Vaults.md with Profile page section (Bug #113)
+- Fix tryulana/app → tryhicks/app in bug report fallback
+- Help vault: regenerate for v0.1.38
+- Bug #112 (A): Fix UlanaWordmark SVG — add 'ulana' text path back under icon mark
+- Bug #112 (C): Fix unused import (restore std::io::Read)
+- Bug #112 (C): Update comments — version.txt no longer used
+- Bug #112 (C): Help vault uses app version, build pipeline checks feature doc freshness
+- Bug #112 (A): Replace broken UlanaWordmark SVG with correct ulana logo
+- Help vault: regenerate all 23 help pages — replace 'Hicks' with 'ulana' (Bug #112). Folder updated to v0.1.37. Version bumped to 17.
+- Fix updater endpoint: tryulana/website → tryhicks/website (repo doesn't exist)
+- Bug #112: Add microphone entitlement to codesign (fixes voice transcription access)
+- Update build-release.sh for ulana rename (Hicks→ulana)
+- Bug #111: Add voice rule to keep 'ulana' lowercase (AI was capitalizing it)
+- Help vault: regenerate Chat help page (Bug #111 — AI identifies as Hicks instead of ulana)
+- Bug #111: Replace 'Hicks' with 'ulana' in prompts.json (missed in Spec 49 rename)
+- Help vault: regenerate Chat help page (Bug #111 — AI identifies as Hicks instead of ulana)
+- Help vault: regenerate Voice Capture and Chat help pages (Bug #110)
+- Bug #110: Load transcription engine from saved config on app startup
+- Help vault: regenerate Voice Capture and Chat help pages (Bug #110)
+- Spec 49 bugfixes: update 2 error messages from .hicks to .ulana
+- Spec 49 — Rename 'Hicks' to 'ulana' (always lowercase)
+- Fix bug #109: persist activeVaultId on vault switch so trash delete finds the right vault
+- Help vault: regenerate Settings help page — Bug #109 known issue
+- Bug #109: Watcher frontmatter sync on Finder rename + delete_path error surfacing
+- Help vault: bump to v12 — Bug #109 re-fix help page refresh
+- Bug #109 (re-fix #2): delete_path self-write, rename frontmatter sync, watcher un-trash fix, empty trash await
+- Revert "Bug #109 (re-fix): Permanent delete from trash, frontmatter title sync, watcher un-trash fix"
+- Bug #109 (re-fix): Permanent delete from trash, frontmatter title sync, watcher un-trash fix
+- Help vault: regenerate Settings + Writing Notes help pages (Bug #109)
+- Bug #109 — Fix trash then restore deleting note content
+- Help vault: regenerate Settings and Writing Notes help pages
+- Help vault: regenerate Writing Notes help page (Bug #108)
+- Bug #108: Fix file_path corruption on re-import — add file_path to UPDATE clause in scan_notes_recursive
+- Help vault: regenerate Vaults and Writing Notes help pages (Bug #107)
+- Fix: clean up old loose-thread help pages on startup + bump help vault to v8
+- Fix: auto-generate release notes from git log in build-release.sh
+- Help vault: bump version to 7 — forces re-extract with 'Hicks v0.1.32' folder and no duplicate titles
+- Help vault: folder named 'Hicks v0.1.32', duplicate H1 titles removed from all 23 pages
+- Fix: skip directory entries in help vault zip extraction — 0.1.32/ folder was causing empty sidebar
+- Help vault: update doc comments for version-folder structure
+- Help vault: restructure into version folder (0.1.32) — all 23 help pages now inside a folder matching the app version
+- Help vault: update to v5 — regenerate Writing Notes, Sidebar, Vaults, Folders from updated feature docs
+- Fix: note_updated event listener didn't update folderId — note jumps back to old folder after disk move + rename
+- Fix: note moves back to old folder after rename — selectedNote.folderId goes stale after move_note
+- Fix bug #106: selectedNote goes stale after save — re-query note after onNoteSaved
+- Fix: remove rename inputs from pinned section — renaming happens in tree
+- Fix: pinned items stay in tree menu, pinned section is a shortcut only
+- Fix: add rename input to notes inside pinned folders
+- Auto-increment note title when creating 'Untitled' duplicates
+- Fix: auto-select re-fires on every keystroke, deleting text when typing 'New...'
+- Bug #105: use actual folder name for rename input after auto-increment
+- Bug #105: auto-increment folder name when creating 'New Space' duplicates
+- Bug #105: add folder name collision check to create_folder and rename_folder
+- Bug #105: show error message to user when move/rename/save fails due to name collision
+- Fix bug #105: add file path collision check to move_note, rename_note, create_note, save_note
+- Bug #103 + #104 — editor title sync and content loss fixes
+- Bug #102 — fix index.md not appearing in left menu
+- fix(bug22): folder rename on disk orphans subfolders
+- fix: Bug #22 — match pending delete_dir by parent path, clean up buffer after subfolder move
+- fix: Bug #22 — increase rename buffer timeout to 15s, fix vault scan duplicate folders, skip stale delete_dir buffer entries
+- fix: Bug #22 — match create_dir by parent path, not filename
+- fix: Bug #22 — match paired create_dir by filename, not by first-in-buffer
+- fix: Bug #22 — reassign subfolder parent_id before deleting duplicate folder on rename
+- Spec 48: fix bug 21 - rename input missing for Loose threads, pinned, and subfolder notes
+- Bug #20: folder rename on disk no longer creates duplicate or orphans notes
+- fix: Bug #19 follow-up — prevent duplicate notes when delete arrives before create during file moves
+- fix: Bug #19 — new files dragged into subfolders now get correct folder_id in DB
+- fix: save_note now deletes old file on rename (bug 19)
+- Bug #18: Left menu always shows filename stem, never frontmatter title
+- fix: Bug #16 — file moved in/out of root stays in sync
+- fix: Bug #16 — new files at vault root now appear in sidebar
+- fix: Bug #13-#15 — folder delete soft-deletes in DB, folder moves update parent_id, folder rename buffer is bidirectional
+- cleanup: remove [BUG40] debug labels from console
+- debug: add [WATCHER-DECIDE] and [FE-EVENT] labels to every decision point in sync
+- fix: Bug #11 — stop creating duplicate notes on file move (buffer create, pair with delete)
+- fix: Bug #11 follow-up — update folder_id when file moves between folders on disk
+- fix: Bug #11 — watcher now handles disk-side folder/file changes (rename buffer, folder insertion, folder_updated listener)
+- Fix save_note not updating file_path in DB — content now persists on reload
+- Fix bugs 10 and 12: remove content column from SQL INSERT/UPDATE in create_note and save_note
+- Bug #8: Fix note flicker/blank editor — remove premature diskContent clear, memoize extensions Bug #9: Fix vault switch failure — add OR IGNORE to INSERT INTO notes in scan_notes_recursive
+- Bug #7: Fix watcher stealing DB connection + remove content column from SQL queries
+- Bug #6: handleSaveAsNote uses single create_note command, remove redundant updateNote calls
+- Bug #5: remove duplicated is_okf_system_watch_path from vault_commands.rs, tests import from path_filter
+- Spec 48: fix Bug #3 — remove VaultDbState, open_vault_db, switch_vault_db; all commands use DbState; frontend callers use init_vault
+- Spec 48: fix Bug #1 (isDirty conflict detection) and Bug #2 (delete noteFileSync/vaultReconciler)
+- fix: close_vault_db uses DbState, watcher type fixes
+- Spec 48 — Rust Backend Engine (consolidated file I/O + DB sync)
+- Spec 47 bugfixes: folder rename detection, dead code cleanup, redundant check removed
+- Spec 47: Simplify frontend file event handler — replace 7-branch handler with reconcileVaultFromDisk
+- Bug #101: Fix vault leakage — Bug #100 fix created folders in wrong vault's database
+- Bug #100: create handler creates missing parent folders when file event arrives before folder event
+- Bug #99 (re-fix v2): PollWatcher emits CreateKind::Any and RemoveKind::Any, not File/Folder — handle both variants by checking path metadata
+- Bug #99 (re-fix): Distinguish file from folder events in PollWatcher handler
+- Bug #99: Replace custom polling watcher with notify::PollWatcher
+- Fix Bug #1: race condition in polling watcher stop/start sequence
+- Spec 46: Replace macOS FSEvents watcher with polling watcher
+- Bug #98 Fix B (re-fix): bidirectional rename buffer — buffer appearances too, not just disappearances
+- Bug #98: add missing cleanup_stop field + AtomicBool import to VaultWatcherState in lib.rs
+- Bug #98 — Fix 3 root causes: handleRenameNote uses currentNote (Fix A), rename buffer checks Create events (Fix B), handleRenameFolder updates notes' file_path (Fix C)
+- Spec 45 Bug #6: rename_dir handler now uses fresh DB folder list instead of stale ref
+- Spec 45 Bug #6: folder buffer now accepts modify events (matching file buffer pattern)
+- Spec 45 bugfixes: fix rename buffer labeling (Bug #5), update 3 test files (Bugs #1-#3)
+- Spec 45: Rebuild file sync with rename buffer
+- Bug #97 — Rust watcher must handle rename as a first-class event (Obsidian-style)
+- Bug #96 — File watcher misses macOS file move events (drag between folders)
+- Bug #95 — index.md, log.md, and profile.md still filtered at vault root after Spec 41
+- Bug #94 — add concurrency guard to importVaultNotes
+- Spec 44 bugfixes: update 10 stale threads/ comments across 6 files
+- Spec 44 — Remove dead threads/ path logic from sync system
+- Bug #93 — Remove legacy Spec 41 migration code from importVaultNotes that corrupts file_path and creates duplicates on every focus event
+- Bug #92 — File watcher misses macOS folder-drag events; index.md/log.md filtered at any depth
+- Bug #91 — File watcher folder duplication data loss
+- Help vault v4: regenerated all 23 pages from feature docs, fixed 8 incorrect pages",
+  "pub_date": "2026-08-03T16:37:45Z",
+  "platforms": {
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2swL0o0d3p1YTB4S1dqb0pqdWtTTVlZVDluZWtLaTE2ZkQrNEErL05KSmExbkx6dERDT3QvNTJtaGFQcDY4TDRqZXBObXg3ckg0UjFuWjJkUEFIWFF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1Nzc0OTkzCWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKRVl4clF5T0JISGRjZTVUcnQrQlBuRWxkcVJNRmtLTk85TjlMWUVWZHVkTkRlY2p6Tlp6WHRXSVc5U2JqSHJ1Y0t3akpHcEtoRXRoLy9CTGswbDAvQnc9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.39/ulana-macos-aarch64.tar.gz"
+    }
+  }
+}
