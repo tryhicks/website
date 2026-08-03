@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hicks — Interactive Demo</title>
+<title>ulana — Interactive Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
@@ -303,15 +303,15 @@ line-height: 1.5;
 .chat-message.user .chat-message-actions { position: absolute; top: calc(100% + 12px); left: 0; display: flex; align-items: center; gap: 8px; opacity: 0; transition: opacity 0.15s ease; pointer-events: none; z-index: 1; }
 .chat-message.user::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 32px; }
 .chat-message.user:hover .chat-message-actions { opacity: 1; pointer-events: auto; }
-.chat-message.hicks { align-self: flex-start; color: var(--ink-quiet); padding-bottom: 28px; margin-bottom: 0; }
-.chat-message.hicks a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
-.chat-message.hicks a:hover { color: var(--sage-hover); }
+.chat-message.ulana { align-self: flex-start; color: var(--ink-quiet); padding-bottom: 28px; margin-bottom: 0; }
+.chat-message.ulana a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.chat-message.ulana a:hover { color: var(--sage-hover); }
 .drew-from { margin-top: 8px; font-size: 11px; color: var(--ink-faint); display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; }
 .drew-from-label { font-style: italic; }
 .drew-from a { color: var(--ink-faint) !important; text-decoration: none !important; cursor: pointer; }
 .drew-from a:hover { color: var(--ink) !important; text-decoration: underline !important; text-underline-offset: 2px; }
 .chat-message-actions { display: flex; align-items: center; gap: 8px; position: absolute; bottom: 0; left: 0; opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
-.chat-message.hicks:hover .chat-message-actions, .chat-message:hover .chat-message-actions { opacity: 1; pointer-events: auto; }
+.chat-message.ulana:hover .chat-message-actions, .chat-message:hover .chat-message-actions { opacity: 1; pointer-events: auto; }
 .chat-action-btn { display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 510; color: var(--icon-default); background: transparent; border: none; cursor: pointer; font-family: var(--font-sans); transition: background 0.12s ease, color 0.12s ease; }
 .chat-action-btn:hover { color: var(--ink-quiet); background: var(--surface-hover); }
 .chat-action-btn:active { background: transparent; }
@@ -395,7 +395,7 @@ line-height: 1.5;
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="badge">Interactive Demo</div>
-    <h2>This is a preview of Hicks</h2>
+    <h2>This is a preview of ulana</h2>
     <p>You're looking at a static demo — it shows the real UI and real content, but it's not connected to an AI model. The chat, search, and wiki builder are visual only.</p>
     <ul class="features">
       <li>Browse the full knowledge base — 6 notes with wiki-links and split view</li>
@@ -622,8 +622,8 @@ line-height: 1.5;
         </div>
       </div>
       <div class="chat-history-area" id="chatMessages">
-        <div class="chat-message hicks">
-          <p>I'm Hicks — your living memory. Ask me anything about your notes.</p>
+        <div class="chat-message ulana">
+          <p>I'm ulana — your living memory. Ask me anything about your notes.</p>
           <div class="chat-message-actions">
             <button class="chat-action-btn" title="Add to thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg></button>
             <button class="chat-action-btn" title="Save as thread"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></button>
@@ -636,7 +636,7 @@ line-height: 1.5;
           What did I decide about pricing last week?
           <div class="chat-message-actions"><button class="chat-action-btn" title="Copy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
         </div>
-        <div class="chat-message hicks">
+        <div class="chat-message ulana">
           <p>From your notes, here's what you settled on:</p>
           <p><strong>Freemium tiered model</strong> — Free (5 meetings/mo, basic), Pro $29/mo (unlimited, topic linking), Team $79/mo (shared knowledge base).</p>
           <p>You decided against per-seat pricing after the call with <a class="wiki-link" data-note="1">Acme Corp</a> — they wanted a flat team rate. The <a class="wiki-link" data-note="2">pricing model</a> note has the full breakdown.</p>
@@ -657,7 +657,7 @@ line-height: 1.5;
       </div>
       <div class="chat-input-area">
         <div class="chat-input-container">
-          <textarea class="chat-input-field" rows="2" placeholder="Ask Hicks. Type @ to bring a thread in." id="chatInput"></textarea>
+          <textarea class="chat-input-field" rows="2" placeholder="Ask ulana. Type @ to bring a thread in." id="chatInput"></textarea>
           <div class="chat-input-footer">
             <div class="chat-input-left">
               <button class="attach-btn" title="Bring a thread in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 15h6"/><path d="M12 18v-6"/></svg></button>
@@ -933,7 +933,7 @@ const wikiPages = {
             threadCount: 5,
             summary: 'The core product spec for Meeting Memory — an AI that sits in your calls, takes notes, and links them to your projects. Covers elevator pitch, core problem, key insight, target users, business model, competitive landscape, and architecture.',
             connected: ['Competitive Analysis', 'Pricing Model', 'User Personas'],
-            hicksFound: [
+            ulanaFound: [
               'The best meeting note-taker is the one you don\'t have to think about — no bot in the room, no "now recording" announcements.',
               'Meeting Memory doesn\'t just transcribe — it connects decisions to the threads they affect.',
               'Local-first architecture with Whisper + Mistral 7B, all running on-device via Ollama.'
@@ -951,7 +951,7 @@ const wikiPages = {
             threadCount: 3,
             summary: 'Deep dive into Fireflies, Otter, Fathom, and Granola. Every competitor solves transcription — none solve connection to your knowledge base. That\'s the gap.',
             connected: ['Meeting Memory — Product Spec', 'Pricing Model'],
-            hicksFound: [
+            ulanaFound: [
               'Average price point in the space: $15-30/user/mo.',
               'No competitor does project linking or knowledge base integration.',
               'Granola is the closest competitor — runs locally but has no project linking.'
@@ -968,7 +968,7 @@ const wikiPages = {
             threadCount: 3,
             summary: 'Three-tier pricing: Free (5 meetings/mo), Pro $29/mo, Team $79/mo. No per-seat pricing — flat rate per tier. 20% annual discount available.',
             connected: ['Meeting Memory — Product Spec', 'Competitive Analysis'],
-            hicksFound: [
+            ulanaFound: [
               'Per-seat pricing is a dealbreaker for 10+ person teams — confirmed by Acme Corp call.',
               'Flat-rate tiers are easier for small teams to budget.',
               'Free tier needs to be generous enough to evaluate but limited enough to convert.'
@@ -990,7 +990,7 @@ const wikiPages = {
             threadCount: 2,
             summary: 'Three personas validated: Alex the Solo Founder (primary), Small Team Lead (secondary), Freelance Consultant (tertiary). Design for Alex first.',
             connected: ['Meeting Memory — Product Spec'],
-            hicksFound: [
+            ulanaFound: [
               'Solo founders have 10-15 meetings/week on average.',
               'Willingness to pay is $29/mo for individuals, $79/mo for teams.',
               'Forgetting decisions is the #1 pain point across all personas.'
@@ -1012,7 +1012,7 @@ const wikiPages = {
             threadCount: 3,
             summary: 'Local-first architecture with Whisper for transcription, Mistral 7B for topic extraction, graph DB for entity linking. All running locally via Ollama.',
             connected: ['Transcription Pipeline', 'Meeting Memory — Product Spec'],
-            hicksFound: [
+            ulanaFound: [
               'Local-first eliminates cloud costs entirely for MVP.',
               'Whisper runs in <1s per 30s chunk on M-series hardware.',
               'Privacy is a key selling point for the target market.'
@@ -1029,7 +1029,7 @@ const wikiPages = {
             threadCount: 3,
             summary: 'Audio processing chain: loopback capture → 30s chunks with overlap → Whisper inference → segment merge → topic extraction. Speaker diarisation via energy-based VAD + embedding clustering.',
             connected: ['Architecture Decisions', 'Meeting Memory — Product Spec'],
-            hicksFound: [
+            ulanaFound: [
               'Whisper Base model hits the sweet spot for speed/accuracy (1.4s per chunk, 8% WER).',
               '30-second chunks with 5-second overlap provide good transcription quality.',
               'Energy-based VAD works reliably for 2-4 person calls.'
@@ -1124,7 +1124,7 @@ document.querySelectorAll('[data-wikipage]').forEach(btn => {
     if (page.isTopics) {
       let html = `<div class="topics-page-inner">
         <h1 class="topics-title">Topics</h1>
-        <p class="topics-subtitle">The map Hicks has woven from your garden.</p>
+        <p class="topics-subtitle">The map ulana has woven from your garden.</p>
         <div class="topics-filter-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" placeholder="Filter topics" id="topicsFilter">
@@ -1147,8 +1147,8 @@ document.querySelectorAll('[data-wikipage]').forEach(btn => {
           const connectedHtml = topic.connected.length > 0
             ? `<div class="topic-connected"><span class="topic-connected-label">Connected topics:</span>${topic.connected.map(c => `<span class="topic-connected-item" data-topic-link="${c}">${c}</span>`).join('')}</div>`
             : '';
-          const hicksHtml = topic.hicksFound.length > 0
-            ? `<div class="edge-group"><div class="edge-group-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="edge-group-label">Hicks found</span><span class="edge-group-count">(${topic.hicksFound.length})</span></div><div class="edge-group-body">${topic.hicksFound.map(h => `<div class="edge-item"><div class="edge-item-text">${h}</div></div>`).join('')}</div></div>`
+          const ulanaHtml = topic.ulanaFound.length > 0
+            ? `<div class="edge-group"><div class="edge-group-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="edge-group-label">ulana found</span><span class="edge-group-count">(${topic.ulanaFound.length})</span></div><div class="edge-group-body">${topic.ulanaFound.map(h => `<div class="edge-item"><div class="edge-item-text">${h}</div></div>`).join('')}</div></div>`
             : '';
           const fromHtml = topic.fromThreads.length > 0
             ? `<div class="edge-group"><div class="edge-group-header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg><span class="edge-group-label">From your threads</span><span class="edge-group-count">(${topic.fromThreads.length})</span></div><div class="edge-group-body" style="display:none;">${topic.fromThreads.map(t => `<div class="edge-item"><div class="edge-item-text">${renderWikiLinks(t)}</div></div>`).join('')}</div></div>`
@@ -1159,7 +1159,7 @@ document.querySelectorAll('[data-wikipage]').forEach(btn => {
             <div class="topic-meta">${badge}<span>${topic.date}</span><span> · from ${topic.threadCount} threads</span></div>
             <div class="topic-summary">${topic.summary}</div>
             ${connectedHtml}
-            ${hicksHtml}
+            ${ulanaHtml}
             ${fromHtml}
           </div>`;
         });
@@ -1186,7 +1186,7 @@ document.querySelectorAll('[data-wikipage]').forEach(btn => {
         });
       });
 
-      // Edge group toggle (Hicks found / From your threads)
+      // Edge group toggle (ulana found / From your threads)
       wikiWrap.querySelectorAll('.edge-group-header').forEach(h => {
         h.addEventListener('click', function() {
           const body = this.nextElementSibling;
@@ -1435,7 +1435,7 @@ document.addEventListener('keydown', (e) => { if (e.key >= '1' && e.key <= '6') 
 
 document.getElementById('newChatBtn')?.addEventListener('click', function() {
   const msgs = document.getElementById('chatMessages');
-  msgs.innerHTML = '<div class="empty-state" style="opacity:0.5;"><p class="text-sm font-medium" style="color:var(--ink);margin-bottom:4px;">Ask anything about your knowledge base</p><p style="font-size:12px;color:var(--ink-quiet);">Hicks reads your notes and thinks alongside you.</p></div>';
+  msgs.innerHTML = '<div class="empty-state" style="opacity:0.5;"><p class="text-sm font-medium" style="color:var(--ink);margin-bottom:4px;">Ask anything about your knowledge base</p><p style="font-size:12px;color:var(--ink-quiet);">ulana reads your notes and thinks alongside you.</p></div>';
 });
 
 // Demo modal — close on X, close on overlay click
