@@ -6,7 +6,7 @@
   <title>ulana</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -20,7 +20,8 @@
     body {
       background: #F0ECD9;
       color: #2E333A;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      font-size: 18px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow: hidden;
@@ -62,14 +63,17 @@
 
     .btn-buy {
       padding: 8px 20px;
-      border-radius: 999px;
+      border-radius: 8px;
       background: transparent;
       color: #2E333A;
       border: 1px solid #2E333A;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
       transition: background 0.15s, color 0.15s;
       white-space: nowrap;
     }
@@ -89,33 +93,16 @@
       scroll-snap-stop: always;
     }
 
-    .watermark {
-      position: absolute;
-      right: -5vw;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 85vw;
-      max-width: 1200px;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.06;
-      color: #2E333A;
-      will-change: transform;
-    }
-
-    .watermark svg {
-      width: 100%;
-      height: auto;
-    }
-
     .hero-content {
       position: relative;
       z-index: 1;
       width: 100vw;
       height: 100vh;
-      padding: 12vh 5vw 0;
+      padding: 0 5vw;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .hero-inner {
@@ -149,14 +136,17 @@
 
     .btn-primary {
       padding: 1.3vh 2.6vw;
-      border-radius: 999px;
+      border-radius: 8px;
       background: #2E333A;
       color: #F0ECD9;
       border: none;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
       transition: opacity 0.15s;
       white-space: nowrap;
     }
@@ -167,14 +157,17 @@
 
     .btn-secondary {
       padding: 1.3vh 2.6vw;
-      border-radius: 999px;
+      border-radius: 8px;
       background: transparent;
       color: #2E333A;
       border: 1px solid #2E333A;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
       transition: background 0.15s, color 0.15s;
       white-space: nowrap;
     }
@@ -192,10 +185,7 @@
     }
 
     .bottom-brand {
-      position: absolute;
-      bottom: 5vh;
-      left: 5vw;
-      z-index: 10;
+      margin-top: 8vh;
     }
 
     .wordmark-text {
@@ -204,6 +194,7 @@
       color: #2E333A;
       letter-spacing: -0.03em;
       line-height: 1;
+      font-family: 'IBM Plex Mono', monospace;
     }
 
     .tagline {
@@ -259,6 +250,19 @@
       text-align: center;
       max-width: 800px;
       font-family: 'IBM Plex Mono', monospace;
+    }
+    .screenshot-section .ss-cta {
+      margin-top: 5vh;
+      text-align: center;
+    }
+    .screenshot-section .ss-cta .btn-primary {
+      background: transparent;
+      border: 1.5px solid #F0ECD9;
+      color: #F0ECD9;
+    }
+    .screenshot-section .ss-cta .btn-primary:hover {
+      background: #F0ECD9;
+      color: #2E333A;
     }
 
     /* ── App window mockup ── */
@@ -754,6 +758,7 @@
       color: var(--ink);
       margin: 0;
       line-height: 1.15;
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
     }
     .app-window.show-wiki .aw-topics-pane .tp-head p { font-size: 14px; color: var(--quiet); margin: 6px 0 0; font-style: italic; line-height: 1.4; }
     .app-window.show-wiki .aw-topics-pane .tp-filter { position: relative; margin-bottom: 8px; flex-shrink: 0; }
@@ -795,6 +800,7 @@
       font-size: clamp(1.6rem, 2.4vw, 2.25rem);
       line-height: 1.1; font-weight: 900; color: var(--ink);
       letter-spacing: -0.01em; margin: 0 0 12px; word-break: break-word;
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
     }
     .app-window.show-wiki .aw-topic-page .prose { font-size: 14px; line-height: 1.65; color: var(--ink); }
     .app-window.show-wiki .aw-topic-page .prose blockquote {
@@ -802,7 +808,7 @@
       font-style: italic; color: var(--quiet);
     }
     .app-window.show-wiki .aw-topic-page .prose blockquote strong { font-style: normal; font-weight: 700; color: var(--ink); }
-    .app-window.show-wiki .aw-topic-page .prose h2 { font-size: 1.35rem; font-weight: 900; color: var(--ink); letter-spacing: -0.02em; margin: 28px 0 12px; line-height: 1.15; }
+    .app-window.show-wiki .aw-topic-page .prose h2 { font-size: 1.35rem; font-weight: 900; color: var(--ink); letter-spacing: -0.02em; margin: 28px 0 12px; line-height: 1.15; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
     .app-window.show-wiki .aw-topic-page .prose h2:first-of-type { margin-top: 8px; }
     .app-window.show-wiki .aw-topic-page .prose p { margin: 0 0 10px; }
     .app-window.show-wiki .aw-topic-page .prose ul { list-style: disc; margin: 0 0 8px; padding: 0 0 0 1.25rem; }
@@ -1192,7 +1198,7 @@
       opacity: 0.7;
       font-size: 14px;
       font-weight: 600;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'IBM Plex Mono', monospace;
       text-decoration: none;
       cursor: pointer;
       transition: opacity 0.15s;
@@ -1421,12 +1427,26 @@
       background: #F0ECD9;
       display: flex;
       align-items: center;
+      justify-content: center;
       padding: 10vh 5vw;
       scroll-snap-align: start;
       scroll-snap-stop: always;
     }
     .pricing-section .inner {
-      max-width: 800px;
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      gap: 5vw;
+      align-items: flex-start;
+      margin: 0 auto;
+    }
+    .pricing-section .pricing-left {
+      flex: 1;
+      min-width: 0;
+    }
+    .pricing-section .pricing-right {
+      flex: 1;
+      min-width: 0;
     }
     .pricing-section h2 {
       font-size: 48px;
@@ -1462,6 +1482,57 @@
       color: #F0ECD9;
       opacity: 0.6;
       margin-top: 4px;
+    }
+    .pricing-section .price-card .desc {
+      font-size: 14px;
+      color: #F0ECD9;
+      opacity: 0.7;
+      margin-top: 12px;
+    }
+    .pricing-section .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 4vh;
+    }
+    .pricing-section .trust-cell {
+      border: 1px solid #2E333A;
+      border-radius: 12px;
+      background: #D4A843;
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
+    .pricing-section .trust-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 14px;
+      color: #2E333A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pricing-section .trust-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pricing-section .trust-cell b {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: #2E333A;
+      margin-bottom: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .pricing-section .trust-cell span {
+      font-size: 13px;
+      color: #2E333A;
+      opacity: 0.6;
+      line-height: 1.4;
     }
     .pricing-section .price-card .desc {
       font-size: 14px;
@@ -1619,37 +1690,27 @@
         <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
       </svg>
     </div>
-    <button class="btn-buy">Buy ulana</button>
+    <a href="https://ulana.gumroad.com/l/ulana" target="_blank" class="btn-buy">Buy ulana</a>
   </nav>
 
   <div class="snap-scroll">
 
   <!-- Hero section -->
   <section class="hero reveal visible">
-    <div class="watermark">
-      <svg viewBox="0 0 213 213" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M157.247 66.8393C164.021 73.7618 172.583 81.5363 179.793 74.6244C182.221 72.3027 183.542 68.6604 182.914 65.0394C179.154 43.2282 160.591 28.5099 138.556 29.4365C124.967 30.0116 112.794 34.5804 103.103 44.3145L46.86 100.749C46.86 100.749 39.6819 93.1661 37.6797 85.0082L87.5643 35.1662C99.1728 23.5683 112.432 15.7832 128.46 12.9077C162.913 6.73069 196.205 29.8305 200.135 64.7306C201.466 76.5947 195.726 87.3299 184.959 92.0265C173.329 97.1066 160.261 94.0287 151.294 85.0934L128.322 62.1852L111.197 45.6671C116.543 41.5242 121.751 38.6274 127.938 36.8595L157.247 66.8286V66.8393Z" fill="currentColor"/>
-        <path d="M60.3962 125.84L101.995 167.109C97.1813 170.826 91.5262 173.606 85.5409 175.448L34.2079 124.339C27.5836 117.746 22.3651 110.238 18.5098 101.931C2.18334 66.7009 20.0327 25.283 57.2971 14.2283C71.3551 10.0535 86.4142 11.4913 99.077 16.976C99.077 16.976 94.7957 19.7237 90.8659 22.7483C86.9361 25.7729 83.0488 30.4483 83.0488 30.4483C62.047 25.8262 41.599 36.178 33.4517 56.3597C20.8315 87.6281 41.0878 106.681 60.3962 125.83V125.84Z" fill="currentColor"/>
-        <path d="M130.1 182.328C152.306 186.545 173.776 175.374 181.327 155.011C182.307 152.37 184.82 145.064 182.296 140.324C181.444 138.727 180.262 137.417 179.016 136.65C170.56 131.474 163.158 137.896 159.175 141.549H135.5L148.504 129.834C148.504 129.834 156.086 123.679 157.886 122.656C162.508 120.004 167.237 118.449 172.69 118.162C188.015 117.374 200.369 128.993 200.55 144.595C200.699 157.535 194.757 168.962 186.695 178.664C174.585 193.234 157.577 200.891 138.567 200.124C130.068 199.783 121.655 199.187 114.062 195.161C122.56 190.678 127.044 185.417 130.111 182.339L130.1 182.328Z" fill="currentColor"/>
-        <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
-      </svg>
-    </div>
-
     <div class="hero-content">
       <div class="hero-inner">
         <h1>The thinking you've done sits buried in notes you forget the moment life moves on.</h1>
         <p class="sub-headline">ulana reads your notes, finds the connections, and builds a private wiki you can query.</p>
         <div class="cta-row">
-          <button class="btn-primary">View demo</button>
-          <button class="btn-secondary">Buy ulana</button>
+          <a href="/demo.html" target="_blank" class="btn-primary">View demo</a>
+          <a href="https://ulana.gumroad.com/l/ulana" target="_blank" class="btn-secondary">Buy ulana</a>
         </div>
         <p class="feature-list">Desktop app · local-first · no account · no telemetry · one-time payment</p>
+        <div class="bottom-brand">
+          <div class="wordmark-text">ulana</div>
+          <p class="tagline">Woven by agents. Kept by you.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="bottom-brand">
-      <div class="wordmark-text">ulana</div>
-      <p class="tagline">Woven by agents. Kept by you.</p>
     </div>
 
     <div class="scroll-down" onclick="scrollToNext(this)" title="Scroll down">
@@ -1933,6 +1994,9 @@
         </div>
       </div>
     </div>
+    <div class="ss-cta">
+      <a href="/demo.html" target="_blank" class="btn-primary">View Demo</a>
+    </div>
   </section>
 
   <!-- Build section: text left, builder panel right -->
@@ -2025,9 +2089,6 @@
           <p class="q">"What have I quietly concluded?"</p>
         </div>
         <p class="kicker">Set it up once. It runs forever. You never have to remember to ask.</p>
-        <div class="skills-cta">
-          <a class="cta-ghost" href="#">Buy ulana</a>
-        </div>
       </div>
 
       <div class="skills-flow" aria-hidden="true">
@@ -2114,9 +2175,6 @@
         <p>Not the internet. Not training data. Not an AI trained to guess what you want to hear.</p>
         <p>ulana answers from what you've actually written and collected — your notes, links, drafts, voice memos, and clips.</p>
         <p>The more you add, the better it learns how you think. And the sharper the answers get.</p>
-        <div class="cta-row">
-          <button class="btn-primary">Buy ulana</button>
-        </div>
       </div>
     </div>
   </section>
@@ -2124,15 +2182,41 @@
   <!-- Local-first / pricing section -->
   <section class="pricing-section reveal">
     <div class="inner">
-      <h2>Your notes. Your machine. Your mind.</h2>
-      <p>Local-first isn't a setting. It's the whole shape of the product. Your files stay on your machine. Plain markdown. Open them anywhere. No account. Use a local LLM model or cloud — your call.</p>
-      <div class="price-card">
-        <div class="amount">$49</div>
-        <div class="label">one-time payment</div>
-        <div class="desc">One license, every upgrade,<br>no monthly fees.</div>
+      <div class="pricing-left">
+        <h2>Your notes. Your machine. Your mind.</h2>
+        <p>Local-first isn't a setting. It's the whole shape of the product. Your files stay on your machine. Plain markdown. Open them anywhere. No account. Use a local LLM model or cloud — your call.</p>
       </div>
-      <div class="cta-row">
-        <button class="btn-primary">Buy ulana</button>
+      <div class="pricing-right">
+        <div class="trust-grid" aria-hidden="true">
+          <div class="trust-cell">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/><path d="M3 7V5a2 2 0 0 1 2-2h4l2 2h2"/></svg>
+            </div>
+            <b>On your machine</b>
+            <span>Your files. Your folder.</span>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/><path d="M4 4l16 16"/></svg>
+            </div>
+            <b>No account</b>
+            <span>No sign-up. No tracking.</span>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+            </div>
+            <b>Plain markdown</b>
+            <span>Leave anytime. Vault goes with you.</span>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>
+            </div>
+            <b>You choose the AI</b>
+            <span>Your provider. Your machine.</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2141,7 +2225,7 @@
   <section class="closing-section reveal">
     <div class="inner">
       <h2>I am ulana — your living memory that metabolizes, dreams, and reweaves itself.</h2>
-      <button class="btn-primary">Buy ulana</button>
+      <a href="https://ulana.gumroad.com/l/ulana" target="_blank" class="btn-primary">Buy ulana</a>
     </div>
   </section>
 
