@@ -1,11 +1,11 @@
 {
-  "version": "0.1.40",
-  "notes": "FIXED\n- Voice recording starts fast \u2014 the speech model no longer loads at launch, only when you first use the mic\n- The transcription engine turns itself off after 1 minute of idle to save battery (was 5 minutes)\n- No more duplicate notes created by the file watcher\n- Daily log summaries stay inside their own vault \u2014 no more mixing between vaults\n- Chat memory now uses the full context of the AI model instead of a fixed 8K limit",
-  "pub_date": "2026-08-04T00:00:00Z",
+  "version": "0.1.41",
+  "notes": "FIXED\n- Voice recording no longer breaks when you switch vaults \u2014 the speech model keeps working in every vault",
+  "pub_date": "2026-08-04T19:16:02Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2ozMitOc25PSTM3Tm9PYmpNSE5tUEgwTjI4cjBENTE2RkNBVHZkZVlqRHhNNHFQVjFabjNkUFBxdGpETTFTRldDcmUreThjNndFSzFNUHlNS2lMdGdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODUwNjExCWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKaHF1WW0vQ0d2Z1ZKZHNmY2Zobnp4Z1ZLWEVtOFcvQ1Y3SzRKZ05lK3EvYlA3aVRHM3hnU1oydmppZjZ5dWgxWTJVYWkxR2Y5MlhlVElPQ0d2VlZxQ3c9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.40/ulana-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2drY1JWNW9ndzlTRGdrV3EyNk0yaGFpRVFEbExKUHF6VVNFS0ZYc3Q1NWdFZ3FHdnJhM3R4dUhLQTdvUzRTLzA2ejB5b1dzcm5PaC9rUFZnYUFrd2dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODcwOTIyCWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKRks0S050Tk9VWWpzNUpycTNJMjV6VFNPVGlZQ0JyV3ZCTmhIUC93VkpoOUJVS05uZmVtakJkSTFvejNYVEVFa3NISzM0S3lRTmJyQjFlT1BzREUrRGc9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.41/ulana-macos-aarch64.tar.gz"
     }
   }
 }
