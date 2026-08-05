@@ -2444,12 +2444,11 @@
   <section class="closing-section reveal" id="beta">
     <div class="inner">
       <h2>I am ulana — your living memory that metabolizes, dreams, and reweaves itself.</h2>
-      <form class="beta-form" action="https://formsubmit.co/gohicks@proton.me" method="POST">
+      <form class="beta-form" id="beta-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="dd57c28f-74c0-4957-ad56-ad365b524b1e">
+        <input type="hidden" name="subject" value="ulana beta request">
+        <input type="hidden" name="botcheck" value="">
         <input type="email" name="email" placeholder="Your email address" required>
-        <input type="hidden" name="_subject" value="ulana beta request">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://ulana.app/#beta">
         <button type="submit" class="btn-primary">Request beta access</button>
       </form>
       <p class="beta-note" id="beta-note">Private beta — we'll email you an invite when spots open.</p>
@@ -2535,12 +2534,38 @@
       switchView(currentView);
     }, 5000);
 
-    // ── Beta signup: instant confirmation ──
+    // ── Beta signup: submit in background, confirm in place ──
     const betaForm = document.querySelector('.beta-form');
     if (betaForm) {
-      betaForm.addEventListener('submit', () => {
+      betaForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         const note = document.getElementById('beta-note');
-        if (note) note.textContent = "You're on the list — we'll email you an invite when spots open.";
+        const emailInput = betaForm.querySelector('input[name="email"]');
+        const button = betaForm.querySelector('button[type="submit"]');
+        const originalLabel = button ? button.textContent : '';
+        if (button) button.disabled = true;
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: 'dd57c28f-74c0-4957-ad56-ad365b524b1e',
+              subject: 'ulana beta request',
+              botcheck: '',
+              email: emailInput ? emailInput.value : ''
+            })
+          });
+          const data = await res.json();
+          if (data.success) {
+            if (note) note.textContent = "You're on the list — we'll email you an invite when spots open.";
+            if (emailInput) emailInput.value = '';
+          } else {
+            if (note) note.textContent = "Something went wrong — please try again or email gohicks@proton.me.";
+          }
+        } catch (err) {
+          if (note) note.textContent = "Something went wrong — please try again or email gohicks@proton.me.";
+        }
+        if (button) { button.disabled = false; button.textContent = originalLabel; }
       });
     }
 
