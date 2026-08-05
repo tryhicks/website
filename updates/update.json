@@ -1,11 +1,11 @@
 {
-  "version": "0.1.41",
-  "notes": "FIXED\n- Voice recording no longer breaks when you switch vaults \u2014 the speech model keeps working in every vault",
-  "pub_date": "2026-08-04T19:16:02Z",
+  "version": "0.1.42",
+  "notes": "FIXED\n- Daily logs are safe now \u2014 switching vaults or editing notes will never delete your multi-session daily logs (Bug #122)\n",
+  "pub_date": "2026-08-05T18:45:12Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR2drY1JWNW9ndzlTRGdrV3EyNk0yaGFpRVFEbExKUHF6VVNFS0ZYc3Q1NWdFZ3FHdnJhM3R4dUhLQTdvUzRTLzA2ejB5b1dzcm5PaC9rUFZnYUFrd2dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODcwOTIyCWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKRks0S050Tk9VWWpzNUpycTNJMjV6VFNPVGlZQ0JyV3ZCTmhIUC93VkpoOUJVS05uZmVtakJkSTFvejNYVEVFa3NISzM0S3lRTmJyQjFlT1BzREUrRGc9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.41/ulana-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR21YMFAxVVluMVFKUDJkd0FzaS9vc3QxNktrdTJZZXFOZXpxY003ZXlPQmNPWWY0bGNLVm9uNko3TWZuSjRBM3VnUk9MWEJ4R3Y3U0ZLbWtvdEN0T3c4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1OTU1NDY4CWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKcmdCcEY0dVBLYkQ3QzB0aVNKZitzc1hSRkZUQ3dJRnNNaytFeTdpNUdkN3F3aXZiaTBCUFlxRjFOUy9RQzM2OUlqd1hXWnhNdENZdHVBMm9MZlhWQnc9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.42/ulana-macos-aarch64.tar.gz"
     }
   }
 }
