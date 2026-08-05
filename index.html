@@ -1584,6 +1584,57 @@
       opacity: 0.85;
     }
 
+    /* ── Beta signup form ── */
+    .beta-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .beta-form input[type="email"] {
+      flex: 1 1 280px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(240, 236, 217, 0.4);
+      background: rgba(240, 236, 217, 0.06);
+      color: #F0ECD9;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .beta-form input[type="email"]::placeholder {
+      color: rgba(240, 236, 217, 0.45);
+    }
+    .beta-form input[type="email"]:focus {
+      border-color: #F0ECD9;
+    }
+    .beta-form .btn-primary {
+      background: #F0ECD9;
+      color: #2E333A;
+      padding: 14px 32px;
+      font-size: 14px;
+      border: none;
+    }
+    .beta-form .btn-primary:hover {
+      opacity: 0.85;
+    }
+    .beta-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: rgba(240, 236, 217, 0.55);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .beta-thanks {
+      color: #F0ECD9;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      margin-top: 2vh;
+    }
+
     /* ── Footer ── */
     .footer {
       width: 100vw;
@@ -1815,6 +1866,17 @@
         padding: 14px 28px;
         font-size: 15px;
       }
+      .beta-form {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .beta-form input[type="email"] {
+        width: 100%;
+      }
+      .beta-form .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
 
       .footer {
         flex-direction: column;
@@ -1847,7 +1909,7 @@
         <path d="M124.307 154.723L112.592 166.342C94.8062 184 66.2749 189.868 45.305 172.636C32.9404 162.476 28.297 145.681 30.0116 130.068C30.0116 130.068 25.2617 126.053 21.7259 121.389C18.5735 117.235 17.5937 113.295 17.5937 113.295C3.89785 146.235 18.7972 183.223 51.8228 196.194C66.211 201.839 82.399 201.36 96.883 196.407C112.166 191.178 123.018 180.816 133.934 169.612L148.44 154.713H124.307V154.723Z" fill="currentColor"/>
       </svg>
     </div>
-    <a href="https://ulana.gumroad.com/l/ulana" target="_blank" class="btn-buy">Buy ulana</a>
+    <a href="#beta" class="btn-buy" data-beta-link>Request beta</a>
   </nav>
 
   <div class="snap-scroll">
@@ -1860,9 +1922,9 @@
         <p class="sub-headline">ulana reads your notes, finds the connections, and builds a private wiki you can query.</p>
         <div class="cta-row">
           <a href="/demo.html" target="_blank" class="btn-primary">View demo</a>
-          <a href="https://ulana.gumroad.com/l/ulana" target="_blank" class="btn-secondary">Buy ulana</a>
+          <a href="#beta" class="btn-secondary" data-beta-link>Request beta access</a>
         </div>
-        <p class="feature-list">Desktop app · local-first · no account · no telemetry · one-time payment</p>
+        <p class="feature-list">Desktop app · local-first · no account · no telemetry · private beta</p>
         <div class="bottom-brand">
           <div class="wordmark-text">ulana</div>
           <p class="tagline">Woven by agents. Kept by you.</p>
@@ -2378,11 +2440,19 @@
     </div>
   </section>
 
-  <!-- Closing CTA -->
-  <section class="closing-section reveal">
+  <!-- Closing CTA / Beta signup -->
+  <section class="closing-section reveal" id="beta">
     <div class="inner">
       <h2>I am ulana — your living memory that metabolizes, dreams, and reweaves itself.</h2>
-      <a href="https://ulana.gumroad.com/l/ulana" target="_blank" class="btn-primary">Buy ulana</a>
+      <form class="beta-form" action="https://formsubmit.co/gohicks@proton.me" method="POST">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <input type="hidden" name="_subject" value="ulana beta request">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://ulana.app/#beta">
+        <button type="submit" class="btn-primary">Request beta access</button>
+      </form>
+      <p class="beta-note" id="beta-note">Private beta — we'll email you an invite when spots open.</p>
     </div>
   </section>
 
@@ -2464,6 +2534,27 @@
       currentView = currentView === 'threads' ? 'wiki' : 'threads';
       switchView(currentView);
     }, 5000);
+
+    // ── Beta signup: instant confirmation ──
+    const betaForm = document.querySelector('.beta-form');
+    if (betaForm) {
+      betaForm.addEventListener('submit', () => {
+        const note = document.getElementById('beta-note');
+        if (note) note.textContent = "You're on the list — we'll email you an invite when spots open.";
+      });
+    }
+
+    // ── Beta links: smooth-scroll to the signup section ──
+    document.querySelectorAll('[data-beta-link]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const snap = document.querySelector('.snap-scroll');
+        const target = document.getElementById('beta');
+        if (snap && target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
   </script>
 </body>
 </html>
