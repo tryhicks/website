@@ -2447,6 +2447,7 @@
       <form class="beta-form" id="beta-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="dd57c28f-74c0-4957-ad56-ad365b524b1e">
         <input type="hidden" name="subject" value="ulana beta request">
+        <input type="hidden" name="source" id="beta-source" value="">
         <input type="hidden" name="botcheck" value="">
         <input type="email" name="email" placeholder="Your email address" required>
         <button type="submit" class="btn-primary">Request beta access</button>
@@ -2535,12 +2536,23 @@
     }, 5000);
 
     // ── Beta signup: submit in background, confirm in place ──
+    // Capture where the visitor came from: ?ref= or ?utm_source= in the URL,
+    // else the referring site. Sent with the form so we can see which launch
+    // channel (PH, X, Reddit, etc.) drove each beta signup.
+    (function captureBetaSource() {
+      const params = new URLSearchParams(window.location.search);
+      const ref = (params.get('ref') || params.get('utm_source') || '').trim();
+      const source = ref || (document.referrer ? new URL(document.referrer).hostname : 'direct');
+      const sourceInput = document.getElementById('beta-source');
+      if (sourceInput) sourceInput.value = source;
+    })();
     const betaForm = document.querySelector('.beta-form');
     if (betaForm) {
       betaForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const note = document.getElementById('beta-note');
         const emailInput = betaForm.querySelector('input[name="email"]');
+        const sourceInput = document.getElementById('beta-source');
         const button = betaForm.querySelector('button[type="submit"]');
         const originalLabel = button ? button.textContent : '';
         if (button) button.disabled = true;
@@ -2552,7 +2564,8 @@
               access_key: 'dd57c28f-74c0-4957-ad56-ad365b524b1e',
               subject: 'ulana beta request',
               botcheck: '',
-              email: emailInput ? emailInput.value : ''
+              email: emailInput ? emailInput.value : '',
+              source: sourceInput ? sourceInput.value : ''
             })
           });
           const data = await res.json();
