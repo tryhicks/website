@@ -1,11 +1,11 @@
 {
-  "version": "0.1.42",
-  "notes": "FIXED\n- Daily logs are safe now \u2014 switching vaults or editing notes will never delete your multi-session daily logs (Bug #122)\n",
-  "pub_date": "2026-08-05T18:45:12Z",
+  "version": "0.1.43",
+  "notes": "FIXED\n- Clicking right after a link no longer opens your browser, and typing at the end of a link stays in your note (Bug #123)\n- Files written by other apps now show up in the left menu right away \u2014 no more waiting for a second event (Bug #124)",
+  "pub_date": "2026-08-06T14:15:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR21YMFAxVVluMVFKUDJkd0FzaS9vc3QxNktrdTJZZXFOZXpxY003ZXlPQmNPWWY0bGNLVm9uNko3TWZuSjRBM3VnUk9MWEJ4R3Y3U0ZLbWtvdEN0T3c4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1OTU1NDY4CWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKcmdCcEY0dVBLYkQ3QzB0aVNKZitzc1hSRkZUQ3dJRnNNaytFeTdpNUdkN3F3aXZiaTBCUFlxRjFOUy9RQzM2OUlqd1hXWnhNdENZdHVBMm9MZlhWQnc9PQo=",
-      "url": "https://github.com/tryhicks/website/releases/download/v0.1.42/ulana-macos-aarch64.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRRFNSVTcvZ0ZBR3B0NmZiZ0lNY3dKNFAxcCtjWHhwZVdFWUZSQ25lSUxVMlpjUkk4M2tObVZEVnlJT2ViakFqckp1SUtrVVphRkdacHZpRHJ3RmdXWnVtR3BNdTBqVWdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2MDIxOTg5CWZpbGU6dWxhbmEtbWFjb3MtYWFyY2g2NC50YXIuZ3oKWFQ4TEhLaUVRTW5KM051MnJnMXZHd2UwUld5NW84aXFRUXJEMlBkODI0VGNKMjFsRmt5V2l5UnphaHJWMGtXcXB6cEkrY3V3K2J6U0dWQVF5dFhtRFE9PQo=",
+      "url": "https://github.com/tryhicks/website/releases/download/v0.1.43/ulana-macos-aarch64.tar.gz"
     }
   }
 }
